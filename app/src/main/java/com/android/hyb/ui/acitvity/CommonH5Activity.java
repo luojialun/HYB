@@ -1,5 +1,4 @@
-package com.android.hyb.ui.fragment;
-
+package com.android.hyb.ui.acitvity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -10,21 +9,18 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.android.hyb.R;
-import com.android.hyb.base.BaseFragment;
+import com.android.hyb.base.BaseActivity;
 
 import butterknife.BindView;
 
-/**
- * 分享码fragment
- */
-public class ShareCodeFragment extends BaseFragment {
+public class CommonH5Activity extends BaseActivity {
 
     @BindView(R.id.webview)
     WebView webView;
 
     @Override
     public int setViewId() {
-        return R.layout.fragment_share_code;
+        return R.layout.activity_common_h5;
     }
 
     @Override
@@ -64,5 +60,4 @@ public class ShareCodeFragment extends BaseFragment {
             }
         });
     }
-
 }

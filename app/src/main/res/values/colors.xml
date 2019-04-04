@@ -12,4 +12,15 @@
     <color name="black">#000000</color>
     <color name="color_66000000">#66000000</color>
     <color name="blue">#5CACEE</color>
+    <color name="color_9BCD9B">#9BCD9B</color>
+    <color name="color_7CCD7C">#7CCD7C</color>
+    <color name="color_80b57d">#80b57d</color>
+    <color name="color_a4a4a4">#a4a4a4</color>
+    <color name="color_8e8e8e">#8e8e8e</color>
+    <color name="color_eeefef">#eeefef</color>
+    <color name="color_777777">#777777</color>
+    <color name="color_C42229">#C42229</color>
+    <color name="color_DB001C">#DB001C</color>
+    <color name="color_eaeaea">#eaeaea</color>
+    <color name="color_1396F2">#1396F2</color>
 </resources>

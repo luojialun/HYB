@@ -1,5 +1,6 @@
 package com.android.hyb.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.android.hyb.R;
 import com.android.hyb.util.SystemBarHelper;
+import com.android.hyb.widget.dialog.ShowDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -24,6 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(setViewId());
         unBinder = ButterKnife.bind(this);
         initStatus();
+        initParams();
         initView();
         initData();
         if (bindEventbus()) {
@@ -70,6 +73,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         return true;
     }
 
+    public void initParams(){
+    }
+
     public abstract int setViewId();
 
     public abstract void initView();
@@ -78,6 +84,31 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public boolean bindEventbus() {
         return false;
+    }
+
+    public void readyGo(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+    }
+
+
+    public void readyGoThenKill(Class<?> clazz) {
+        Intent intent = new Intent(this, clazz);
+        startActivity(intent);
+        finish();
+    }
+
+    public void readyGoForResult(Class<?> clazz, int requestCode) {
+        Intent intent = new Intent(this, clazz);
+        startActivityForResult(intent, requestCode);
+    }
+
+    public void showProgress() {
+        ShowDialog.showDialog(this, "", true, null);
+    }
+
+    public void dismissProgress() {
+        ShowDialog.dissmiss();
     }
 
     @Override

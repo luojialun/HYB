@@ -1,11 +1,14 @@
 package com.android.hyb.base;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.android.hyb.widget.dialog.ShowDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,6 +40,24 @@ public abstract class BaseFragment extends Fragment {
 
     public boolean bindEventbus() {
         return false;
+    }
+
+    public void readyGo(Class<?> clazz) {
+        Intent intent = new Intent(getActivity(), clazz);
+        startActivity(intent);
+    }
+
+    public void readyGoForResult(Class<?> clazz, int requestCode) {
+        Intent intent = new Intent(getActivity(), clazz);
+        startActivityForResult(intent, requestCode);
+    }
+
+    public void showProgress() {
+        ShowDialog.showDialog(getActivity(), "", true, null);
+    }
+
+    public void dissmissProgress() {
+        ShowDialog.dissmiss();
     }
 
     @Override

@@ -11,11 +11,12 @@ import java.util.List;
 
 public class GoodsAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder> {
     public GoodsAdapter(@Nullable List<GoodsBean> data) {
-        super(R.layout.item_goods,data);
+        super(R.layout.item_goods, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, GoodsBean item) {
-
+        helper.setText(R.id.name_tv, item.getName());
+        helper.setImageResource(R.id.icon_iv, item.getImage());
     }
 }

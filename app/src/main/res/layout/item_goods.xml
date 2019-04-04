@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -8,18 +9,21 @@
     android:padding="10dp">
 
     <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/icon_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
-        android:src="@mipmap/ic_launcher" />
+        android:scaleType="fitCenter"
+        tools:src="@mipmap/ic_launcher" />
 
     <TextView
+        android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="安卓音效软件"
-        android:textColor="@color/black"
-        android:textSize="14sp" />
+        android:textColor="@color/color_777777"
+        android:textSize="12sp"
+        tools:text="安卓音效软件" />
 
 </LinearLayout>

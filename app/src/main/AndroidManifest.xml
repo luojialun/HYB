@@ -15,6 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.acitvity.GoodsDetailsActivity"></activity>
+        <activity android:name=".ui.acitvity.CommonH5Activity" />
+        <activity android:name=".ui.acitvity.GoodsListActivity" />
         <activity android:name=".ui.acitvity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

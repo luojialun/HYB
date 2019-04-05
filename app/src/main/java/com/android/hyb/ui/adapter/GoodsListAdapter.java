@@ -21,5 +21,8 @@ public class GoodsListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
         GlideApp.with(mContext)
                 .load("http://img5q.duitang.com/uploads/item/201503/18/20150318215612_USNEu.jpeg")
                 .into((ImageView) helper.getView(R.id.content_iv));
+
+        helper.addOnClickListener(R.id.item_cardview);
+        helper.addOnClickListener(R.id.buy_tv);
     }
 }

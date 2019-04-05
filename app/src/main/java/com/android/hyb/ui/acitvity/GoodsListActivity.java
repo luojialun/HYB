@@ -16,6 +16,9 @@ import java.util.List;
 
 import butterknife.BindView;
 
+/**
+ * 商品列表
+ */
 public class GoodsListActivity extends BaseActivity {
 
     @BindView(R.id.title_tv)
@@ -50,10 +53,17 @@ public class GoodsListActivity extends BaseActivity {
         GoodsListAdapter adapter = new GoodsListAdapter(list);
         goodsListRv.setAdapter(adapter);
 
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                readyGo(GoodsDetailsActivity.class);
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                switch (view.getId()) {
+                    case R.id.item_cardview:
+                        readyGo(GoodsDetailsActivity.class);
+                        break;
+                    case R.id.buy_tv:
+                        readyGo(OrderDetailsActivity.class);
+                        break;
+                }
             }
         });
 

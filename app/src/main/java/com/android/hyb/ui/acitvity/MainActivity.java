@@ -1,6 +1,7 @@
 package com.android.hyb.ui.acitvity;
 
 import android.support.v4.app.Fragment;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +12,7 @@ import com.android.hyb.ui.adapter.MainPageAdapter;
 import com.android.hyb.ui.fragment.MainFragment;
 import com.android.hyb.ui.fragment.MineFragment;
 import com.android.hyb.ui.fragment.ShareCodeFragment;
+import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.NoSlideViewPager;
 
 import java.util.ArrayList;
@@ -19,6 +21,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.OnClick;
 
+/**
+ * 主页面
+ */
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.viewpager)
@@ -36,7 +41,23 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.mine_tv)
     TextView mineTv;
 
+    private long firstTime = 0;
     private List<Fragment> fragmentList = new ArrayList<>();
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - firstTime > 2000) {
+                ToastUtils.show(MainActivity.this, "再按一次退出");
+                firstTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     public int setViewId() {
@@ -71,7 +92,6 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-
 
     public void setTabSelect(int position) {
         viewPager.setCurrentItem(position, false);

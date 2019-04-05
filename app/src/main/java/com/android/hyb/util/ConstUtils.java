@@ -20,4 +20,15 @@ public class ConstUtils {
     public static final String ONLINE_SERVICE = "在线客服";
 
     public static final String WATERMARK = "抖音去水印";
+
+    public static final String PHONE = "phone";
+
+    public static final String PASSWORD = "password";
+
+    public static final String AUTO_LOGIN = "auto_login";
+
+    public static final String SWITCH_STATE = "switch_state";
+
+
+    public static final int REQUEST_PERMISSION = 1000;
 }

@@ -48,7 +48,9 @@ dependencies {
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.27'
     //banner
     implementation 'com.youth.banner:banner:1.4.10'
-    //
+    //cardView
     implementation 'com.android.support:cardview-v7:28.0.0'
+    //权限申请
+    implementation 'com.yanzhenjie.permission:support:2.0.1'
 
 }

@@ -1,10 +1,13 @@
 package com.android.hyb.ui.acitvity;
 
+import android.content.Intent;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.ToastUtils;
 import com.yanzhenjie.permission.Action;
 import com.yanzhenjie.permission.AndPermission;
 import com.yanzhenjie.permission.runtime.Permission;
@@ -43,13 +46,11 @@ public class SplashActivity extends BaseActivity {
                 .onDenied(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> data) {
-                        if (AndPermission.hasAlwaysDeniedPermission(SplashActivity.this, data)) {
-                            // 用Dialog展示没有某权限，询问用户是否去设置中授权。
-                            AndPermission.with(SplashActivity.this)
-                                    .runtime()
-                                    .setting()
-                                    .start(ConstUtils.REQUEST_PERMISSION);
-                        }
+                        ToastUtils.show(SplashActivity.this, "请开启所需要的权限");
+                        AndPermission.with(SplashActivity.this)
+                                .runtime()
+                                .setting()
+                                .start(ConstUtils.REQUEST_PERMISSION);
                     }
                 }).start();
     }
@@ -67,5 +68,19 @@ public class SplashActivity extends BaseActivity {
                 readyGoThenKill(LoginActivity.class);
             }
         }, remain > 0 ? remain : 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case ConstUtils.REQUEST_PERMISSION:
+                if (AndPermission.hasPermissions(this, Permission.Group.STORAGE)) {
+                    goNext();
+                } else {
+                    onBackPressed();
+                }
+                break;
+        }
     }
 }

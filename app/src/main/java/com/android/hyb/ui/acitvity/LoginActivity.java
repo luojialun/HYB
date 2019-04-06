@@ -6,6 +6,11 @@ import android.widget.Switch;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.response.WanResponse;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
@@ -65,6 +70,15 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
-        readyGoThenKill(MainActivity.class);
+        ServiceFactory.createHYBService(ContentService.class).getlistproject()
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<WanResponse>(this) {
+                    @Override
+                    public void onNext(WanResponse response) {
+                        readyGoThenKill(MainActivity.class);
+                    }
+                });
+
+
     }
 }

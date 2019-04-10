@@ -27,8 +27,6 @@ public class ConstUtils {
 
     public static final String AUTO_LOGIN = "auto_login";
 
-    public static final String SWITCH_STATE = "switch_state";
-
     public static final String ID = "Id";
 
     public static final String SALES = "sales";

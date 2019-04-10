@@ -10,6 +10,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -64,17 +65,25 @@ public class GoodsDetailsActivity extends BaseActivity {
     }
 
     private void getGoodsDetails() {
+        showProgress();
         ServiceFactory.createHYBService(ContentService.class).getGoodsDetails(id)
                 .compose(new RemoteTransformer<GoodsDetailsResponse>())
                 .subscribe(new ToastObserver<GoodsDetailsResponse>(this) {
                     @Override
                     public void onNext(GoodsDetailsResponse response) {
+                        dismissProgress();
                         if (null != response) {
                             GlideApp.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
                             nameTv.setText(response.getData().getName());
                             salesTv.setText(response.getData().getSales()+"人已付款");
                             descTv.setText(response.getData().getDetails());
                         }
+                    }
+
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                        dismissProgress();
                     }
                 });
     }

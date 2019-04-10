@@ -10,6 +10,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.GoodsResponse.GoodsBean;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -93,11 +94,13 @@ public class GoodsListActivity extends BaseActivity {
     }
 
     private void getGoodsList() {
+        showProgress();
         ServiceFactory.createHYBService(ContentService.class).getGoodsList(categoryId, pageIndex, ConstUtils.PAGE_SIZE, ConstUtils.SALES, false)
                 .compose(new RemoteTransformer<GoodsResponse>())
                 .subscribe(new ToastObserver<GoodsResponse>(this) {
                     @Override
                     public void onNext(GoodsResponse response) {
+                        dismissProgress();
                         if (null != response && 0 < response.getData().size()) {
                             if (1 == pageIndex) {
                                 adapter.setNewData(response.getData());
@@ -114,6 +117,12 @@ public class GoodsListActivity extends BaseActivity {
                         } else {
                             adapter.setEmptyView(R.layout.layout_empty);
                         }
+                    }
+
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                        dismissProgress();
                     }
                 });
     }

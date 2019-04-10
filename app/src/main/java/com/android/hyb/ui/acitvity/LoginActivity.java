@@ -47,6 +47,7 @@ public class LoginActivity extends BaseActivity {
         } else {
             loginSwitch.setChecked(false);
         }
+
     }
 
     @Override
@@ -78,21 +79,24 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
+        showProgress();
         ServiceFactory.createHYBService(ContentService.class).login(phoneEt.getText().toString(), passwordEt.getText().toString())
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<LoginResponse>(this) {
                     @Override
                     public void onNext(LoginResponse response) {
+                        dismissProgress();
                         SPUtils.getInstance().put(ConstUtils.PHONE, phoneEt.getText().toString());
                         SPUtils.getInstance().put(ConstUtils.PASSWORD, passwordEt.getText().toString());
-                        SPUtils.getInstance().put(ConstUtils.SWITCH_STATE, loginSwitch.isChecked());
+                        SPUtils.getInstance().put(ConstUtils.AUTO_LOGIN, loginSwitch.isChecked());
                         ToastUtils.show(LoginActivity.this, "response-->" + response.getData());
-                        readyGo(MainActivity.class);
+                        readyGoThenKill(MainActivity.class);
                     }
 
                     @Override
                     public void onError(ErrorException e) {
                         super.onError(e);
+                        dismissProgress();
                         ToastUtils.show(LoginActivity.this, "error-->" + e.msg);
                     }
                 });

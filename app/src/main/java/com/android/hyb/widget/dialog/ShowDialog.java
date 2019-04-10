@@ -97,7 +97,7 @@ public class ShowDialog extends Dialog {
     }
 
     public synchronized static void dissmiss() {
-        if (null != dialog) {
+        if (null != dialog && dialog.isShowing()) {
             dialog.dismiss();
 //            imageView.clearAnimation();
         }

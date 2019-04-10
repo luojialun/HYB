@@ -7,7 +7,7 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.annotations.NonNull;
 
 
-public class RemoteTransformer<Z extends BaseResponse.ErrorResponse>
+public class RemoteTransformer<Z>
         implements ObservableTransformer<BaseResponse<Z>, Z> {
 
     @Override

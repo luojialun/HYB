@@ -14,12 +14,13 @@ android {
         debug {
             shrinkResources false
             minifyEnabled false
-            buildConfigField 'String', 'serverUrl', '"https://www.wanandroid.com"'// test数据
+            buildConfigField 'String', 'serverUrl', '"https://www.xtrszccp.cn"'// test数据
         }
 
         release {
             shrinkResources true
             minifyEnabled true
+            buildConfigField 'String', 'serverUrl', '"https://www.xtrszccp.cn"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

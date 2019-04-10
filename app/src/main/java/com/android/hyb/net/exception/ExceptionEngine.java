@@ -28,7 +28,7 @@ public class ExceptionEngine {
         ErrorException ex;
         if (e instanceof HttpException) {// HTTP错误
             HttpException httpException = (HttpException) e;
-            ex = new ErrorException(e, MMError.HTTP_ERROR);
+            ex = new ErrorException(e, NetError.HTTP_ERROR);
             ex.code = httpException.code();
             switch (httpException.code()) {
                 case BAD_GATEWAY:
@@ -41,13 +41,13 @@ public class ExceptionEngine {
                 case INTERNAL_SERVER_ERROR:
                 case SERVICE_UNAVAILABLE:
                 default:
-                    ex.msg = MMError.MSG_HTTP_ERROR;
+                    ex.msg = NetError.MSG_HTTP_ERROR;
                     break;
             }
             return ex;
         } else if (e instanceof BussinessError) {// 服务器返回的错误
             BussinessError bussinessError = (BussinessError) e;
-            ex = new ErrorException(bussinessError, MMError.SERVICE_ERROR);
+            ex = new ErrorException(bussinessError, NetError.SERVICE_ERROR);
             if (bussinessError.state == 1) {
                 ex.code = Integer.valueOf(bussinessError.state + String.valueOf(bussinessError.code));
             } else {
@@ -58,19 +58,19 @@ public class ExceptionEngine {
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException
                 || e instanceof ParseException) {// 解析错误
-            ex = new ErrorException(e, MMError.PARSE_ERROR);
-            ex.code = MMError.PARSE_ERROR;
-            ex.msg = MMError.MSG_PARSE_ERROR;
+            ex = new ErrorException(e, NetError.PARSE_ERROR);
+            ex.code = NetError.PARSE_ERROR;
+            ex.msg = NetError.MSG_PARSE_ERROR;
             return ex;
         } else if (e instanceof ConnectException || e instanceof SocketTimeoutException || e instanceof UnknownHostException) {// 网络链接错误
-            ex = new ErrorException(e, MMError.NETWORD_ERROR);
-            ex.code = MMError.NETWORD_ERROR;
-            ex.msg = MMError.MSG_NETWORD_ERROR;
+            ex = new ErrorException(e, NetError.NETWORD_ERROR);
+            ex.code = NetError.NETWORD_ERROR;
+            ex.msg = NetError.MSG_NETWORD_ERROR;
             return ex;
         } else {// 未知错误
-            ex = new ErrorException(e, MMError.UNKNOWN);
-            ex.code = MMError.UNKNOWN;
-            ex.msg = MMError.MSG_UNKNOWN;
+            ex = new ErrorException(e, NetError.UNKNOWN);
+            ex.code = NetError.UNKNOWN;
+            ex.msg = NetError.MSG_UNKNOWN;
             return ex;
         }
     }

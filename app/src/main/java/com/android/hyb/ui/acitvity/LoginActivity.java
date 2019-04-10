@@ -1,18 +1,20 @@
 package com.android.hyb.ui.acitvity;
 
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Switch;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
-import com.android.hyb.bean.response.WanResponse;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
+import com.android.hyb.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -55,9 +57,14 @@ public class LoginActivity extends BaseActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_tv:
-                SPUtils.getInstance().put(ConstUtils.PHONE, phoneEt.getText().toString());
-                SPUtils.getInstance().put(ConstUtils.PASSWORD, passwordEt.getText().toString());
-                SPUtils.getInstance().put(ConstUtils.SWITCH_STATE, loginSwitch.isChecked());
+                if (TextUtils.isEmpty(phoneEt.getText().toString())) {
+                    ToastUtils.show(LoginActivity.this, "请输入手机号");
+                    break;
+                }
+                if (TextUtils.isEmpty(passwordEt.getText().toString())) {
+                    ToastUtils.show(LoginActivity.this, "请输入密码");
+                    break;
+                }
                 login();
                 break;
             case R.id.forget_tv:
@@ -70,15 +77,20 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void login() {
-        ServiceFactory.createHYBService(ContentService.class).getlistproject()
+        ServiceFactory.createHYBService(ContentService.class).login(phoneEt.getText().toString(), passwordEt.getText().toString())
                 .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<WanResponse>(this) {
+                .subscribe(new ToastObserver<String>(this) {
                     @Override
-                    public void onNext(WanResponse response) {
-                        readyGoThenKill(MainActivity.class);
+                    public void onNext(String response) {
+                        ToastUtils.show(LoginActivity.this, "response-->" + response);
+                        readyGo(MainActivity.class);
+                    }
+
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                        ToastUtils.show(LoginActivity.this, "error-->" + e.msg);
                     }
                 });
-
-
     }
 }

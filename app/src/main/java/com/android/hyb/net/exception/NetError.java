@@ -1,6 +1,6 @@
 package com.android.hyb.net.exception;
 
-public class MMError {
+public class NetError {
 
     /**
      * 未知错误

@@ -7,6 +7,7 @@ import android.widget.Switch;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
@@ -79,10 +80,10 @@ public class LoginActivity extends BaseActivity {
     private void login() {
         ServiceFactory.createHYBService(ContentService.class).login(phoneEt.getText().toString(), passwordEt.getText().toString())
                 .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<String>(this) {
+                .subscribe(new ToastObserver<LoginResponse>(this) {
                     @Override
-                    public void onNext(String response) {
-                        ToastUtils.show(LoginActivity.this, "response-->" + response);
+                    public void onNext(LoginResponse response) {
+                        ToastUtils.show(LoginActivity.this, "response-->" + response.getData());
                         readyGo(MainActivity.class);
                     }
 

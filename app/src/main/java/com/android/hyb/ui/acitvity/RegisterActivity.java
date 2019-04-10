@@ -6,6 +6,7 @@ import android.widget.EditText;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.response.RegisterResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -83,16 +84,12 @@ public class RegisterActivity extends BaseActivity {
     private void register() {
         ServiceFactory.createHYBService(ContentService.class).register(phoneEt.getText().toString(), passwordEt.getText().toString())
                 .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<String>(this) {
+                .subscribe(new ToastObserver<RegisterResponse>(this) {
                     @Override
-                    public void onNext(String response) {
-                        ToastUtils.show(RegisterActivity.this, response);
-                        finish();
-                    }
+                    public void onNext(RegisterResponse response) {
 
-                    @Override
-                    public void onError(Throwable t) {
-                        super.onError(t);
+                        ToastUtils.show(RegisterActivity.this, response.getData());
+                        finish();
                     }
                 });
     }

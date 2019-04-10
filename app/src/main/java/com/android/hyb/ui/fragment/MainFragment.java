@@ -6,9 +6,15 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.bean.clazz.GoodsBean;
+import com.android.hyb.bean.response.BannerResponse;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.CommonH5Activity;
 import com.android.hyb.ui.acitvity.GoodsListActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
@@ -50,16 +56,24 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initBanner() {
-        banner.isAutoPlay(true);
-        //设置轮播时间
-        banner.setDelayTime(3000);
-        banner.setImageLoader(new GlideImageLoader());
-        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
-        List<String> images = new ArrayList<>();
-        images.add("http://www.pptbz.com/pptpic/UploadFiles_6909/201203/2012031220134655.jpg");
-        images.add("http://pic41.nipic.com/20140429/12728082_192158998000_2.jpg");
-        banner.setImages(images);
-        banner.start();
+        ServiceFactory.createHYBService(ContentService.class).getBannerList()
+                .compose(new RemoteTransformer<BannerResponse>())
+                .subscribe(new ToastObserver<BannerResponse>(getActivity()) {
+                    @Override
+                    public void onNext(BannerResponse response) {
+                        banner.isAutoPlay(true);
+                        //设置轮播时间
+                        banner.setDelayTime(3000);
+                        banner.setImageLoader(new GlideImageLoader());
+                        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
+                        List<String> images = new ArrayList<>();
+                        for (BannerResponse.BannerBean bannerBean : response.getData()) {
+                            images.add(BuildConfig.serverUrl + "/Yinliubao/images/" + bannerBean.getUrl());
+                        }
+                        banner.setImages(images);
+                        banner.start();
+                    }
+                });
     }
 
     private void initRecyclerView() {
@@ -135,6 +149,10 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initData() {
+
+    }
+
+    public void getBannerData() {
 
     }
 

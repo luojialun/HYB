@@ -12,6 +12,7 @@ public class SchedulerTransformer<T> implements ObservableTransformer<T, T> {
     public Observable<T> apply(@NonNull Observable<T> upstream) {
         return upstream
                 .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 }

@@ -11,15 +11,13 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.functions.Function;
 
-public class ErrorCheckerTransformer<Z>
-        implements ObservableTransformer<BaseResponse<Z>, Z> {
+public class ErrorCheckerTransformer<Z extends BaseResponse> implements ObservableTransformer<Z, Z> {
 
     @Override
-    public Observable<Z> apply(Observable<BaseResponse<Z>> upstream) {
-        return upstream.map(new Function<BaseResponse<Z>, Z>() {
-
+    public Observable<Z> apply(Observable<Z> upstream) {
+        return upstream.map(new Function<Z, Z>() {
             @Override
-            public Z apply(BaseResponse<Z> z) throws Exception {
+            public Z apply(Z z) throws Exception {
                 String msg = null;
 
                 String status = "";
@@ -42,7 +40,7 @@ public class ErrorCheckerTransformer<Z>
                     }
                 }
 
-                return z.data;
+                return z;
             }
         });
     }

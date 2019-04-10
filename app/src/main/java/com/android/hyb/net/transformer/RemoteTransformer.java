@@ -7,13 +7,12 @@ import io.reactivex.ObservableTransformer;
 import io.reactivex.annotations.NonNull;
 
 
-public class RemoteTransformer<Z>
-        implements ObservableTransformer<BaseResponse<Z>, Z> {
+public class RemoteTransformer<Z extends BaseResponse> implements ObservableTransformer<Z, Z> {
 
     @Override
-    public Observable<Z> apply(@NonNull Observable<BaseResponse<Z>> upstream) {
+    public Observable<Z> apply(@NonNull Observable<Z> upstream) {
         return upstream
-                .compose(new SchedulerTransformer<BaseResponse<Z>>())
+                .compose(new SchedulerTransformer<Z>())
                 .compose(new ErrorCheckerTransformer<Z>());
     }
 

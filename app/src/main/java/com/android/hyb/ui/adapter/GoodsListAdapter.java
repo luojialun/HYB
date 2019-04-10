@@ -5,21 +5,22 @@ import android.widget.ImageView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.GlideApp;
+import com.android.hyb.bean.response.GoodsResponse.GoodsBean;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
 import java.util.List;
 
-public class GoodsListAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
+public class GoodsListAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder> {
 
-    public GoodsListAdapter(@Nullable List<String> data) {
+    public GoodsListAdapter(@Nullable List<GoodsBean> data) {
         super(R.layout.item_goods_list, data);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, String item) {
+    protected void convert(BaseViewHolder helper, GoodsBean item) {
         GlideApp.with(mContext)
-                .load("http://img5q.duitang.com/uploads/item/201503/18/20150318215612_USNEu.jpeg")
+                .load(item.getUrl())
                 .into((ImageView) helper.getView(R.id.content_iv));
 
         helper.addOnClickListener(R.id.item_cardview);

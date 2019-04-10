@@ -29,6 +29,13 @@ public class ConstUtils {
 
     public static final String SWITCH_STATE = "switch_state";
 
+    public static final String ID = "Id";
+
+    public static final String SALES = "sales";
+
+    public static final int PAGE_SIZE = 10;
+
 
     public static final int REQUEST_PERMISSION = 1000;
+
 }

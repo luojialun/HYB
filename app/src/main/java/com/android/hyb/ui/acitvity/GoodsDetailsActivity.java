@@ -9,6 +9,12 @@ import android.widget.TextView;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
+import com.android.hyb.bean.response.GoodsDetailsResponse;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.pop.ShareCodePop;
 
@@ -22,12 +28,23 @@ public class GoodsDetailsActivity extends BaseActivity {
 
     @BindView(R.id.content_iv)
     ImageView contentIv;
+    @BindView(R.id.name_tv)
+    TextView nameTv;
+    @BindView(R.id.sales_tv)
+    TextView salesTv;
     @BindView(R.id.desc_tv)
     TextView descTv;
+
+    private int id;
 
     @Override
     public int setViewId() {
         return R.layout.activity_goods_details;
+    }
+
+    @Override
+    public void initParams() {
+        id = getIntent().getIntExtra(ConstUtils.ID, 0);
     }
 
     @Override
@@ -43,7 +60,23 @@ public class GoodsDetailsActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        GlideApp.with(this).load("http://b-ssl.duitang.com/uploads/item/201501/29/20150129204856_FZWve.jpeg").into(contentIv);
+        getGoodsDetails();
+    }
+
+    private void getGoodsDetails() {
+        ServiceFactory.createHYBService(ContentService.class).getGoodsDetails(id)
+                .compose(new RemoteTransformer<GoodsDetailsResponse>())
+                .subscribe(new ToastObserver<GoodsDetailsResponse>(this) {
+                    @Override
+                    public void onNext(GoodsDetailsResponse response) {
+                        if (null != response) {
+                            GlideApp.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
+                            nameTv.setText(response.getData().getName());
+                            salesTv.setText(response.getData().getSales()+"人已付款");
+                            descTv.setText(response.getData().getDetails());
+                        }
+                    }
+                });
     }
 
     @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.share_code_ll, R.id.buy_tv})
@@ -56,7 +89,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.share_code_ll:
-                ShareCodePop shareCodePop=new ShareCodePop(this);
+                ShareCodePop shareCodePop = new ShareCodePop(this);
                 shareCodePop.showPopupWindow();
                 break;
             case R.id.buy_tv:

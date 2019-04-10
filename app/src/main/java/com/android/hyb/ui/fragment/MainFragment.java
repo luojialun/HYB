@@ -6,16 +6,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
-import com.android.hyb.bean.clazz.GoodsBean;
 import com.android.hyb.bean.response.BannerResponse;
+import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
-import com.android.hyb.ui.acitvity.CommonH5Activity;
 import com.android.hyb.ui.acitvity.GoodsListActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
@@ -61,52 +59,54 @@ public class MainFragment extends BaseFragment {
                 .subscribe(new ToastObserver<BannerResponse>(getActivity()) {
                     @Override
                     public void onNext(BannerResponse response) {
-                        banner.isAutoPlay(true);
-                        //设置轮播时间
-                        banner.setDelayTime(3000);
-                        banner.setImageLoader(new GlideImageLoader());
-                        banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
-                        List<String> images = new ArrayList<>();
-                        for (BannerResponse.BannerBean bannerBean : response.getData()) {
-                            images.add(BuildConfig.serverUrl + "/Yinliubao/images/" + bannerBean.getUrl());
+                        if (null != response && 0 < response.getData().size()) {
+                            banner.isAutoPlay(true);
+                            //设置轮播时间
+                            banner.setDelayTime(3000);
+                            banner.setImageLoader(new GlideImageLoader());
+                            banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
+                            List<String> images = new ArrayList<>();
+                            for (BannerResponse.BannerBean bannerBean : response.getData()) {
+                                images.add(bannerBean.getUrl());
+                            }
+                            banner.setImages(images);
+                            banner.start();
                         }
-                        banner.setImages(images);
-                        banner.start();
                     }
                 });
     }
 
     private void initRecyclerView() {
-        goodsRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        List<GoodsBean> goodsList = new ArrayList<>();
+        ServiceFactory.createHYBService(ContentService.class).getGoodsCategoryList()
+                .compose(new RemoteTransformer<GoodsCategoryResponse>())
+                .subscribe(new ToastObserver<GoodsCategoryResponse>(getActivity()) {
+                    @Override
+                    public void onNext(GoodsCategoryResponse response) {
+                        if (null != response && 0 < response.getData().size()) {
+                            goodsRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+                            List<GoodsCategoryResponse.GoodsCategoryBean> goodsList = new ArrayList<>();
 
-        goodsList.add(new GoodsBean(R.mipmap.android, "安卓营销软件"));
-        goodsList.add(new GoodsBean(R.mipmap.apple, "苹果营销软件"));
-        goodsList.add(new GoodsBean(R.mipmap.computer, "电脑营销软件"));
-        goodsList.add(new GoodsBean(R.mipmap.cloud, "云端营销产品"));
-        goodsList.add(new GoodsBean(R.mipmap.gift, "VIP会员福利"));
-        goodsList.add(new GoodsBean(R.mipmap.hongbao, "云端红包系列"));
-        goodsList.add(new GoodsBean(R.mipmap.xiangce, "营销做图软件"));
-        goodsList.add(new GoodsBean(R.mipmap.cloud_chat, "云微讯全系列"));
-        goodsList.add(new GoodsBean(R.mipmap.hotfans, "云端爆粉产品"));
-        goodsList.add(new GoodsBean(R.mipmap.delete, "云端清理产品"));
-        goodsList.add(new GoodsBean(R.mipmap.qq, "QQ营销软件"));
-        goodsList.add(new GoodsBean(R.mipmap.other, "其他营销软件"));
+                            for (GoodsCategoryResponse.GoodsCategoryBean goodsCategoryBean : response.getData()) {
+                                goodsList.add(goodsCategoryBean);
+                            }
+                            GoodsAdapter goodsAdapter = new GoodsAdapter(goodsList);
+                            goodsRv.setAdapter(goodsAdapter);
 
-        GoodsAdapter goodsAdapter = new GoodsAdapter(goodsList);
-        goodsRv.setAdapter(goodsAdapter);
+                            goodsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                                    Intent intent = new Intent(getActivity(), GoodsListActivity.class);
+                                    intent.putExtra(ConstUtils.TITLE, goodsList.get(position).getName());
+                                    intent.putExtra(ConstUtils.ID, goodsList.get(position).getId());
+                                    intent.putExtra(ConstUtils.POSITION, position);
+                                    startActivity(intent);
+                                }
+                            });
+                        }
+                    }
+                });
 
-        goodsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Intent intent = new Intent(getActivity(), GoodsListActivity.class);
-                intent.putExtra(ConstUtils.TITLE, goodsList.get(position).getName());
-                intent.putExtra(ConstUtils.POSITION, position);
-                startActivity(intent);
-            }
-        });
-
-        appRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+        /*appRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         List<GoodsBean> appList = new ArrayList<>();
 
         appList.add(new GoodsBean(R.mipmap.jiangshi, ConstUtils.CLEAR_FANS));
@@ -142,17 +142,13 @@ public class MainFragment extends BaseFragment {
                         break;
                 }
             }
-        });
+        });*/
 
 
     }
 
     @Override
     public void initData() {
-
-    }
-
-    public void getBannerData() {
 
     }
 
@@ -163,6 +159,25 @@ public class MainFragment extends BaseFragment {
                 MainTipPop mainTipPop = new MainTipPop(getActivity());
                 mainTipPop.showPopupWindow();
                 break;
+        }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //开始轮播
+        if (null != banner) {
+            banner.startAutoPlay();
+        }
+    }
+
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        //结束轮播
+        if (null != banner) {
+            banner.stopAutoPlay();
         }
     }
 

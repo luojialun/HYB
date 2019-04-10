@@ -1,5 +1,6 @@
 package com.android.hyb.ui.acitvity;
 
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,12 +8,15 @@ import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.response.GoodsResponse;
+import com.android.hyb.bean.response.GoodsResponse.GoodsBean;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.adapter.GoodsListAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 
@@ -27,6 +31,9 @@ public class GoodsListActivity extends BaseActivity {
     RecyclerView goodsListRv;
 
     private String title;
+    private int categoryId;
+    private GoodsListAdapter adapter;
+    private int pageIndex = 1;
 
     @Override
     public int setViewId() {
@@ -36,6 +43,7 @@ public class GoodsListActivity extends BaseActivity {
     @Override
     public void initParams() {
         title = getIntent().getStringExtra(ConstUtils.TITLE);
+        categoryId = getIntent().getIntExtra(ConstUtils.ID, 0);
     }
 
     @Override
@@ -46,11 +54,8 @@ public class GoodsListActivity extends BaseActivity {
 
     private void initRecyclerView() {
         goodsListRv.setLayoutManager(new GridLayoutManager(this, 2));
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 50; i++) {
-            list.add("i-->" + i);
-        }
-        GoodsListAdapter adapter = new GoodsListAdapter(list);
+
+        adapter = new GoodsListAdapter(null);
         goodsListRv.setAdapter(adapter);
 
         adapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -58,19 +63,58 @@ public class GoodsListActivity extends BaseActivity {
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 switch (view.getId()) {
                     case R.id.item_cardview:
-                        readyGo(GoodsDetailsActivity.class);
+                        Intent detailsIntent = new Intent(GoodsListActivity.this, GoodsDetailsActivity.class);
+                        detailsIntent.putExtra(ConstUtils.ID, ((GoodsBean) adapter.getData().get(position)).getId());
+                        startActivity(detailsIntent);
                         break;
                     case R.id.buy_tv:
-                        readyGo(OrderDetailsActivity.class);
+                        Intent orderIntent = new Intent(GoodsListActivity.this, OrderDetailsActivity.class);
+
+                        startActivity(orderIntent);
                         break;
                 }
             }
         });
 
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                pageIndex++;
+                getGoodsList();
+            }
+        }, goodsListRv);
+
     }
+
 
     @Override
     public void initData() {
+        getGoodsList();
+    }
 
+    private void getGoodsList() {
+        ServiceFactory.createHYBService(ContentService.class).getGoodsList(categoryId, pageIndex, ConstUtils.PAGE_SIZE, ConstUtils.SALES, false)
+                .compose(new RemoteTransformer<GoodsResponse>())
+                .subscribe(new ToastObserver<GoodsResponse>(this) {
+                    @Override
+                    public void onNext(GoodsResponse response) {
+                        if (null != response && 0 < response.getData().size()) {
+                            if (1 == pageIndex) {
+                                adapter.setNewData(response.getData());
+                            } else {
+                                adapter.addData(response.getData());
+                            }
+
+                            if (response.getData().size() < ConstUtils.PAGE_SIZE) {
+                                adapter.loadMoreEnd();
+                            } else {
+                                adapter.loadMoreComplete();
+                            }
+
+                        } else {
+                            adapter.setEmptyView(R.layout.layout_empty);
+                        }
+                    }
+                });
     }
 }

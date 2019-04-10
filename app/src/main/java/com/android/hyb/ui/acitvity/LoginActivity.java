@@ -83,6 +83,9 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(new ToastObserver<LoginResponse>(this) {
                     @Override
                     public void onNext(LoginResponse response) {
+                        SPUtils.getInstance().put(ConstUtils.PHONE, phoneEt.getText().toString());
+                        SPUtils.getInstance().put(ConstUtils.PASSWORD, passwordEt.getText().toString());
+                        SPUtils.getInstance().put(ConstUtils.SWITCH_STATE, loginSwitch.isChecked());
                         ToastUtils.show(LoginActivity.this, "response-->" + response.getData());
                         readyGo(MainActivity.class);
                     }

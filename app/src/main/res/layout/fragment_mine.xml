@@ -12,6 +12,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <!--背景-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
@@ -19,6 +20,7 @@
 
             </RelativeLayout>
 
+            <!--头部收入-->
             <RelativeLayout
                 android:id="@+id/ll_header"
                 android:layout_width="match_parent"
@@ -181,6 +183,7 @@
                 </LinearLayout>
             </RelativeLayout>
 
+            <!--头像icon-->
             <ImageView
                 android:id="@+id/image_header"
                 android:layout_width="wrap_content"
@@ -190,6 +193,7 @@
                 android:layout_centerHorizontal="true"
                 />
 
+            <!--订单-->
             <RelativeLayout
                 android:id="@+id/ll_order"
                 android:layout_width="match_parent"
@@ -221,67 +225,286 @@
                     android:layout_alignParentRight="true"
                     android:layout_marginRight ="15dp"/>
 
-                <view
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:layout_below="@id/tv_order"
-                    android:background="@color/color_eeefef"></view>
+                    android:background="@color/color_eeefef"/>
 
-                <!--<LinearLayout-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_below ="@id/tv_order"-->
-                    <!--android:layout_alignParentBottom="true">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below ="@id/tv_order"
+                    android:layout_alignParentBottom="true">
 
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1">-->
-                        <!--<ImageView-->
-                            <!--android:id="@+id/image_unpay"-->
-                            <!--android:layout_width="wrap_content"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:src="@mipmap/mine_unpay"-->
-                            <!--android:layout_centerHorizontal="true"-->
-                            <!--android:layout_marginTop="15dp"/>-->
-                        <!--<TextView-->
-                            <!--android:layout_width="match_parent"-->
-                            <!--android:layout_height="wrap_content"-->
-                            <!--android:gravity="center"-->
-                            <!--android:textSize="15dp"-->
-                            <!--android:text="待付款"-->
-                            <!--android:textColor="#272727"-->
-                            <!--android:layout_below="@id/image_unpay"-->
-                            <!--android:layout_marginTop="10dp"-->
-                            <!--/>-->
-                    <!--</RelativeLayout>-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/image_unpay"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/mine_unpay"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15dp"
+                            android:text="待付款"
+                            android:textColor="#272727"
+                            android:layout_below="@id/image_unpay"
+                            android:layout_marginTop="10dp"
+                            />
+                    </RelativeLayout>
 
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1">-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/image_unsend"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/mine_unsend"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15dp"
+                            android:text="待发货"
+                            android:textColor="#272727"
+                            android:layout_below="@id/image_unsend"
+                            android:layout_marginTop="10dp"
+                            />
 
+                    </RelativeLayout>
 
-                    <!--</RelativeLayout>-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        >
+                        <ImageView
+                            android:id="@+id/image_unget"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/mine_unget"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15dp"
+                            android:text="待收货"
+                            android:textColor="#272727"
+                            android:layout_below="@id/image_unget"
+                            android:layout_marginTop="10dp"
+                            />
+                    </RelativeLayout>
 
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--&gt;-->
-
-                    <!--</RelativeLayout>-->
-
-                    <!--<RelativeLayout-->
-                        <!--android:layout_width="0dp"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--&gt;-->
-
-                    <!--</RelativeLayout>-->
-
-                <!--</LinearLayout>-->
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        >
+                        <ImageView
+                            android:id="@+id/image_finish"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/mine_finish"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="15dp"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:textSize="15dp"
+                            android:text="待收货"
+                            android:textColor="#272727"
+                            android:layout_below="@id/image_finish"
+                            android:layout_marginTop="10dp"
+                            />
+                    </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
+
+            <!--我的其他-->
+            <RelativeLayout
+                android:id="@+id/ll_other"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/ll_order"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:background="@drawable/rectangle_white_8radius">
+
+                <RelativeLayout
+                    android:id="@+id/ll_team"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+
+                    <ImageView
+                        android:id="@+id/image_team"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@mipmap/mine_team"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:text="我的团队"
+                        android:textColor="#272727"
+                        android:layout_toRightOf = "@id/image_team"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/mine_more"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/color_eeefef"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_get_cash"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/ll_team">
+
+                    <ImageView
+                        android:id="@+id/image_get_cash"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@mipmap/mine_get_cash"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:text="佣金提现"
+                        android:textColor="#272727"
+                        android:layout_toRightOf = "@id/image_get_cash"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/mine_more"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/color_eeefef"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/ll_get_cash">
+
+                    <ImageView
+                        android:id="@+id/image_detail"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@mipmap/mine_detail"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:text="分润明细"
+                        android:textColor="#272727"
+                        android:layout_toRightOf = "@id/image_detail"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/mine_more"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/color_eeefef"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/ll_share"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_below="@id/ll_detail">
+
+                    <ImageView
+                        android:id="@+id/image_share"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@mipmap/mine_share"
+                        android:layout_marginLeft="15dp"
+                        android:layout_centerVertical="true"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="15dp"
+                        android:text="推广佣金政策"
+                        android:textColor="#272727"
+                        android:layout_toRightOf = "@id/image_share"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/mine_more"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="20dp"/>
+                </RelativeLayout>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_below="@id/ll_other">
+
+            </LinearLayout>
 
         </RelativeLayout>
     </ScrollView>

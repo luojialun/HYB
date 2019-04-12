@@ -4,15 +4,17 @@ import com.android.hyb.base.BaseResponse;
 
 public class UserResponse extends BaseResponse {
 
-    public UserResponse.UserBean data;
-    public UserResponse.UserBean getData() {
+    public UserBean data;
+
+    public UserBean getData() {
         return data;
     }
-    public void setData(UserResponse.UserBean data) {
+
+    public void setData(UserBean data) {
         this.data = data;
     }
 
-    public static class UserBean{
+    public static class UserBean {
         /**
          * Id : 4
          * OpenId :

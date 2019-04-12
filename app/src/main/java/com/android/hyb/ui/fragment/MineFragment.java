@@ -1,24 +1,20 @@
 package com.android.hyb.ui.fragment;
 
 
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
+import com.android.hyb.base.GlideApp;
+import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -95,6 +91,17 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        GlideApp.with(this)
+                .load(UserInfo.getTotalAvatarUrl())
+                .placeholder(R.mipmap.header_default)
+                .into(imageHeader);
+
+
+        String replaceStr = UserInfo.getMobile().substring(3, 7);
+        String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
+        tvMobile.setText(showMobile);
+        tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
+
 
     }
 
@@ -103,31 +110,25 @@ public class MineFragment extends BaseFragment {
 
     }
 
-
-    //OnClick
-    @OnClick(R.id.image_unpay)
-    public void onImageUnpayClicked() {
-        readyGo(OrderActivity.class);
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.image_unpay:
+                readyGo(OrderActivity.class);
+                break;
+            case R.id.image_unsend:
+                readyGo(OrderActivity.class);
+                break;
+            case R.id.image_unget:
+                readyGo(OrderActivity.class);
+                break;
+            case R.id.image_finish:
+                readyGo(OrderActivity.class);
+                break;
+            case R.id.ll_team:
+                readyGo(MineTeamActivity.class);
+                break;
+        }
     }
-
-    @OnClick(R.id.image_unsend)
-    public void onImageUnsendClicked() {
-        readyGo(OrderActivity.class);
-    }
-
-    @OnClick(R.id.image_unget)
-    public void onImageUngetClicked() {
-        readyGo(OrderActivity.class);
-    }
-
-    @OnClick(R.id.image_finish)
-    public void onImageFinishtClicked() {
-        readyGo(OrderActivity.class);
-    }
-
-    @OnClick(R.id.ll_team)
-    public void onMineTeamClicked(){
-        readyGo(MineTeamActivity.class);
-    };
 
 }

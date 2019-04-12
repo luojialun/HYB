@@ -7,6 +7,7 @@ import android.widget.Switch;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.bean.response.UserResponse;
 import com.android.hyb.net.exception.ErrorException;
@@ -53,7 +54,6 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
     }
 
     @OnClick({R.id.forget_tv, R.id.register_tv, R.id.login_tv})
@@ -81,33 +81,50 @@ public class LoginActivity extends BaseActivity {
 
     private void login() {
         showProgress();
-        LoginActivity that = this;
-
         ServiceFactory.createHYBService(ContentService.class).login(phoneEt.getText().toString(), passwordEt.getText().toString())
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<LoginResponse>(this) {
                     @Override
                     public void onNext(LoginResponse response) {
-                        dismissProgress();
                         SPUtils.getInstance().put(ConstUtils.PHONE, phoneEt.getText().toString());
                         SPUtils.getInstance().put(ConstUtils.PASSWORD, passwordEt.getText().toString());
                         SPUtils.getInstance().put(ConstUtils.AUTO_LOGIN, loginSwitch.isChecked());
-                        ToastUtils.show(LoginActivity.this, "response-->" + response.getData());
-                        ServiceFactory.createHYBService(ContentService.class).getUserAgent(response.getData().getToken())
-                                .compose(new RemoteTransformer<>())
-                                .subscribe(new ToastObserver<UserResponse>(that) {
-                                    @Override
-                                    public void onNext(UserResponse userResponse) {
-                                        readyGoThenKill(MainActivity.class);
-                                    }
-                                });
+                        if ("success".equals(response.getData().getStatus())) {
+                            getUserInfo(response.getData().getToken());
+                        } else {
+                            ToastUtils.show(LoginActivity.this, response.getData().getMessage());
+                        }
+
+                    }
+
+                });
+    }
+
+    private void getUserInfo(String token) {
+        ServiceFactory.createHYBService(ContentService.class).getUserAgent(token)
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<UserResponse>(this) {
+                    @Override
+                    public void onNext(UserResponse response) {
+                        dismissProgress();
+                        UserInfo.setId(response.getData().getId());
+                        UserInfo.setNickName(response.getData().getNickName());
+                        UserInfo.setAvatarUrl(response.getData().getAvatarUrl());
+                        UserInfo.setRole(response.getData().getRole());
+                        UserInfo.setAccessNum(response.getData().getAccessNum());
+                        UserInfo.setLastAccessTime(response.getData().getLastAccessTime());
+                        UserInfo.setAccessNum(response.getData().getAccessNum());
+                        UserInfo.setMobile(response.getData().getMobile());
+                        UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
+                        UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
+
+                        readyGoThenKill(MainActivity.class);
                     }
 
                     @Override
                     public void onError(ErrorException e) {
                         super.onError(e);
                         dismissProgress();
-                        ToastUtils.show(LoginActivity.this, "error-->" + e.msg);
                     }
                 });
     }

@@ -9,8 +9,9 @@
     <TextView
         android:id="@+id/title_tv"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="58dp"
         android:gravity="center"
+        android:paddingTop="14dp"
         android:text="首页"
         android:textColor="@color/black"
         android:textSize="15sp" />

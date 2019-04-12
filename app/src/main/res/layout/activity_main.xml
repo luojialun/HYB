@@ -5,12 +5,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.acitvity.MainActivity">
 
-    <View
-        android:id="@+id/statusBar"
-        android:layout_width="match_parent"
-        android:layout_height="14dp"
-        android:background="@color/white" />
-
     <com.android.hyb.widget.NoSlideViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"

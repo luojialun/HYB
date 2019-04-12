@@ -6,6 +6,7 @@ import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.bean.response.RegisterResponse;
+import com.android.hyb.bean.response.UserResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -75,5 +76,12 @@ public interface ContentService {
      */
     @GET("Yinliubao/Goods/GetNew")
     Observable<GoodsDetailsResponse> getGoodsDetails(@Query("id") int id);
+
+    /**
+     * 获取用户信息
+     *
+     */
+    @GET("Yinliubao/User/Get")
+    Observable<UserResponse> getUserAgent(@Query("token") String token);
 
 }

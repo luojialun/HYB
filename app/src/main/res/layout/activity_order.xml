@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.acitvity.OrderActivity">
+
+    <View
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/ll_tab"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/statusBar">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="全部"
+                android:textColor="@color/color_272727"
+                android:textSize="15dp"
+                android:gravity="center"/>
+            
+            <ImageView
+                android:id="@+id/image_tab1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_86e2d2"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="待付款"
+                android:textColor="@color/color_272727"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/image_tab2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_86e2d2"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="待发货"
+                android:textColor="@color/color_272727"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/image_tab3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_86e2d2"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="待收货"
+                android:textColor="@color/color_272727"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/image_tab4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_86e2d2"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="已完成"
+                android:textColor="@color/color_272727"
+                android:textSize="15dp"
+                android:gravity="center"/>
+
+            <ImageView
+                android:id="@+id/image_tab5"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_alignParentBottom="true"
+                android:background="@color/color_86e2d2"
+                android:visibility="gone"/>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+    <com.android.hyb.widget.NoSlideViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/ll_tab"
+        android:overScrollMode="never" />
+
+        <!--android:layout_below="@+id/statusBar"-->
+
+
+</RelativeLayout>

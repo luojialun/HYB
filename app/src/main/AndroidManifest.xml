@@ -23,7 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".ui.acitvity.OrderDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -56,6 +55,7 @@
             android:name=".ui.acitvity.GoodsListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.acitvity.OrderActivity"></activity>
     </application>
 
 </manifest>

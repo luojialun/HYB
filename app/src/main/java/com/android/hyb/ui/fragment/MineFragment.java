@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
+import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
 
 import butterknife.BindView;
@@ -123,5 +124,10 @@ public class MineFragment extends BaseFragment {
     public void onImageFinishtClicked() {
         readyGo(OrderActivity.class);
     }
+
+    @OnClick(R.id.ll_team)
+    public void onMineTeamClicked(){
+        readyGo(MineTeamActivity.class);
+    };
 
 }

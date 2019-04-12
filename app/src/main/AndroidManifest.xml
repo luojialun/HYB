@@ -55,7 +55,8 @@
             android:name=".ui.acitvity.GoodsListActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.acitvity.OrderActivity"></activity>
+        <activity android:name=".ui.acitvity.OrderActivity" />
+        <activity android:name=".ui.acitvity.MineTeamActivity"></activity>
     </application>
 
 </manifest>

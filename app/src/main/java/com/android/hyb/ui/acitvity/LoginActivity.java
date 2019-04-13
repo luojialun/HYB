@@ -90,6 +90,7 @@ public class LoginActivity extends BaseActivity {
                         SPUtils.getInstance().put(ConstUtils.PASSWORD, passwordEt.getText().toString());
                         SPUtils.getInstance().put(ConstUtils.AUTO_LOGIN, loginSwitch.isChecked());
                         if ("success".equals(response.getData().getStatus())) {
+                            SPUtils.getInstance().put(ConstUtils.TOKEN, response.getData().getToken());
                             getUserInfo(response.getData().getToken());
                         } else {
                             ToastUtils.show(LoginActivity.this, response.getData().getMessage());

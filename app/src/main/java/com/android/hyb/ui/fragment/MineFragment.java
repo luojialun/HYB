@@ -10,8 +10,18 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
+import com.android.hyb.bean.response.LoginResponse;
+import com.android.hyb.bean.response.UserResponse;
+import com.android.hyb.net.exception.ErrorException;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.MainActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
+import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -91,6 +101,40 @@ public class MineFragment extends BaseFragment {
 
     @Override
     public void initView() {
+        updateHeaderView();
+    }
+
+    @Override
+    public void initData() {
+        String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
+        if (token != null) {
+            ServiceFactory.createHYBService(ContentService.class).getUserAgent(token)
+                    .compose(new RemoteTransformer<>())
+                    .subscribe(new ToastObserver<UserResponse>(this.getContext()) {
+                        @Override
+                        public void onNext(UserResponse response) {
+                            UserInfo.setId(response.getData().getId());
+                            UserInfo.setNickName(response.getData().getNickName());
+                            UserInfo.setAvatarUrl(response.getData().getAvatarUrl());
+                            UserInfo.setRole(response.getData().getRole());
+                            UserInfo.setAccessNum(response.getData().getAccessNum());
+                            UserInfo.setLastAccessTime(response.getData().getLastAccessTime());
+                            UserInfo.setAccessNum(response.getData().getAccessNum());
+                            UserInfo.setMobile(response.getData().getMobile());
+                            UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
+                            UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
+                            updateHeaderView();
+                        }
+
+                        @Override
+                        public void onError(ErrorException e) {
+                            super.onError(e);
+                        }
+                    });
+        }
+    }
+
+    private void updateHeaderView() {
         GlideApp.with(this)
                 .load(UserInfo.getTotalAvatarUrl())
                 .placeholder(R.mipmap.header_default)
@@ -101,13 +145,6 @@ public class MineFragment extends BaseFragment {
         String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
         tvMobile.setText(showMobile);
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
-
-
-    }
-
-    @Override
-    public void initData() {
-
     }
 
     @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team})

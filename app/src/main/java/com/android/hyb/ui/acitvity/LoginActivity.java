@@ -118,6 +118,7 @@ public class LoginActivity extends BaseActivity {
                         UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
                         UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
 
+                        ToastUtils.show(LoginActivity.this,"登录成功");
                         readyGoThenKill(MainActivity.class);
                     }
 

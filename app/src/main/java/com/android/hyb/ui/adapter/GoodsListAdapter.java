@@ -23,6 +23,10 @@ public class GoodsListAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder
                 .load(item.getUrl())
                 .into((ImageView) helper.getView(R.id.content_iv));
 
+        helper.setText(R.id.name_tv, item.getName());
+        helper.setText(R.id.price_tv, "￥" + item.getPresentPrice());
+        helper.setText(R.id.sales_tv, item.getSales() + "人付款");
+
         helper.addOnClickListener(R.id.item_cardview);
         helper.addOnClickListener(R.id.buy_tv);
     }

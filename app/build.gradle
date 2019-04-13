@@ -10,6 +10,14 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        debug {
+            storeFile file('hyb.jks')
+            storePassword "hyb1234"
+            keyAlias "hyb"
+            keyPassword "hyb1234"
+        }
+    }
     buildTypes {
         debug {
             shrinkResources false

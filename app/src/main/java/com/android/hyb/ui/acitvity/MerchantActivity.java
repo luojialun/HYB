@@ -49,8 +49,8 @@ public class MerchantActivity extends BaseActivity {
             public void onNext(GetApplyForBusinessResponse getApplyForBusinessResponse) {
                 GetApplyForBusinessResponse.GetApplyForBusinessBean bean = getApplyForBusinessResponse.getData();
                 if (bean != null) {
-                    if (bean.getApplyTimeString() != null){
-                        tvStatus.setText("申请状态："+bean.getApplyTimeString());
+                    if (bean.getStatusString() != null){
+                        tvStatus.setText("申请状态："+bean.getStatusString());
                     }
                     if (bean.getMessage() != null){
                         tvMessage.setText("信息："+bean.getMessage());
@@ -74,7 +74,7 @@ public class MerchantActivity extends BaseActivity {
 
                     @Override
                     public void onNext(ApplyForBusinessResponse applyForBusinessResponse) {
-                        ToastUtils.show(MerchantActivity.this,"申请提交成功");
+                        ToastUtils.show(MerchantActivity.this,applyForBusinessResponse.getData());
                     }
 
                     @Override

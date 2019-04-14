@@ -88,8 +88,9 @@ public interface ContentService {
     /**
      * 申请成为商户
      */
-    @GET("Yinliubao/User/ApplyForBusiness")
-    Observable<ApplyForBusinessResponse> applyForBusiness(@Query("token") String token);
+    @FormUrlEncoded
+    @POST("Yinliubao/User/ApplyForBusiness")
+    Observable<ApplyForBusinessResponse> applyForBusiness(@Field("token") String token);
 
     /**
      * 获取申请成为商户审核信息

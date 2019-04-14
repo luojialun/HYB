@@ -1,7 +1,10 @@
 package com.android.hyb.ui.fragment;
 
 
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,21 +13,22 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
-import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.bean.response.UserResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
-import com.android.hyb.ui.acitvity.MainActivity;
+import com.android.hyb.ui.acitvity.MerchantActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -89,6 +93,8 @@ public class MineFragment extends BaseFragment {
     RelativeLayout llShare;
     @BindView(R.id.ll_other)
     RelativeLayout llOther;
+    @BindView(R.id.ll_merchant)
+    RelativeLayout llMerchant;
 
     public MineFragment() {
         // Required empty public constructor
@@ -168,4 +174,8 @@ public class MineFragment extends BaseFragment {
         }
     }
 
+    @OnClick({R.id.ll_merchant})
+    public void onMerchantClicked() {
+        readyGo(MerchantActivity.class);
+    }
 }

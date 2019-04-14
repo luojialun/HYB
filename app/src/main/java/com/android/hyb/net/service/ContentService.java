@@ -1,6 +1,8 @@
 package com.android.hyb.net.service;
 
+import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BannerResponse;
+import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
@@ -79,9 +81,20 @@ public interface ContentService {
 
     /**
      * 获取用户信息
-     *
      */
     @GET("Yinliubao/User/Get")
     Observable<UserResponse> getUserAgent(@Query("token") String token);
+
+    /**
+     * 申请成为商户
+     */
+    @GET("Yinliubao/User/ApplyForBusiness")
+    Observable<ApplyForBusinessResponse> applyForBusiness(@Query("token") String token);
+
+    /**
+     * 获取申请成为商户审核信息
+     */
+    @GET("Yinliubao/User/GetApplyForBusiness")
+    Observable<GetApplyForBusinessResponse> GetApplyForBusiness(@Query("token") String token);
 
 }

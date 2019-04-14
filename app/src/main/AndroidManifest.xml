@@ -56,7 +56,8 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.acitvity.OrderActivity" />
-        <activity android:name=".ui.acitvity.MineTeamActivity"></activity>
+        <activity android:name=".ui.acitvity.MineTeamActivity" />
+        <activity android:name=".ui.acitvity.MerchantActivity"></activity>
     </application>
 
 </manifest>

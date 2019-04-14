@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.acitvity.MerchantActivity">
+    <View
+        android:id="@+id/statusBar"
+        android:layout_width="match_parent"
+        android:layout_height="14dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:gravity="center"
+        android:text="申请商户"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:layout_below="@id/statusBar"/>
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="15sp"
+        android:text="申请状态：未申请"
+        android:textColor="@color/black"
+        android:layout_alignTop="@+id/title_tv"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/tv_message"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:textSize="15sp"
+        android:text="信息：无"
+        android:textColor="@color/black"
+        android:layout_below="@id/tv_status"
+        android:layout_marginLeft="50dp" />
+
+    <TextView
+        android:id="@+id/tv_apply"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textSize="15sp"
+        android:text="申请成为商户"
+        android:textColor="@color/white"
+        android:background="@drawable/rectangle_red_25radius"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"/>
+
+</RelativeLayout>

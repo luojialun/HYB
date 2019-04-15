@@ -7,6 +7,7 @@ import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.LoginResponse;
+import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.bean.response.RegisterResponse;
 import com.android.hyb.bean.response.UserResponse;
 
@@ -97,5 +98,12 @@ public interface ContentService {
      */
     @GET("Yinliubao/User/GetApplyForBusiness")
     Observable<GetApplyForBusinessResponse> GetApplyForBusiness(@Query("token") String token);
+
+    /**
+     * 用户下单
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Order/PlaceNewOrder")
+    Observable<PlaceNewOrderResponse> placeNewOrder(@Field("token") String token, @Field("goodsId") int goodsId);
 
 }

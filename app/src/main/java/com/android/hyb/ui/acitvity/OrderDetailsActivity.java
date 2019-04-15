@@ -12,8 +12,15 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.clazz.PayResult;
 import com.android.hyb.bean.event.WechatFeedBackEvent;
+import com.android.hyb.bean.response.LoginResponse;
+import com.android.hyb.bean.response.PlaceNewOrderResponse;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.AppUtils;
 import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.pop.ListSingleSelectPop;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
@@ -47,6 +54,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private ListSingleSelectPop pop;
     private int payType;
+    private int id;
 
     private static final int SDK_PAY_FLAG = 1;
     public static final int ALI = 0;
@@ -55,6 +63,11 @@ public class OrderDetailsActivity extends BaseActivity {
     @Override
     public int setViewId() {
         return R.layout.activity_order_details;
+    }
+
+    @Override
+    public void initParams() {
+        id = getIntent().getIntExtra(ConstUtils.ID, 0);
     }
 
     @Override
@@ -94,14 +107,50 @@ public class OrderDetailsActivity extends BaseActivity {
         switch (payType) {
             case ALI:
                 if (AppUtils.isAliPayInstall(this)) {
-                    aliPay();
+                    ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
+                            .compose(new RemoteTransformer<>())
+                            .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
+                                @Override
+                                public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
+                                    if (placeNewOrderResponse.message.equals("success")){
+                                        aliPay();
+                                    }
+                                    else
+                                    {
+                                        ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable t) {
+                                    super.onError(t);
+                                }
+                            });
                 } else {
                     ToastUtils.show(this, "请先安装支付宝");
                 }
                 break;
             case WEHCAT:
                 if (AppUtils.isWechatInstall(this)) {
-                    wechatPay();
+                    ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
+                            .compose(new RemoteTransformer<>())
+                            .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
+                                @Override
+                                public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
+                                    if (placeNewOrderResponse.message.equals("success")){
+                                        wechatPay();
+                                    }
+                                    else
+                                    {
+                                        ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
+                                    }
+                                }
+
+                                @Override
+                                public void onError(Throwable t) {
+                                    super.onError(t);
+                                }
+                            });
                 } else {
                     ToastUtils.show(this, "请先安装微信");
                 }

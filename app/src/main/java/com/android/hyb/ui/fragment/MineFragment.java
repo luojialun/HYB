@@ -142,9 +142,18 @@ public class MineFragment extends BaseFragment {
                 .into(imageHeader);
 
 
-        String replaceStr = UserInfo.getMobile().substring(3, 7);
-        String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
-        tvMobile.setText(showMobile);
+        if (UserInfo.getMobile().length() > 7)
+        {
+            String replaceStr = UserInfo.getMobile().substring(3, 7);
+            String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
+            tvMobile.setText(showMobile);
+        }
+        else
+        {
+            String replaceStr = UserInfo.getMobile();
+            String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
+            tvMobile.setText(showMobile);
+        }
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
     }
 

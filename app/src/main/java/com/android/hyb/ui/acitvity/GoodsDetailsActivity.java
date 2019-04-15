@@ -2,6 +2,7 @@ package com.android.hyb.ui.acitvity;
 
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +11,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
+import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
@@ -103,7 +105,9 @@ public class GoodsDetailsActivity extends BaseActivity {
                 shareCodePop.showPopupWindow();
                 break;
             case R.id.buy_tv:
-                readyGo(OrderDetailsActivity.class);
+                Intent detailsIntent = new Intent(this, OrderDetailsActivity.class);
+                detailsIntent.putExtra(ConstUtils.ID, id);
+                startActivity(detailsIntent);
                 break;
         }
     }

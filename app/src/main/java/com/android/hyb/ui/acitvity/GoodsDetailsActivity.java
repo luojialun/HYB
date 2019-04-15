@@ -75,7 +75,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                         if (null != response) {
                             GlideApp.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
                             nameTv.setText(response.getData().getName());
-                            salesTv.setText(response.getData().getSales()+"人已付款");
+                            salesTv.setText(response.getData().getSales() + "人已付款");
                             descTv.setText(response.getData().getDetails());
                         }
                     }
@@ -88,7 +88,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.share_code_ll, R.id.buy_tv})
+    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.share_code_tv, R.id.share_code_ll, R.id.buy_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.desc_tv:
@@ -97,6 +97,7 @@ public class GoodsDetailsActivity extends BaseActivity {
             case R.id.shop_ll:
                 finish();
                 break;
+            case R.id.share_code_tv:
             case R.id.share_code_ll:
                 ShareCodePop shareCodePop = new ShareCodePop(this);
                 shareCodePop.showPopupWindow();

@@ -93,11 +93,17 @@ public class LoginActivity extends BaseActivity {
                             SPUtils.getInstance().put(ConstUtils.TOKEN, response.getData().getToken());
                             getUserInfo(response.getData().getToken());
                         } else {
+                            dismissProgress();
                             ToastUtils.show(LoginActivity.this, response.getData().getMessage());
                         }
 
                     }
 
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                        dismissProgress();
+                    }
                 });
     }
 
@@ -119,7 +125,7 @@ public class LoginActivity extends BaseActivity {
                         UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
                         UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
 
-                        ToastUtils.show(LoginActivity.this,"登录成功");
+                        ToastUtils.show(LoginActivity.this, "登录成功");
                         readyGoThenKill(MainActivity.class);
                     }
 

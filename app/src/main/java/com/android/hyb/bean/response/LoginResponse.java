@@ -5,14 +5,16 @@ import com.android.hyb.base.BaseResponse;
 public class LoginResponse extends BaseResponse {
 
     private LoginResponse.LoginBean data;
+
     public LoginResponse.LoginBean getData() {
         return data;
     }
+
     public void setData(LoginResponse.LoginBean data) {
         this.data = data;
     }
 
-    public static class LoginBean{
+    public static class LoginBean {
         /**
          * Status : success
          * Message :
@@ -22,7 +24,6 @@ public class LoginResponse extends BaseResponse {
         private String Status;
         private String Message;
         private String Token;
-
 
 
         public String getStatus() {

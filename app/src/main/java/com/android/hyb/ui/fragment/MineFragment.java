@@ -1,10 +1,7 @@
 package com.android.hyb.ui.fragment;
 
 
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,9 +23,7 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -153,7 +148,7 @@ public class MineFragment extends BaseFragment {
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team,R.id.ll_merchant})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -171,11 +166,10 @@ public class MineFragment extends BaseFragment {
             case R.id.ll_team:
                 readyGo(MineTeamActivity.class);
                 break;
+            case R.id.ll_merchant:
+                readyGo(MerchantActivity.class);
+                break;
         }
     }
 
-    @OnClick({R.id.ll_merchant})
-    public void onMerchantClicked() {
-        readyGo(MerchantActivity.class);
-    }
 }

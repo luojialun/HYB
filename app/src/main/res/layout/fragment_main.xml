@@ -63,7 +63,6 @@
                         android:ellipsize="marquee"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
-                        android:marqueeRepeatLimit="marquee_forever"
                         android:singleLine="true"
                         android:text="好友宝已更名为营销宝，还没有下线的营销宝的用户请使用营销宝，下载地址：http://t.cn/EfOAcoV"
                         android:textColor="@color/white" />
@@ -116,48 +115,6 @@
 
             <com.android.hyb.widget.MyRecyclerView
                 android:id="@+id/goodsRv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:nestedScrollingEnabled="false" />
-
-            <!--应用列表-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1px"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="60dp"
-                    android:layout_weight="1"
-                    android:background="@color/black" />
-
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:text="应用列表"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1px"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="60dp"
-                    android:layout_weight="1"
-                    android:background="@color/black" />
-
-            </LinearLayout>
-
-            <com.android.hyb.widget.MyRecyclerView
-                android:id="@+id/app_rv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

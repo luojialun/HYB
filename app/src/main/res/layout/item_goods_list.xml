@@ -77,14 +77,14 @@
             android:layout_marginRight="5dp"
             android:layout_marginBottom="5dp">
 
-            <TextView
+           <!-- <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:text="返佣金11元"
                 android:textColor="@color/color_a4a4a4"
                 android:textSize="12sp" />
-
+-->
             <TextView
                android:id="@+id/buy_tv"
                 android:layout_width="wrap_content"

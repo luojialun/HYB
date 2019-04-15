@@ -38,8 +38,7 @@ public class MainFragment extends BaseFragment {
     Banner banner;
     @BindView(R.id.goodsRv)
     RecyclerView goodsRv;
-    @BindView(R.id.app_rv)
-    RecyclerView appRv;
+
 
     @Override
     public int setViewId() {
@@ -105,44 +104,6 @@ public class MainFragment extends BaseFragment {
                         }
                     }
                 });
-
-        /*appRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-        List<GoodsBean> appList = new ArrayList<>();
-
-        appList.add(new GoodsBean(R.mipmap.jiangshi, ConstUtils.CLEAR_FANS));
-        appList.add(new GoodsBean(R.mipmap.video, ConstUtils.VIDEO_SHARE));
-        appList.add(new GoodsBean(R.mipmap.resource_share, ConstUtils.RESOURCE_SHARE));
-        appList.add(new GoodsBean(R.mipmap.agent, ConstUtils.AGENT));
-        appList.add(new GoodsBean(R.mipmap.online_service, ConstUtils.ONLINE_SERVICE));
-        appList.add(new GoodsBean(R.mipmap.watermark, ConstUtils.WATERMARK));
-
-
-        GoodsAdapter appAdapter = new GoodsAdapter(appList);
-        appRv.setAdapter(appAdapter);
-
-        appAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                switch (appList.get(position).getName()) {
-                    case ConstUtils.CLEAR_FANS:
-                        readyGo(CommonH5Activity.class);
-                        break;
-                    case ConstUtils.VIDEO_SHARE:
-                        readyGo(CommonH5Activity.class);
-                        break;
-                    case ConstUtils.RESOURCE_SHARE:
-                    case ConstUtils.AGENT:
-                        readyGo(CommonH5Activity.class);
-                        break;
-                    case ConstUtils.ONLINE_SERVICE:
-                        readyGo(CommonH5Activity.class);
-                        break;
-                    case ConstUtils.WATERMARK:
-                        readyGo(CommonH5Activity.class);
-                        break;
-                }
-            }
-        });*/
 
 
     }

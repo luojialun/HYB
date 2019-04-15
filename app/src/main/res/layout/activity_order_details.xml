@@ -98,7 +98,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="余额支付"
+            android:text="支付宝支付"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -111,7 +111,7 @@
         android:background="@color/color_dddddd" />
 
     <!--支付密码-->
-    <RelativeLayout
+  <!--  <RelativeLayout
         android:id="@+id/pay_password_rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -138,7 +138,7 @@
             android:textSize="16sp" />
 
     </RelativeLayout>
-
+-->
     <View
         android:id="@+id/pay_password_view"
         android:layout_width="match_parent"

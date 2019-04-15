@@ -38,4 +38,5 @@ public class ConstUtils {
 
     public static final int REQUEST_PERMISSION = 1000;
 
+    public static final String WECHAT_PAY_APP_ID = "";
 }

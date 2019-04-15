@@ -81,5 +81,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     //配合Rxjava 使用
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //ali支付
+    implementation fileTree(include: ['*.aar'], dir: 'libs/ali')
+    //wechat支付
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
 }

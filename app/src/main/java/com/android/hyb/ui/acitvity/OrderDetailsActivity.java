@@ -14,6 +14,7 @@ import com.android.hyb.bean.clazz.PayResult;
 import com.android.hyb.bean.event.WechatFeedBackEvent;
 import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -104,53 +105,40 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void submit() {
-        switch (payType) {
+        //支付成功之后去后台下单，此为下单接口。
+        ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
+                    @Override
+                    public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
+                        if (placeNewOrderResponse.status.equals("success")){
+                            ToastUtils.show(OrderDetailsActivity.this, "下单成功");
+                            finish();
+                        }
+                        else
+                        {
+                            ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
+                        }
+                    }
+
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                    }
+                });
+
+
+        switch (payType){
             case ALI:
                 if (AppUtils.isAliPayInstall(this)) {
-                    ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
-                            .compose(new RemoteTransformer<>())
-                            .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
-                                @Override
-                                public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
-                                    if (placeNewOrderResponse.message.equals("success")){
-                                        aliPay();
-                                    }
-                                    else
-                                    {
-                                        ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
-                                    }
-                                }
-
-                                @Override
-                                public void onError(Throwable t) {
-                                    super.onError(t);
-                                }
-                            });
+                    aliPay();
                 } else {
                     ToastUtils.show(this, "请先安装支付宝");
                 }
                 break;
             case WEHCAT:
                 if (AppUtils.isWechatInstall(this)) {
-                    ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
-                            .compose(new RemoteTransformer<>())
-                            .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
-                                @Override
-                                public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
-                                    if (placeNewOrderResponse.message.equals("success")){
-                                        wechatPay();
-                                    }
-                                    else
-                                    {
-                                        ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
-                                    }
-                                }
-
-                                @Override
-                                public void onError(Throwable t) {
-                                    super.onError(t);
-                                }
-                            });
+                    wechatPay();
                 } else {
                     ToastUtils.show(this, "请先安装微信");
                 }

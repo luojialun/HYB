@@ -3,13 +3,13 @@ package com.android.hyb.bean.response;
 import com.android.hyb.base.BaseResponse;
 
 public class PlaceNewOrderResponse extends BaseResponse {
-    private String data;
+    private PlaceNewOrderBean data;
 
-    public String getData() {
+    public PlaceNewOrderBean getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(PlaceNewOrderBean data) {
         this.data = data;
     }
 

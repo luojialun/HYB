@@ -2,12 +2,14 @@ package com.android.hyb.bean.response;
 
 import com.android.hyb.base.BaseResponse;
 
+import java.util.List;
+
 public class GetOrderListResponse extends BaseResponse {
-    private OrderListBean data;
-    public OrderListBean getData() {
+    private List<OrderListBean> data;
+    public List<OrderListBean> getData() {
         return data;
     }
-    public void setData(OrderListBean data) {
+    public void setData(List<OrderListBean> data) {
         this.data = data;
     }
 

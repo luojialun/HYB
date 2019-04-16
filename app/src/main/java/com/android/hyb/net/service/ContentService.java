@@ -3,6 +3,7 @@ package com.android.hyb.net.service;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
+import com.android.hyb.bean.response.GetOrderListResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
@@ -105,5 +106,11 @@ public interface ContentService {
     @FormUrlEncoded
     @POST("Yinliubao/Order/PlaceNewOrder")
     Observable<PlaceNewOrderResponse> placeNewOrder(@Field("token") String token, @Field("goodsId") int goodsId);
+
+    /**
+     * 分页获取订单列表
+     */
+    @GET("Yinliubao/Order/GetList")
+    Observable<GetOrderListResponse> GetOrderList(@Query("token") String token, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize, @Query("orderStatus") int orderStatus);
 
 }

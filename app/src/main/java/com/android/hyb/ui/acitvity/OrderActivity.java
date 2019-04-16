@@ -3,6 +3,7 @@ package com.android.hyb.ui.acitvity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -80,6 +81,22 @@ public class OrderActivity extends BaseActivity {
 
         MainPageAdapter adapter = new MainPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(adapter);
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                selectTab(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     @Override
@@ -89,6 +106,26 @@ public class OrderActivity extends BaseActivity {
 
     @OnClick({R.id.tv_tab1, R.id.tv_tab2, R.id.tv_tab3, R.id.tv_tab4, R.id.tv_tab5})
     public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.tv_tab1:
+                selectTab(0);
+                break;
+            case R.id.tv_tab2:
+                selectTab(1);
+                break;
+            case R.id.tv_tab3:
+                selectTab(2);
+                break;
+            case R.id.tv_tab4:
+                selectTab(3);
+                break;
+            case R.id.tv_tab5:
+                selectTab(4);
+                break;
+        }
+    }
+
+    public void selectTab(int num){
         tvTab1.setTextColor(Color.parseColor("#272727"));
         imageTab1.setVisibility(View.GONE);
 
@@ -104,29 +141,28 @@ public class OrderActivity extends BaseActivity {
         tvTab5.setTextColor(Color.parseColor("#272727"));
         imageTab5.setVisibility(View.GONE);
 
-
-        switch (view.getId()) {
-            case R.id.tv_tab1:
+        switch (num) {
+            case 0:
                 tvTab1.setTextColor(Color.parseColor("#86e2d2"));
                 imageTab1.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(0, true);
                 break;
-            case R.id.tv_tab2:
+            case 1:
                 tvTab2.setTextColor(Color.parseColor("#86e2d2"));
                 imageTab2.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(1, true);
                 break;
-            case R.id.tv_tab3:
+            case 2:
                 tvTab3.setTextColor(Color.parseColor("#86e2d2"));
                 imageTab3.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(2, true);
                 break;
-            case R.id.tv_tab4:
+            case 3:
                 tvTab4.setTextColor(Color.parseColor("#86e2d2"));
                 imageTab4.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(3, true);
                 break;
-            case R.id.tv_tab5:
+            case 4:
                 tvTab5.setTextColor(Color.parseColor("#86e2d2"));
                 imageTab5.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(4, true);

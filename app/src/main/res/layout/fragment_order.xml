@@ -5,10 +5,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.OrderFragment">
 
-    <TextView
-        android:id="@+id/test"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        tools:context=".ui.fragment.OrderFragment">
+
+        <com.android.hyb.widget.MyRecyclerView
+            android:id="@+id/orderRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:nestedScrollingEnabled="false" />
+
+    </ScrollView>
 
 </FrameLayout>

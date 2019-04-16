@@ -1,5 +1,6 @@
 package com.android.hyb.bean.response;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.base.BaseResponse;
 
 import java.util.List;
@@ -104,7 +105,7 @@ public class GetOrderListResponse extends BaseResponse {
         }
 
         public String getPictureUrl() {
-            return PictureUrl;
+            return BuildConfig.serverUrl+"/Yinliubao/images"+PictureUrl;
         }
 
         public void setPictureUrl(String PictureUrl) {

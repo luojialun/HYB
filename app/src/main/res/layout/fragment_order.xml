@@ -5,20 +5,16 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.OrderFragment">
 
-    <ScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:scrollbars="none"
-        tools:context=".ui.fragment.OrderFragment">
-
+        android:layout_height="wrap_content">
         <com.android.hyb.widget.MyRecyclerView
             android:id="@+id/orderRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:nestedScrollingEnabled="false" />
-
-    </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </FrameLayout>

@@ -45,6 +45,7 @@ public class OrdersAdapter extends BaseQuickAdapter<GetOrderListResponse.OrderLi
                 break;
             case 20:
                 status = "待发货";
+                helper.setVisible(R.id.tv_next,false);
                 break;
             case 30:
                 status = "待收货";
@@ -53,6 +54,7 @@ public class OrdersAdapter extends BaseQuickAdapter<GetOrderListResponse.OrderLi
                 break;
             case 40:
                 status = "已完成";
+                helper.setVisible(R.id.tv_next,false);
                 break;
         }
 

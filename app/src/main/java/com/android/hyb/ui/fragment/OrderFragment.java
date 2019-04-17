@@ -3,11 +3,11 @@ package com.android.hyb.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
@@ -21,6 +21,7 @@ import com.android.hyb.ui.adapter.OrdersAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.widget.MyRecyclerView;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import java.util.List;
 
@@ -37,6 +38,9 @@ public class OrderFragment extends BaseFragment {
     MyRecyclerView orderRv;
 
     public int type;
+    @BindView(R.id.swipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
+
     private int page;
     private List<GetOrderListResponse.OrderListBean> orderList;
     private OrdersAdapter adapter;
@@ -65,7 +69,11 @@ public class OrderFragment extends BaseFragment {
 
     @Override
     public void initData() {
+        page = 0;
+        loadMore();
+    }
 
+    public void loadMore() {
         int orderStatus = -1;
         switch (type) {
             case 0:
@@ -85,15 +93,28 @@ public class OrderFragment extends BaseFragment {
                 break;
         }
         String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
-        page = 1;
+        page++;
         ServiceFactory.createHYBService(ContentService.class).GetOrderList(token, page, 10, orderStatus)
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<GetOrderListResponse>(this.getContext()) {
                     @Override
-                    public void onNext(GetOrderListResponse getOrderListResponse) {
-                        if (getOrderListResponse.status.equals("success")) {
-                            orderList = getOrderListResponse.getData();
-                            adapter.setNewData(orderList);
+                    public void onNext(GetOrderListResponse response) {
+                        if (null != response && 0 < response.getData().size()) {
+                            if (1 == page) {
+                                swipeRefreshLayout.setRefreshing(false);
+                                adapter.setNewData(response.getData());
+                            } else {
+                                adapter.addData(response.getData());
+                            }
+
+                            if (response.getData().size() < ConstUtils.PAGE_SIZE) {
+                                adapter.loadMoreEnd();
+                            } else {
+                                adapter.loadMoreComplete();
+                            }
+
+                        } else {
+                            adapter.setEmptyView(R.layout.layout_empty);
                         }
                     }
 
@@ -109,8 +130,19 @@ public class OrderFragment extends BaseFragment {
         orderRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         adapter = new OrdersAdapter(null);
         orderRv.setAdapter(adapter);
+        adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            @Override
+            public void onLoadMoreRequested() {
+                loadMore();
+            }
+        },orderRv);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initData();
+            }
+        });
     }
-
-
 }
 

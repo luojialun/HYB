@@ -40,7 +40,7 @@
                         android:id="@+id/name_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="苹果QQ传奇秒"
+                        android:text=""
                         android:textColor="@color/black"
                         android:textSize="16sp" />
 
@@ -53,7 +53,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="¥68.00"
+                            android:text=""
                             android:textColor="@color/color_e26e1a"
                             android:textSize="14sp" />
 
@@ -80,7 +80,7 @@
                         android:id="@+id/sales_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4人已付款" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/share_code_tv"
@@ -106,7 +106,7 @@
                 android:background="@color/color_eaeaea"
                 android:lineSpacingExtra="3dp"
                 android:padding="20dp"
-                android:text="微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱微商工具箱"
+                android:text=""
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 

@@ -113,4 +113,18 @@ public interface ContentService {
     @GET("Yinliubao/Order/GetList")
     Observable<GetOrderListResponse> GetOrderList(@Query("token") String token, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize, @Query("orderStatus") int orderStatus);
 
+    /**
+     * 取消订单
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Order/CancelOrder")
+    Observable<ApplyForBusinessResponse> CancelOrder(@Field("token") String token, @Field("id") int id);
+
+    /**
+     * 确认收货订单
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Order/ConfirmOrder")
+    Observable<ApplyForBusinessResponse> ConfirmOrder(@Field("token") String token, @Field("id") int id);
+
 }

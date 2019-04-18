@@ -1,7 +1,11 @@
 package com.android.hyb.ui.fragment;
 
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +20,7 @@ import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MerchantActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
@@ -23,7 +28,9 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -90,6 +97,8 @@ public class MineFragment extends BaseFragment {
     RelativeLayout llOther;
     @BindView(R.id.ll_merchant)
     RelativeLayout llMerchant;
+    @BindView(R.id.tv_logout)
+    TextView tvLogout;
 
     public MineFragment() {
         // Required empty public constructor
@@ -142,14 +151,11 @@ public class MineFragment extends BaseFragment {
                 .into(imageHeader);
 
 
-        if (UserInfo.getMobile().length() > 7)
-        {
+        if (UserInfo.getMobile().length() > 7) {
             String replaceStr = UserInfo.getMobile().substring(3, 7);
             String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
             tvMobile.setText(showMobile);
-        }
-        else
-        {
+        } else {
             String replaceStr = UserInfo.getMobile();
             String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
             tvMobile.setText(showMobile);
@@ -157,7 +163,7 @@ public class MineFragment extends BaseFragment {
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team,R.id.ll_merchant})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant,R.id.tv_logout})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -178,7 +184,19 @@ public class MineFragment extends BaseFragment {
             case R.id.ll_merchant:
                 readyGo(MerchantActivity.class);
                 break;
+            case R.id.tv_logout:
+                logout();
+                break;
         }
+    }
+
+    public void logout(){
+        SPUtils.getInstance().remove(ConstUtils.PHONE);
+        SPUtils.getInstance().remove(ConstUtils.PASSWORD);
+        SPUtils.getInstance().remove(ConstUtils.AUTO_LOGIN);
+        SPUtils.getInstance().remove(ConstUtils.TOKEN);
+        startActivity(new Intent(getActivity(), LoginActivity.class));
+        getActivity().finish();
     }
 
 }

@@ -31,6 +31,8 @@ public class ConstUtils {
 
     public static final String ID = "Id";
 
+    public static final String Bean = "Bean";
+
     public static final String SALES = "sales";
 
     public static final int PAGE_SIZE = 10;

@@ -38,10 +38,11 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/tv_goods_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="防封时代"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -65,10 +66,11 @@
             android:textSize="16sp" />
 
         <TextView
+            android:id="@+id/tv_goods_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:text="￥82"
+            android:text=""
             android:textColor="@color/red"
             android:textSize="16sp" />
 

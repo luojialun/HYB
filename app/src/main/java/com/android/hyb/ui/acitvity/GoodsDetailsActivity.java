@@ -37,8 +37,11 @@ public class GoodsDetailsActivity extends BaseActivity {
     TextView salesTv;
     @BindView(R.id.desc_tv)
     TextView descTv;
+    @BindView(R.id.price_tv)
+    TextView priceTv;
 
     private int id;
+    private GoodsResponse.GoodsBean goodsBean;
 
     @Override
     public int setViewId() {
@@ -75,10 +78,12 @@ public class GoodsDetailsActivity extends BaseActivity {
                     public void onNext(GoodsDetailsResponse response) {
                         dismissProgress();
                         if (null != response) {
+                            goodsBean = response.getData();
                             GlideApp.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
                             nameTv.setText(response.getData().getName());
                             salesTv.setText(response.getData().getSales() + "人已付款");
                             descTv.setText(response.getData().getDetails());
+                            priceTv.setText("¥"+String.valueOf(response.getData().getPresentPrice()));
                         }
                     }
 
@@ -106,7 +111,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 break;
             case R.id.buy_tv:
                 Intent detailsIntent = new Intent(this, OrderDetailsActivity.class);
-                detailsIntent.putExtra(ConstUtils.ID, id);
+                detailsIntent.putExtra(ConstUtils.Bean, goodsBean);
                 startActivity(detailsIntent);
                 break;
         }

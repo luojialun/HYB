@@ -3,6 +3,7 @@ package com.android.hyb.bean.response;
 import com.android.hyb.BuildConfig;
 import com.android.hyb.base.BaseResponse;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class GoodsResponse extends BaseResponse {
@@ -17,7 +18,7 @@ public class GoodsResponse extends BaseResponse {
         this.data = data;
     }
 
-    public static class GoodsBean {
+    public static class GoodsBean implements Serializable {
 
 
         /**

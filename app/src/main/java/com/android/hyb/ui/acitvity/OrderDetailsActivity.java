@@ -1,6 +1,7 @@
 package com.android.hyb.ui.acitvity;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -12,7 +13,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.clazz.PayResult;
 import com.android.hyb.bean.event.WechatFeedBackEvent;
-import com.android.hyb.bean.response.LoginResponse;
+import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -39,6 +40,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -52,10 +54,14 @@ public class OrderDetailsActivity extends BaseActivity {
     TextView payMethodTv;
     @BindView(R.id.pay_password_view)
     View payPasswordView;
+    @BindView(R.id.tv_goods_name)
+    TextView tvGoodsName;
+    @BindView(R.id.tv_goods_price)
+    TextView tvGoodsPrice;
 
     private ListSingleSelectPop pop;
     private int payType;
-    private int id;
+    private GoodsResponse.GoodsBean goodsBean;
 
     private static final int SDK_PAY_FLAG = 1;
     public static final int ALI = 0;
@@ -68,7 +74,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
     @Override
     public void initParams() {
-        id = getIntent().getIntExtra(ConstUtils.ID, 0);
+        goodsBean = (GoodsResponse.GoodsBean) getIntent().getSerializableExtra(ConstUtils.Bean);
     }
 
     @Override
@@ -78,7 +84,8 @@ public class OrderDetailsActivity extends BaseActivity {
 
     @Override
     public void initData() {
-
+        tvGoodsName.setText(goodsBean.getName());
+        tvGoodsPrice.setText("¥"+String.valueOf(goodsBean.getPresentPrice()));
     }
 
     @OnClick({R.id.pay_method_rl, R.id.submit_tv})
@@ -106,17 +113,15 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private void submit() {
         //支付成功之后去后台下单，此为下单接口。
-        ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN),id)
+        ServiceFactory.createHYBService(ContentService.class).placeNewOrder(SPUtils.getInstance().getString(ConstUtils.TOKEN), goodsBean.getId())
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<PlaceNewOrderResponse>(this) {
                     @Override
                     public void onNext(PlaceNewOrderResponse placeNewOrderResponse) {
-                        if (placeNewOrderResponse.status.equals("success")){
+                        if (placeNewOrderResponse.status.equals("success")) {
                             ToastUtils.show(OrderDetailsActivity.this, "下单成功");
                             finish();
-                        }
-                        else
-                        {
+                        } else {
                             ToastUtils.show(OrderDetailsActivity.this, placeNewOrderResponse.message);
                         }
                     }
@@ -128,7 +133,7 @@ public class OrderDetailsActivity extends BaseActivity {
                 });
 
 
-        switch (payType){
+        switch (payType) {
             case ALI:
                 if (AppUtils.isAliPayInstall(this)) {
                     aliPay();

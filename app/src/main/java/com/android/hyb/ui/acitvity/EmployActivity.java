@@ -1,38 +1,29 @@
-package com.android.hyb.ui.fragment;
-
+package com.android.hyb.ui.acitvity;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
-
 import com.android.hyb.R;
-import com.android.hyb.base.BaseFragment;
+import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
-import com.android.hyb.bean.response.LoginResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.fragment.ShareCodeFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-/**
- * 分享码fragment
- */
-public class ShareCodeFragment extends BaseFragment {
+public class EmployActivity extends BaseActivity {
 
-    @BindView(R.id.shareCode_image)
-    ImageView shareCodeImage;
+    @BindView(R.id.share_image)
+    ImageView shareImage;
 
     @Override
     public int setViewId() {
-        return R.layout.fragment_share_code;
+        return R.layout.activity_employ;
     }
 
     @Override
@@ -44,10 +35,10 @@ public class ShareCodeFragment extends BaseFragment {
     public void initData() {
         ServiceFactory.createHYBService(ContentService.class).GetPlatformInifo()
                 .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<GetPlatformInfoResponse>(this.getContext()) {
+                .subscribe(new ToastObserver<GetPlatformInfoResponse>(this) {
                     @Override
                     public void onNext(GetPlatformInfoResponse response) {
-                        GlideApp.with(ShareCodeFragment.this).load(response.getData().getExtensionUrl()).into(shareCodeImage);
+                        GlideApp.with(EmployActivity.this).load(response.getData().getExtensionUrl()).into(shareImage);
                     }
 
                     @Override

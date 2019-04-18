@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragment.MainFragment">
 
-    <WebView
-        android:id="@+id/webview"
+    <ImageView
+        android:id="@+id/shareCode_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never" />
+        android:scaleType="fitXY"/>
 
 </FrameLayout>

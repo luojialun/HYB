@@ -20,6 +20,7 @@ import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.EmployActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MerchantActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
@@ -163,7 +164,7 @@ public class MineFragment extends BaseFragment {
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant,R.id.tv_logout})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant,R.id.tv_logout,R.id.ll_share})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -186,6 +187,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.tv_logout:
                 logout();
+                break;
+            case R.id.ll_share:
+                readyGo(EmployActivity.class);
                 break;
         }
     }

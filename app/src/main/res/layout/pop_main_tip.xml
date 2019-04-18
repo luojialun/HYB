@@ -31,7 +31,7 @@
             android:layout_marginTop="5dp"
             android:layout_marginBottom="23dp"
             android:lineSpacingExtra="2dp"
-            android:text="         好友宝已更名为营销宝，还没有下线的营销宝的用户请使用营销宝，下载地址：http://t.cn/EfOAcoV"
+            android:text="         引流宝，还没有下线的营销宝的用户请使用营销宝，下载地址：http://t.cn/EfOAcoV"
             android:textSize="14sp" />
 
         <View

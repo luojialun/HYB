@@ -6,16 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:gravity="center"
-        android:paddingTop="14dp"
-        android:text="首页"
-        android:textColor="@color/black"
-        android:textSize="15sp" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -49,8 +39,8 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:src="@mipmap/laba1" />
@@ -64,7 +54,7 @@
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:singleLine="true"
-                        android:text="好友宝已更名为营销宝，还没有下线的营销宝的用户请使用营销宝，下载地址：http://t.cn/EfOAcoV"
+                        android:text="引流宝，还没有下线的营销宝的用户请使用营销宝，下载地址：http://t.cn/EfOAcoV"
                         android:textColor="@color/white" />
 
                 </LinearLayout>

@@ -1,7 +1,6 @@
 package com.android.hyb.ui.acitvity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -18,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class OrderActivity extends BaseActivity {
@@ -46,7 +44,7 @@ public class OrderActivity extends BaseActivity {
     @BindView(R.id.image_tab5)
     ImageView imageTab5;
 
-    private OrderFragment allFragment,unpayFragment,unsendFragment,ungetFragment,finishFragment;
+    private OrderFragment allFragment, unpayFragment, unsendFragment, ungetFragment, finishFragment;
 
     private List<Fragment> fragmentList = new ArrayList<>();
 
@@ -61,11 +59,11 @@ public class OrderActivity extends BaseActivity {
         tvTab1.setTextColor(Color.parseColor("#86e2d2"));
         imageTab1.setVisibility(View.VISIBLE);
 
-        allFragment = new  OrderFragment();
-        unpayFragment = new  OrderFragment();
-        unsendFragment = new  OrderFragment();
-        ungetFragment = new  OrderFragment();
-        finishFragment = new  OrderFragment();
+        allFragment = new OrderFragment();
+        unpayFragment = new OrderFragment();
+        unsendFragment = new OrderFragment();
+        ungetFragment = new OrderFragment();
+        finishFragment = new OrderFragment();
 
         allFragment.type = 0;
         unpayFragment.type = 1;
@@ -81,6 +79,7 @@ public class OrderActivity extends BaseActivity {
 
         MainPageAdapter adapter = new MainPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(adapter);
+        viewpager.setOffscreenPageLimit(fragmentList.size());
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -125,7 +124,7 @@ public class OrderActivity extends BaseActivity {
         }
     }
 
-    public void selectTab(int num){
+    public void selectTab(int num) {
         tvTab1.setTextColor(Color.parseColor("#272727"));
         imageTab1.setVisibility(View.GONE);
 

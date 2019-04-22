@@ -22,8 +22,17 @@ public class GoodsCategoryResponse extends BaseResponse {
         private int Id;
         private String Url;
         private String Name;
-       // private boolean IsPublish;
+        // private boolean IsPublish;
 
+        private boolean selected = false;
+
+        public boolean isSelected() {
+            return selected;
+        }
+
+        public void setSelected(boolean selected) {
+            this.selected = selected;
+        }
 
         public GoodsCategoryBean(int id, String url, String name) {
             Id = id;
@@ -40,7 +49,7 @@ public class GoodsCategoryResponse extends BaseResponse {
         }
 
         public String getUrl() {
-            return BuildConfig.serverUrl+"/Yinliubao/images"+Url;
+            return BuildConfig.serverUrl + "/Yinliubao/images" + Url;
         }
 
         public void setUrl(String url) {

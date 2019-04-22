@@ -1,13 +1,9 @@
 package com.android.hyb.ui.fragment;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
@@ -26,8 +22,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -114,7 +108,8 @@ public class OrderFragment extends BaseFragment {
                             }
 
                         } else {
-                            adapter.setEmptyView(R.layout.layout_empty);
+                            adapter.setNewData(null);
+                            adapter.setEmptyView(R.layout.layout_empty,orderRv);
                         }
                     }
 

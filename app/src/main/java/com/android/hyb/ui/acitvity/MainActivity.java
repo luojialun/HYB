@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity {
         fragmentList.add(new MineFragment());
         MainPageAdapter adapter = new MainPageAdapter(fragmentList, getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(fragmentList.size());
     }
 
     @OnClick({R.id.home_ll, R.id.sellers_ll, R.id.sharecode_ll, R.id.mine_ll})

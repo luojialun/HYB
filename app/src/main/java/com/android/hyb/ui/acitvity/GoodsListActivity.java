@@ -70,7 +70,6 @@ public class GoodsListActivity extends BaseActivity {
                         break;
                     case R.id.buy_tv:
                         Intent orderIntent = new Intent(GoodsListActivity.this, OrderDetailsActivity.class);
-
                         startActivity(orderIntent);
                         break;
                 }
@@ -115,6 +114,7 @@ public class GoodsListActivity extends BaseActivity {
                             }
 
                         } else {
+                            adapter.setNewData(null);
                             adapter.setEmptyView(R.layout.layout_empty);
                         }
                     }

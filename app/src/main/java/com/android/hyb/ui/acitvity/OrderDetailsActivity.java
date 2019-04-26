@@ -1,7 +1,6 @@
 package com.android.hyb.ui.acitvity;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -40,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -84,8 +82,10 @@ public class OrderDetailsActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        tvGoodsName.setText(goodsBean.getName());
-        tvGoodsPrice.setText("¥"+String.valueOf(goodsBean.getPresentPrice()));
+        if (null != goodsBean) {
+            tvGoodsName.setText(goodsBean.getName());
+            tvGoodsPrice.setText("¥" + String.valueOf(goodsBean.getPresentPrice()));
+        }
     }
 
     @OnClick({R.id.pay_method_rl, R.id.submit_tv})

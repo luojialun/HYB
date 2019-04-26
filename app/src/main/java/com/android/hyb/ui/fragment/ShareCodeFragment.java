@@ -40,7 +40,7 @@ public class ShareCodeFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetPlatformInfoResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetPlatformInfoResponse response) {
-                        GlideApp.with(ShareCodeFragment.this).load(response.getData().getExtensionUrl()).into(shareCodeImage);
+                        GlideApp.with(ShareCodeFragment.this).load(response.getData().getShareCodeUrl()).into(shareCodeImage);
                     }
 
                     @Override

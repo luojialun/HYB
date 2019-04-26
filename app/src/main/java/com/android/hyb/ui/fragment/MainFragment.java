@@ -5,17 +5,22 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
+import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.BannerResponse;
+import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.NewHotSellingGoodsResponse;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
+import com.android.hyb.ui.acitvity.OrderDetailsActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
@@ -39,7 +44,8 @@ public class MainFragment extends BaseFragment {
     Banner banner;
     @BindView(R.id.goodsRv)
     RecyclerView goodsRv;
-
+    @BindView(R.id.promotion_iv)
+    ImageView promotionIv;
 
     @Override
     public int setViewId() {
@@ -109,15 +115,34 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initData() {
-
+        getPromotionUrl();
     }
 
-    @OnClick({R.id.tip_ll})
+    private void getPromotionUrl() {
+        ServiceFactory.createHYBService(ContentService.class).GetPlatformInifo()
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<GetPlatformInfoResponse>(this.getContext()) {
+                    @Override
+                    public void onNext(GetPlatformInfoResponse response) {
+                        GlideApp.with(MainFragment.this).load(response.getData().getExtensionUrl()).into(promotionIv);
+                    }
+
+                    @Override
+                    public void onError(ErrorException e) {
+                        super.onError(e);
+                    }
+                });
+    }
+
+    @OnClick({R.id.tip_ll, R.id.promotion_iv})
     public void OnClick(View view) {
         switch (view.getId()) {
             case R.id.tip_ll:
                 MainTipPop mainTipPop = new MainTipPop(getActivity());
                 mainTipPop.showPopupWindow();
+                break;
+            case R.id.promotion_iv:
+                readyGo(OrderDetailsActivity.class);
                 break;
         }
     }

@@ -19,7 +19,6 @@ import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.ToastUtils;
-import com.android.hyb.widget.pop.ShareCodePop;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -95,7 +94,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.share_code_tv, R.id.share_code_ll, R.id.buy_tv})
+    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.buy_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.desc_tv:
@@ -104,11 +103,11 @@ public class GoodsDetailsActivity extends BaseActivity {
             case R.id.shop_ll:
                 finish();
                 break;
-            case R.id.share_code_tv:
+           /* case R.id.share_code_tv:
             case R.id.share_code_ll:
                 ShareCodePop shareCodePop = new ShareCodePop(this);
                 shareCodePop.showPopupWindow();
-                break;
+                break;*/
             case R.id.buy_tv:
                 Intent detailsIntent = new Intent(this, OrderDetailsActivity.class);
                 detailsIntent.putExtra(ConstUtils.Bean, goodsBean);

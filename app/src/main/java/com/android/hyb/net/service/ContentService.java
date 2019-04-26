@@ -3,12 +3,14 @@ package com.android.hyb.net.service;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
+import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.bean.response.LoginResponse;
+import com.android.hyb.bean.response.NewHotSellingGoodsResponse;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.bean.response.RegisterResponse;
 import com.android.hyb.bean.response.UserResponse;
@@ -133,5 +135,20 @@ public interface ContentService {
      */
     @GET("Yinliubao/Business/Get")
     Observable<GetPlatformInfoResponse> GetPlatformInifo();
+
+    /**
+     * 获取热卖商品列表
+     * @return
+     */
+    @GET("Yinliubao/Goods/GetNewHotSellingGoods")
+    Observable<NewHotSellingGoodsResponse> getNewHotSellingGoods();
+
+    /**
+     * 根据搜索名称分页获取商品列表
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Goods/GetListInSearch")
+    Observable<GetListInSearchResponse> getListInSearch(@Field("goodsName")String goodsName,@Field("pageIndex")int pageIndex,@Field("pageSize")int pageSize,@Field("orderItem")String orderItem,@Field("isDesc")boolean isDesc);
 
 }

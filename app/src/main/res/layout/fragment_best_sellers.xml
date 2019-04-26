@@ -5,21 +5,25 @@
     android:background="@color/color_ecebf1"
     android:orientation="vertical">
 
-    <TextView
+    <View
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/white"
+        android:layout_height="14dp"
+        android:background="@color/color_ecebf1" />
+
+    <TextView
+        android:id="@+id/search_tv"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/rectangle_white_4radius"
         android:gravity="center"
-        android:paddingTop="14dp"
-        android:text="热卖商品"
-        android:textColor="@color/black"
-        android:textSize="18sp" />
+        android:hint="搜索"
+        android:textSize="14sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/color_ecebf1" />
-
 
     <LinearLayout
         android:layout_width="match_parent"

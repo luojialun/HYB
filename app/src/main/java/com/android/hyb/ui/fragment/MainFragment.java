@@ -9,12 +9,13 @@ import android.view.View;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.bean.response.BannerResponse;
-import com.android.hyb.bean.response.GoodsCategoryResponse;
+import com.android.hyb.bean.response.GoodsResponse;
+import com.android.hyb.bean.response.NewHotSellingGoodsResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
-import com.android.hyb.ui.acitvity.GoodsListActivity;
+import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
@@ -76,16 +77,16 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initRecyclerView() {
-        ServiceFactory.createHYBService(ContentService.class).getGoodsCategoryList()
-                .compose(new RemoteTransformer<GoodsCategoryResponse>())
-                .subscribe(new ToastObserver<GoodsCategoryResponse>(getActivity()) {
+        ServiceFactory.createHYBService(ContentService.class).getNewHotSellingGoods()
+                .compose(new RemoteTransformer<NewHotSellingGoodsResponse>())
+                .subscribe(new ToastObserver<NewHotSellingGoodsResponse>(getActivity()) {
                     @Override
-                    public void onNext(GoodsCategoryResponse response) {
+                    public void onNext(NewHotSellingGoodsResponse response) {
                         if (null != response && 0 < response.getData().size()) {
                             goodsRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
-                            List<GoodsCategoryResponse.GoodsCategoryBean> goodsList = new ArrayList<>();
+                            List<GoodsResponse.GoodsBean> goodsList = new ArrayList<>();
 
-                            for (GoodsCategoryResponse.GoodsCategoryBean goodsCategoryBean : response.getData()) {
+                            for (GoodsResponse.GoodsBean goodsCategoryBean : response.getData()) {
                                 goodsList.add(goodsCategoryBean);
                             }
                             GoodsAdapter goodsAdapter = new GoodsAdapter(goodsList);
@@ -94,10 +95,8 @@ public class MainFragment extends BaseFragment {
                             goodsAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                                    Intent intent = new Intent(getActivity(), GoodsListActivity.class);
-                                    intent.putExtra(ConstUtils.TITLE, goodsList.get(position).getName());
+                                    Intent intent = new Intent(getActivity(), GoodsDetailsActivity.class);
                                     intent.putExtra(ConstUtils.ID, goodsList.get(position).getId());
-                                    intent.putExtra(ConstUtils.POSITION, position);
                                     startActivity(intent);
                                 }
                             });

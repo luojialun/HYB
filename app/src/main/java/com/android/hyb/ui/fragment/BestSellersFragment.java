@@ -15,12 +15,14 @@ import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
+import com.android.hyb.ui.acitvity.SearchActivity;
 import com.android.hyb.ui.adapter.TabAdapter;
 import com.android.hyb.ui.adapter.TabContentAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * 热卖商品
@@ -153,4 +155,15 @@ public class BestSellersFragment extends BaseFragment {
                     }
                 });
     }
+
+    @OnClick({R.id.search_tv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.search_tv:
+                readyGo(SearchActivity.class);
+                break;
+        }
+    }
+
+
 }

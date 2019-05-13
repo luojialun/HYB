@@ -1,6 +1,7 @@
 package com.android.hyb.net.service;
 
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
+import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
@@ -150,5 +151,13 @@ public interface ContentService {
     @FormUrlEncoded
     @POST("Yinliubao/Goods/GetListInSearch")
     Observable<GetListInSearchResponse> getListInSearch(@Field("goodsName")String goodsName,@Field("pageIndex")int pageIndex,@Field("pageSize")int pageSize,@Field("orderItem")String orderItem,@Field("isDesc")boolean isDesc);
+
+    /**
+     * 用户申请成为VIP
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/VipOrder/ApplyForVip")
+    Observable<ApplyForVipResponse> ApplyForVip(@Field("token")String token);
 
 }

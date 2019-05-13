@@ -5,6 +5,8 @@ import com.android.hyb.util.SPUtils;
 
 public class UserInfo {
 
+    private static final String TOKEN="TOKEN";  //token
+
     private static final String Id = "Id";  //编号
 
     private static final String NickName = "NickName";  //昵称
@@ -31,6 +33,14 @@ public class UserInfo {
 
     public static int getId() {
         return SPUtils.getInstance().getInt(Id, 0);
+    }
+
+    public static void setToken(String token){
+        SPUtils.getInstance().put(TOKEN,token);
+    }
+
+    public static String getToken(){
+        return SPUtils.getInstance().getString(TOKEN);
     }
 
     public static void setNickName(String nickName) {

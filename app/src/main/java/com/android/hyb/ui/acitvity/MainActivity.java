@@ -99,6 +99,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case R.id.mine_ll:
                 setTabSelect(3);
+                ((MineFragment)fragmentList.get(3)).getUserAgent();
                 break;
         }
     }

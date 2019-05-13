@@ -21,6 +21,7 @@ import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
 import com.android.hyb.ui.acitvity.OrderDetailsActivity;
+import com.android.hyb.ui.acitvity.VIPOrderActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
@@ -56,7 +57,6 @@ public class MainFragment extends BaseFragment {
     public void initView() {
         initBanner();
         initRecyclerView();
-
     }
 
     private void initBanner() {
@@ -142,7 +142,7 @@ public class MainFragment extends BaseFragment {
                 mainTipPop.showPopupWindow();
                 break;
             case R.id.promotion_iv:
-                readyGo(OrderDetailsActivity.class);
+                readyGo(VIPOrderActivity.class);
                 break;
         }
     }

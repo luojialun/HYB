@@ -106,7 +106,9 @@ public class OrderDetailsActivity extends BaseActivity {
                 pop.showPopupWindow(rootLl);
                 break;
             case R.id.submit_tv:
-                submit();
+                if(null!=goodsBean){
+                    submit();
+                }
                 break;
         }
     }

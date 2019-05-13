@@ -2,10 +2,7 @@ package com.android.hyb.ui.fragment;
 
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,7 +12,6 @@ import com.android.hyb.base.BaseFragment;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.UserResponse;
-import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -29,9 +25,7 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -116,33 +110,34 @@ public class MineFragment extends BaseFragment {
     }
 
     @Override
-    public void initData() {
-        String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
-        if (token != null) {
-            ServiceFactory.createHYBService(ContentService.class).getUserAgent(token)
-                    .compose(new RemoteTransformer<>())
-                    .subscribe(new ToastObserver<UserResponse>(this.getContext()) {
-                        @Override
-                        public void onNext(UserResponse response) {
-                            UserInfo.setId(response.getData().getId());
-                            UserInfo.setNickName(response.getData().getNickName());
-                            UserInfo.setAvatarUrl(response.getData().getAvatarUrl());
-                            UserInfo.setRole(response.getData().getRole());
-                            UserInfo.setAccessNum(response.getData().getAccessNum());
-                            UserInfo.setLastAccessTime(response.getData().getLastAccessTime());
-                            UserInfo.setAccessNum(response.getData().getAccessNum());
-                            UserInfo.setMobile(response.getData().getMobile());
-                            UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
-                            UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
-                            updateHeaderView();
-                        }
+    public void onResume() {
+        super.onResume();
+        getUserAgent();
+    }
 
-                        @Override
-                        public void onError(ErrorException e) {
-                            super.onError(e);
-                        }
-                    });
-        }
+    @Override
+    public void initData() {
+    }
+
+    public void getUserAgent() {
+        ServiceFactory.createHYBService(ContentService.class).getUserAgent(UserInfo.getToken())
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<UserResponse>(this.getContext()) {
+                    @Override
+                    public void onNext(UserResponse response) {
+                        UserInfo.setId(response.getData().getId());
+                        UserInfo.setNickName(response.getData().getNickName());
+                        UserInfo.setAvatarUrl(response.getData().getAvatarUrl());
+                        UserInfo.setRole(response.getData().getRole());
+                        UserInfo.setAccessNum(response.getData().getAccessNum());
+                        UserInfo.setLastAccessTime(response.getData().getLastAccessTime());
+                        UserInfo.setAccessNum(response.getData().getAccessNum());
+                        UserInfo.setMobile(response.getData().getMobile());
+                        UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
+                        UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
+                        updateHeaderView();
+                    }
+                });
     }
 
     private void updateHeaderView() {
@@ -164,7 +159,7 @@ public class MineFragment extends BaseFragment {
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant,R.id.tv_logout,R.id.ll_share})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -194,7 +189,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    public void logout(){
+    public void logout() {
         SPUtils.getInstance().remove(ConstUtils.PHONE);
         SPUtils.getInstance().remove(ConstUtils.PASSWORD);
         SPUtils.getInstance().remove(ConstUtils.AUTO_LOGIN);

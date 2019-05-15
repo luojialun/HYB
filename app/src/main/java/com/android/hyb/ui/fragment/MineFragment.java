@@ -32,8 +32,6 @@ import butterknife.OnClick;
  */
 public class MineFragment extends BaseFragment {
 
-    @BindView(R.id.image_setting)
-    ImageView imageSetting;
     @BindView(R.id.tv_mobile)
     TextView tvMobile;
     @BindView(R.id.tv_recommand)

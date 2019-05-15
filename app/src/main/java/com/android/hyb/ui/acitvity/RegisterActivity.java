@@ -162,9 +162,13 @@ public class RegisterActivity extends BaseActivity {
                 .subscribe(new ToastObserver<RegisterResponse>(this) {
                     @Override
                     public void onNext(RegisterResponse response) {
+                        if (response.getData().equals("success")){
+                            ToastUtils.show(RegisterActivity.this, "注册成功");
+                            finish();
+                        } else {
+                            ToastUtils.show(RegisterActivity.this, response.getData());
+                        }
 
-                        ToastUtils.show(RegisterActivity.this, response.getData());
-                        finish();
                     }
                 });
     }

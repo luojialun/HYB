@@ -34,7 +34,17 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/User/Register")
-    Observable<RegisterResponse> register(@Field("mobile") String mobile, @Field("password") String password);
+    Observable<RegisterResponse> register(@Field("mobile") String mobile, @Field("password") String password,@Field("code") String code,@Field("invitationCode") String invitationCode);
+
+    /**
+     * 获取短信验证码
+     *
+     * @param mobile
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Sms/Send")
+    Observable<RegisterResponse> sendSMS(@Field("mobile") String mobile);
 
     /**
      * 登录

@@ -1,8 +1,11 @@
 package com.android.hyb.ui.acitvity;
 
+import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
@@ -14,6 +17,7 @@ import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ToastUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -29,6 +33,36 @@ public class RegisterActivity extends BaseActivity {
     EditText confirmEt;
     @BindView(R.id.code_et)
     EditText codeEt;
+    @BindView(R.id.code_tv)
+    TextView codeTv;
+    @BindView(R.id.invitation_et)
+    EditText invitationEt;
+    @BindView(R.id.register_tv)
+    TextView registerTv;
+
+    /**
+     * 倒数计时器
+     */
+    private CountDownTimer timer = new CountDownTimer(60 * 1000, 1000) {
+        /**
+         * 固定间隔被调用,就是每隔countDownInterval会回调一次方法onTick
+         * @param millisUntilFinished
+         */
+        @Override
+        public void onTick(long millisUntilFinished) {
+            codeTv.setText(String.valueOf(millisUntilFinished / 1000) + "s");
+        }
+
+        /**
+         * 倒计时完成时被调用
+         */
+        @Override
+        public void onFinish() {
+            isTimerRun = false;
+            codeTv.setText("获取验证码");
+        }
+    };
+    private Boolean isTimerRun = false;
 
     @Override
     public int setViewId() {
@@ -52,37 +86,77 @@ public class RegisterActivity extends BaseActivity {
                 sendCode();
                 break;
             case R.id.register_tv:
-                if (TextUtils.isEmpty(phoneEt.getText().toString())) {
-                    ToastUtils.show(RegisterActivity.this, "手机号为空");
-                    break;
-                }
-                if (TextUtils.isEmpty(passwordEt.getText().toString())) {
-                    ToastUtils.show(RegisterActivity.this, "密码为空");
-                    break;
-                }
-              /*  if (TextUtils.isEmpty(confirmEt.getText().toString())) {
-                    ToastUtils.show(RegisterActivity.this, "确认密码为空");
-                    break;
-                }
-                if (TextUtils.isEmpty(codeEt.getText().toString())) {
-                    ToastUtils.show(RegisterActivity.this, "验证码为空");
-                    break;
-                }
-                if (confirmEt.getText().toString().equals(passwordEt.getText().toString())) {
-                    ToastUtils.show(RegisterActivity.this, "两次密码不一致");
-                    break;
-                }*/
                 register();
                 break;
         }
     }
 
     private void sendCode() {
+        if (TextUtils.isEmpty(phoneEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "手机号为空");
+            return;
+        }
 
+        if (isTimerRun){
+            return;
+        }
+
+        ServiceFactory.createHYBService(ContentService.class).sendSMS(phoneEt.getText().toString())
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<RegisterResponse>(this) {
+                    @Override
+                    public void onNext(RegisterResponse registerResponse) {
+                        if (registerResponse.getData().equals("success")){
+                            ToastUtils.show(getActicity(),"验证码发送成功");
+                            starCount();
+                        }
+                        else
+                        {
+                            ToastUtils.show(getActicity(),"验证码发送失败");
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable t) {
+                        super.onError(t);
+                    }
+        });
+    }
+
+    private void starCount(){
+        isTimerRun = true;
+        timer.start();
     }
 
     private void register() {
-        ServiceFactory.createHYBService(ContentService.class).register(phoneEt.getText().toString(), passwordEt.getText().toString())
+
+        if (TextUtils.isEmpty(phoneEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "手机号为空");
+            return;
+        }
+        if (TextUtils.isEmpty(passwordEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "密码为空");
+            return;
+        }
+        if (TextUtils.isEmpty(confirmEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "确认密码为空");
+            return;
+        }
+        if (TextUtils.isEmpty(codeEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "验证码为空");
+            return;
+        }
+        if (confirmEt.getText().toString().equals(passwordEt.getText().toString())) {
+            ToastUtils.show(RegisterActivity.this, "两次密码不一致");
+            return;
+        }
+        if (TextUtils.isEmpty(invitationEt.getText().toString())){
+            ToastUtils.show(RegisterActivity.this, "邀请码为空");
+            return;
+        }
+
+
+        ServiceFactory.createHYBService(ContentService.class).register(phoneEt.getText().toString(), passwordEt.getText().toString(),codeEt.getText().toString(),invitationEt.getText().toString())
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<RegisterResponse>(this) {
                     @Override
@@ -92,5 +166,18 @@ public class RegisterActivity extends BaseActivity {
                         finish();
                     }
                 });
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        timer.cancel();
     }
 }

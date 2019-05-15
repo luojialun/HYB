@@ -56,7 +56,7 @@ public class LoginActivity extends BaseActivity {
     public void initData() {
     }
 
-    @OnClick({R.id.forget_tv, R.id.register_tv, R.id.login_tv})
+    @OnClick({ R.id.register_tv, R.id.login_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_tv:
@@ -69,9 +69,6 @@ public class LoginActivity extends BaseActivity {
                     break;
                 }
                 login();
-                break;
-            case R.id.forget_tv:
-                readyGo(ForgetActivity.class);
                 break;
             case R.id.register_tv:
                 readyGo(RegisterActivity.class);

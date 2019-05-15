@@ -1,5 +1,6 @@
 package com.android.hyb.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -118,5 +119,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (bindEventbus()) {
             EventBus.getDefault().unregister(this);
         }
+    }
+
+    public Activity getActicity(){
+        return this;
     }
 }

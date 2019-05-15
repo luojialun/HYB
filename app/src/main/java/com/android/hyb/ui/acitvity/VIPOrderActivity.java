@@ -70,16 +70,23 @@ public class VIPOrderActivity extends BaseActivity {
                     @Override
                     public void onNext(ApplyForVipResponse response) {
                         if (null != response) {
-                            Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.wechat);
-                            bitmap = new QREncode.Builder(VIPOrderActivity.this)
-                                    .setColor(getResources().getColor(R.color.black))//二维码颜色
-                                    //.setParsedResultType(ParsedResultType.TEXT)//默认是TEXT类型
-                                    .setContents(response.getData().getUrl())//二维码内容
-                                    .setLogoBitmap(logoBitmap)//二维码中间logo
-                                    .setMargin(0)
-                                    .build().encodeAsBitmap();
-                            codeIv.setImageBitmap(bitmap);
-                            startTimer(response.getData().getMinutes());
+                            if (response.getData().getStatus().equals("success")){
+                                Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.wechat);
+                                bitmap = new QREncode.Builder(VIPOrderActivity.this)
+                                        .setColor(getResources().getColor(R.color.black))//二维码颜色
+                                        //.setParsedResultType(ParsedResultType.TEXT)//默认是TEXT类型
+                                        .setContents(response.getData().getUrl())//二维码内容
+                                        .setLogoBitmap(logoBitmap)//二维码中间logo
+                                        .setMargin(0)
+                                        .build().encodeAsBitmap();
+                                codeIv.setImageBitmap(bitmap);
+                                startTimer(response.getData().getMinutes());
+                            }
+                            else
+                            {
+                                ToastUtils.show(getActicity(),response.getData().getMessage());
+                                finish();
+                            }
                         }
                     }
                 });
@@ -107,6 +114,8 @@ public class VIPOrderActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownTimer.cancel();
+        if (countDownTimer != null){
+            countDownTimer.cancel();
+        }
     }
 }

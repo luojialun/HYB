@@ -3,6 +3,7 @@ package com.android.hyb.ui.acitvity;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -146,7 +147,7 @@ public class RegisterActivity extends BaseActivity {
             ToastUtils.show(RegisterActivity.this, "验证码为空");
             return;
         }
-        if (confirmEt.getText().toString().equals(passwordEt.getText().toString())) {
+        if (!confirmEt.getText().toString().equals(passwordEt.getText().toString())) {
             ToastUtils.show(RegisterActivity.this, "两次密码不一致");
             return;
         }

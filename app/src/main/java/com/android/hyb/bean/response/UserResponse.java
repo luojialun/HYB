@@ -15,6 +15,7 @@ public class UserResponse extends BaseResponse {
     }
 
     public static class UserBean {
+
         /**
          * Id : 4
          * OpenId :
@@ -31,7 +32,11 @@ public class UserResponse extends BaseResponse {
          * Mobile : 18815288294
          * Number : 1904120001
          * ParentId : 0
+         * InvitationCode : HaHb3
          * AvailableFunds : 0
+         * Withdraw : 0
+         * Earnings : 0
+         * TodayEarnings : 0
          * FrozenFunds : 0
          */
 
@@ -50,7 +55,11 @@ public class UserResponse extends BaseResponse {
         private String Mobile;
         private String Number;
         private int ParentId;
+        private String InvitationCode;
         private int AvailableFunds;
+        private int Withdraw;
+        private int Earnings;
+        private int TodayEarnings;
         private int FrozenFunds;
 
         public int getId() {
@@ -173,12 +182,44 @@ public class UserResponse extends BaseResponse {
             this.ParentId = ParentId;
         }
 
+        public String getInvitationCode() {
+            return InvitationCode;
+        }
+
+        public void setInvitationCode(String InvitationCode) {
+            this.InvitationCode = InvitationCode;
+        }
+
         public int getAvailableFunds() {
             return AvailableFunds;
         }
 
         public void setAvailableFunds(int AvailableFunds) {
             this.AvailableFunds = AvailableFunds;
+        }
+
+        public int getWithdraw() {
+            return Withdraw;
+        }
+
+        public void setWithdraw(int Withdraw) {
+            this.Withdraw = Withdraw;
+        }
+
+        public int getEarnings() {
+            return Earnings;
+        }
+
+        public void setEarnings(int Earnings) {
+            this.Earnings = Earnings;
+        }
+
+        public int getTodayEarnings() {
+            return TodayEarnings;
+        }
+
+        public void setTodayEarnings(int TodayEarnings) {
+            this.TodayEarnings = TodayEarnings;
         }
 
         public int getFrozenFunds() {

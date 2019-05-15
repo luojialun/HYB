@@ -121,6 +121,16 @@ public class LoginActivity extends BaseActivity {
                         UserInfo.setMobile(response.getData().getMobile());
                         UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
                         UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
+                        UserInfo.setOpenId(response.getData().getOpenId());
+                        UserInfo.setSessionKey(response.getData().getSessionKey());
+                        UserInfo.setGender(response.getData().getGender());
+                        UserInfo.setRemarks(response.getData().getRemarks());
+                        UserInfo.setNumber(response.getData().getNumber());
+                        UserInfo.setParentId(response.getData().getParentId());
+                        UserInfo.setInvitationCode(response.getData().getInvitationCode());
+                        UserInfo.setWithdraw(response.getData().getWithdraw());
+                        UserInfo.setEarnings(response.getData().getEarnings());
+                        UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
 
                         ToastUtils.show(LoginActivity.this, "登录成功");
                         readyGoThenKill(MainActivity.class);

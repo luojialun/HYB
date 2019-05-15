@@ -2,7 +2,11 @@ package com.android.hyb.ui.fragment;
 
 
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -25,7 +29,9 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * 个人中心fragment
@@ -34,8 +40,6 @@ public class MineFragment extends BaseFragment {
 
     @BindView(R.id.tv_mobile)
     TextView tvMobile;
-    @BindView(R.id.tv_recommand)
-    TextView tvRecommand;
     @BindView(R.id.tv_money_number)
     TextView tvMoneyNumber;
     @BindView(R.id.tv_money_text)
@@ -92,6 +96,12 @@ public class MineFragment extends BaseFragment {
     RelativeLayout llMerchant;
     @BindView(R.id.tv_logout)
     TextView tvLogout;
+    @BindView(R.id.invitationCode_tv)
+    TextView invitationCodeTv;
+    @BindView(R.id.image_merchant)
+    ImageView imageMerchant;
+    @BindView(R.id.vip_tv)
+    TextView vipTv;
 
     public MineFragment() {
         // Required empty public constructor
@@ -133,6 +143,17 @@ public class MineFragment extends BaseFragment {
                         UserInfo.setMobile(response.getData().getMobile());
                         UserInfo.setAvailableFunds(response.getData().getAvailableFunds());
                         UserInfo.setFrozenFunds(response.getData().getFrozenFunds());
+                        UserInfo.setOpenId(response.getData().getOpenId());
+                        UserInfo.setSessionKey(response.getData().getSessionKey());
+                        UserInfo.setGender(response.getData().getGender());
+                        UserInfo.setRemarks(response.getData().getRemarks());
+                        UserInfo.setNumber(response.getData().getNumber());
+                        UserInfo.setParentId(response.getData().getParentId());
+                        UserInfo.setInvitationCode(response.getData().getInvitationCode());
+                        UserInfo.setWithdraw(response.getData().getWithdraw());
+                        UserInfo.setEarnings(response.getData().getEarnings());
+                        UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
+
                         updateHeaderView();
                     }
                 });
@@ -154,7 +175,25 @@ public class MineFragment extends BaseFragment {
             String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
             tvMobile.setText(showMobile);
         }
+
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
+        tvCashNumber.setText(UserInfo.getWithdraw() + "");
+        tvIncomeNumber.setText(UserInfo.getEarnings() + "");
+        tvTotalNumber.setText(UserInfo.getTodayEarnings() + "");
+
+        if (TextUtils.isEmpty(UserInfo.getInvitationCode())) {
+            invitationCodeTv.setVisibility(View.GONE);
+        } else {
+            invitationCodeTv.setVisibility(View.VISIBLE);
+            invitationCodeTv.setText(UserInfo.getInvitationCode());
+        }
+
+        if (TextUtils.isEmpty(UserInfo.getRole())) {
+            vipTv.setVisibility(View.GONE);
+        } else {
+            vipTv.setVisibility(View.VISIBLE);
+            vipTv.setText(UserInfo.getRole());
+        }
     }
 
     @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share})

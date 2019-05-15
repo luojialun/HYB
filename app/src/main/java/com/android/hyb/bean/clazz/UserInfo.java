@@ -27,6 +27,17 @@ public class UserInfo {
 
     private static final String FrozenFunds = "FrozenFunds";  //冻结资金
 
+    private static final String OpenId = "OpenId";
+    private static final String SessionKey = "SessionKey";
+    private static final String Gender = "Gender";
+    private static final String Remarks = "Remarks";
+    private static final String Number = "Number";
+    private static final String ParentId = "ParentId";
+    private static final String InvitationCode = "InvitationCode";
+    private static final String Withdraw = "Withdraw";
+    private static final String Earnings = "Earnings";
+    private static final String TodayEarnings = "TodayEarnings";
+
     public static void setId(int id) {
         SPUtils.getInstance().put(Id, id);
     }
@@ -117,6 +128,88 @@ public class UserInfo {
 
     public static float getFrozenFunds() {
         return SPUtils.getInstance().getFloat(FrozenFunds);
+    }
+
+    public static void setOpenId(String openId) {
+        SPUtils.getInstance().put(OpenId, openId);
+    }
+
+    public static String getOpenId() {
+        return SPUtils.getInstance().getString(OpenId, "");
+    }
+
+    public static void setSessionKey(String sessionKey) {
+        SPUtils.getInstance().put(SessionKey, sessionKey);
+    }
+
+    public static String getSessionKey() {
+        return SPUtils.getInstance().getString(SessionKey, "");
+    }
+
+    public static void setRemarks(String remarks) {
+        SPUtils.getInstance().put(Remarks, remarks);
+    }
+
+    public static String getRemarks() {
+        return SPUtils.getInstance().getString(Remarks, "");
+    }
+
+    public static void setNumber(String number) {
+        SPUtils.getInstance().put(Number, number);
+    }
+
+    public static String getNumber() {
+        return SPUtils.getInstance().getString(Number, "");
+    }
+
+    public static void setInvitationCode(String invitationCode) {
+        SPUtils.getInstance().put(InvitationCode, invitationCode);
+    }
+
+    public static String getInvitationCode() {
+        return SPUtils.getInstance().getString(InvitationCode, "");
+    }
+
+    public static void setGender(float gender) {
+        SPUtils.getInstance().put(Gender, gender);
+    }
+
+    public static float getGender() {
+        return SPUtils.getInstance().getFloat(Gender);
+    }
+
+    public static void setParentId(float parentId) {
+        SPUtils.getInstance().put(ParentId, parentId);
+    }
+
+    public static float getParentId() {
+        return SPUtils.getInstance().getFloat(ParentId);
+    }
+
+    public static void setWithdraw(float withdraw) {
+        SPUtils.getInstance().put(Withdraw, withdraw);
+    }
+
+    public static float getWithdraw() {
+        return SPUtils.getInstance().getFloat(Withdraw);
+    }
+
+
+    public static void setEarnings(float earnings) {
+        SPUtils.getInstance().put(Earnings, earnings);
+    }
+
+    public static float getEarnings() {
+        return SPUtils.getInstance().getFloat(Earnings);
+    }
+
+
+    public static void setTodayEarnings(float todayEarnings) {
+        SPUtils.getInstance().put(TodayEarnings, todayEarnings);
+    }
+
+    public static float getTodayEarnings() {
+        return SPUtils.getInstance().getFloat(TodayEarnings);
     }
 
 }

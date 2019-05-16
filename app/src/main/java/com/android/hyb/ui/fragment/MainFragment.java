@@ -20,8 +20,7 @@ import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
-import com.android.hyb.ui.acitvity.OrderDetailsActivity;
-import com.android.hyb.ui.acitvity.VIPOrderActivity;
+import com.android.hyb.ui.acitvity.PaymentActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
@@ -142,7 +141,9 @@ public class MainFragment extends BaseFragment {
                 mainTipPop.showPopupWindow();
                 break;
             case R.id.promotion_iv:
-                readyGo(VIPOrderActivity.class);
+                Intent intent=new Intent(getActivity(),PaymentActivity.class);
+                intent.putExtra(ConstUtils.TYPE,0);
+                startActivity(intent);
                 break;
         }
     }

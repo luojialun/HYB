@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".ui.acitvity.MineTeamActivity">
 
     <View
         android:id="@+id/statusBar"
         android:layout_width="match_parent"
-        android:layout_height="14dp"
-        android:background="@color/white" />
+        android:layout_height="14dp" />
 
     <TextView
         android:id="@+id/title_tv"
@@ -19,7 +19,118 @@
         android:gravity="center"
         android:text="我的团队"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_below="@id/statusBar"/>
+        android:textSize="15sp" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/sale_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/huangguan" />
+
+            <TextView
+                android:id="@+id/sale_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/sale_iv"
+                android:background="@drawable/oval_red"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sale_iv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="直接销售" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/market_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/shichang" />
+
+            <TextView
+                android:id="@+id/market_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/market_iv"
+                android:background="@drawable/oval_red"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/market_iv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="小市场" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <ImageView
+                android:id="@+id/member_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerHorizontal="true"
+                android:src="@mipmap/tuanduichengyuan" />
+
+            <TextView
+                android:id="@+id/member_tv"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_toRightOf="@+id/member_iv"
+                android:background="@drawable/oval_red"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/member_iv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:text="团队成员" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/content_rv"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

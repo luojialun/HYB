@@ -6,6 +6,7 @@ import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
+import com.android.hyb.bean.response.GetPageGroupsResponse;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
@@ -34,7 +35,7 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/User/Register")
-    Observable<RegisterResponse> register(@Field("mobile") String mobile, @Field("password") String password,@Field("code") String code,@Field("invitationCode") String invitationCode);
+    Observable<RegisterResponse> register(@Field("mobile") String mobile, @Field("password") String password, @Field("code") String code, @Field("invitationCode") String invitationCode);
 
     /**
      * 获取短信验证码
@@ -149,6 +150,7 @@ public interface ContentService {
 
     /**
      * 获取热卖商品列表
+     *
      * @return
      */
     @GET("Yinliubao/Goods/GetNewHotSellingGoods")
@@ -156,18 +158,31 @@ public interface ContentService {
 
     /**
      * 根据搜索名称分页获取商品列表
+     *
      * @return
      */
     @FormUrlEncoded
     @POST("Yinliubao/Goods/GetListInSearch")
-    Observable<GetListInSearchResponse> getListInSearch(@Field("goodsName")String goodsName,@Field("pageIndex")int pageIndex,@Field("pageSize")int pageSize,@Field("orderItem")String orderItem,@Field("isDesc")boolean isDesc);
+    Observable<GetListInSearchResponse> getListInSearch(@Field("goodsName") String goodsName, @Field("pageIndex") int pageIndex, @Field("pageSize") int pageSize, @Field("orderItem") String orderItem, @Field("isDesc") boolean isDesc);
 
     /**
      * 用户申请成为VIP
+     *
      * @return
      */
     @FormUrlEncoded
     @POST("Yinliubao/VipOrder/ApplyForVip")
-    Observable<ApplyForVipResponse> ApplyForVip(@Field("token")String token);
+    Observable<ApplyForVipResponse> ApplyForVip(@Field("token") String token);
+
+    /**
+     * 我的团队
+     *
+     * @param token
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    @GET("Yinliubao/User/GetPageGroups")
+    Observable<GetPageGroupsResponse> getPageGroups(@Query("token") String token, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
 
 }

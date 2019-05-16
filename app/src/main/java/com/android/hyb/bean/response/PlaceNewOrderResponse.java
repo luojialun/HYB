@@ -24,30 +24,48 @@ public class PlaceNewOrderResponse extends BaseResponse {
 
         private String Status;
         private String Message;
-        private int OrderId;
+        private String Url;
+        private String OrderTimeString;
+        private int Minutes;
 
         public String getStatus() {
             return Status;
         }
 
-        public void setStatus(String Status) {
-            this.Status = Status;
+        public void setStatus(String status) {
+            Status = status;
         }
 
         public String getMessage() {
             return Message;
         }
 
-        public void setMessage(String Message) {
-            this.Message = Message;
+        public void setMessage(String message) {
+            Message = message;
         }
 
-        public int getOrderId() {
-            return OrderId;
+        public String getUrl() {
+            return Url;
         }
 
-        public void setOrderId(int OrderId) {
-            this.OrderId = OrderId;
+        public void setUrl(String url) {
+            Url = url;
+        }
+
+        public String getOrderTimeString() {
+            return OrderTimeString;
+        }
+
+        public void setOrderTimeString(String orderTimeString) {
+            OrderTimeString = orderTimeString;
+        }
+
+        public int getMinutes() {
+            return Minutes;
+        }
+
+        public void setMinutes(int minutes) {
+            Minutes = minutes;
         }
     }
 }

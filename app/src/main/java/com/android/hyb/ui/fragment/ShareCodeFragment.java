@@ -5,13 +5,13 @@ import android.widget.ImageView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 
@@ -40,7 +40,7 @@ public class ShareCodeFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetPlatformInfoResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetPlatformInfoResponse response) {
-                        GlideApp.with(ShareCodeFragment.this).load(response.getData().getShareCodeUrl()).into(shareCodeImage);
+                        Glide.with(ShareCodeFragment.this).load(response.getData().getShareCodeUrl()).into(shareCodeImage);
                     }
 
                     @Override

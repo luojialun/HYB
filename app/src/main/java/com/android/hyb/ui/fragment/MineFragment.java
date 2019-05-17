@@ -20,6 +20,7 @@ import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.CashDetailActivity;
 import com.android.hyb.ui.acitvity.EmployActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MerchantActivity;
@@ -222,6 +223,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_share:
                 readyGo(EmployActivity.class);
+                break;
+            case R.id.ll_detail:
+                readyGo(CashDetailActivity.class);
                 break;
         }
     }

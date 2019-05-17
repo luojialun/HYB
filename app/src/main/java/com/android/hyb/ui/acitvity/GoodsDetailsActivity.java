@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.net.exception.ErrorException;
@@ -19,6 +18,7 @@ import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.ToastUtils;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,7 +78,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                         dismissProgress();
                         if (null != response) {
                             goodsBean = response.getData();
-                            GlideApp.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
+                            Glide.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
                             nameTv.setText(response.getData().getName());
                             salesTv.setText(response.getData().getSales() + "人已付款");
                             descTv.setText(response.getData().getDetails());

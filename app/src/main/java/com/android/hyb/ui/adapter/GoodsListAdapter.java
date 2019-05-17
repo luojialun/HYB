@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.android.hyb.R;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GoodsResponse.GoodsBean;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -19,7 +19,7 @@ public class GoodsListAdapter extends BaseQuickAdapter<GoodsBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, GoodsBean item) {
-        GlideApp.with(mContext)
+        Glide.with(mContext)
                 .load(item.getUrl())
                 .into((ImageView) helper.getView(R.id.content_iv));
 

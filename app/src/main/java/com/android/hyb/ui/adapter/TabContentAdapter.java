@@ -7,8 +7,8 @@ import android.text.style.StrikethroughSpan;
 import android.widget.ImageView;
 
 import com.android.hyb.R;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.GoodsResponse;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -21,7 +21,7 @@ public class TabContentAdapter extends BaseQuickAdapter<GoodsResponse.GoodsBean,
 
     @Override
     protected void convert(BaseViewHolder helper, GoodsResponse.GoodsBean item) {
-        GlideApp.with(mContext).load(item.getUrl()).into((ImageView) helper.getView(R.id.icon_iv));
+        Glide.with(mContext).load(item.getUrl()).into((ImageView) helper.getView(R.id.icon_iv));
         helper.setText(R.id.title_tv, item.getName());
         helper.setText(R.id.current_price_tv, "￥" + item.getPresentPrice());
         helper.setText(R.id.sellers_tv, "销量：" + item.getSales());

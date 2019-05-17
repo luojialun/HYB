@@ -6,7 +6,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.hyb.R;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
 import com.android.hyb.bean.response.LoginResponse;
@@ -18,6 +17,7 @@ import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 
@@ -61,7 +61,7 @@ public class OrdersAdapter extends BaseQuickAdapter<GetOrderListResponse.OrderLi
         helper.setText(R.id.tv_order_status,"订单状态：" + status);
         helper.setText(R.id.tv_goods_name,item.getGoodsName());
         helper.setText(R.id.tv_price,"金额："+ item.getActualPay());
-        GlideApp.with(mContext).load(item.getPictureUrl()).into((ImageView) helper.getView(R.id.image_goods));
+        Glide.with(mContext).load(item.getPictureUrl()).into((ImageView) helper.getView(R.id.image_goods));
 
         TextView tvNext = (TextView) helper.getView(R.id.tv_next);
         tvNext.setOnClickListener(new View.OnClickListener() {

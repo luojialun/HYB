@@ -9,7 +9,6 @@ import android.widget.ImageView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.bean.response.GoodsResponse;
@@ -25,6 +24,7 @@ import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
 import com.android.hyb.widget.pop.MainTipPop;
+import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -123,7 +123,7 @@ public class MainFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetPlatformInfoResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetPlatformInfoResponse response) {
-                        GlideApp.with(MainFragment.this).load(response.getData().getExtensionUrl()).into(promotionIv);
+                        Glide.with(MainFragment.this).load(response.getData().getExtensionUrl()).into(promotionIv);
                     }
 
                     @Override

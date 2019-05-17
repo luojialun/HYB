@@ -416,7 +416,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/image_merchant"
-                        android:text="申请成为商户"
+                        android:text="上传商品"
                         android:textColor="#272727"
                         android:textSize="13sp" />
 

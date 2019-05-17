@@ -56,11 +56,11 @@ public class UserResponse extends BaseResponse {
         private String Number;
         private int ParentId;
         private String InvitationCode;
-        private int AvailableFunds;
-        private int Withdraw;
-        private int Earnings;
-        private int TodayEarnings;
-        private int FrozenFunds;
+        private float AvailableFunds;
+        private float Withdraw;
+        private float Earnings;
+        private float TodayEarnings;
+        private float FrozenFunds;
 
         public int getId() {
             return Id;
@@ -190,7 +190,7 @@ public class UserResponse extends BaseResponse {
             this.InvitationCode = InvitationCode;
         }
 
-        public int getAvailableFunds() {
+        public float getAvailableFunds() {
             return AvailableFunds;
         }
 
@@ -198,7 +198,7 @@ public class UserResponse extends BaseResponse {
             this.AvailableFunds = AvailableFunds;
         }
 
-        public int getWithdraw() {
+        public float getWithdraw() {
             return Withdraw;
         }
 
@@ -206,7 +206,7 @@ public class UserResponse extends BaseResponse {
             this.Withdraw = Withdraw;
         }
 
-        public int getEarnings() {
+        public float getEarnings() {
             return Earnings;
         }
 
@@ -214,7 +214,7 @@ public class UserResponse extends BaseResponse {
             this.Earnings = Earnings;
         }
 
-        public int getTodayEarnings() {
+        public float getTodayEarnings() {
             return TodayEarnings;
         }
 
@@ -222,7 +222,7 @@ public class UserResponse extends BaseResponse {
             this.TodayEarnings = TodayEarnings;
         }
 
-        public int getFrozenFunds() {
+        public float getFrozenFunds() {
             return FrozenFunds;
         }
 

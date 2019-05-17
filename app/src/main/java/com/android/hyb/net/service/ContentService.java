@@ -16,6 +16,7 @@ import com.android.hyb.bean.response.NewHotSellingGoodsResponse;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.bean.response.RegisterResponse;
 import com.android.hyb.bean.response.UserResponse;
+import com.android.hyb.bean.response.WalletRecordResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -185,4 +186,16 @@ public interface ContentService {
     @GET("Yinliubao/User/GetPageGroups")
     Observable<GetPageGroupsResponse> getPageGroups(@Query("token") String token, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
 
+
+    /**
+     * 分润明细
+     *
+     * @param token
+     * @param pageIndex
+     * @param pageSize
+     * @param type 10 会员 20商场 30提现
+     * @return
+     */
+    @GET("Yinliubao/User/GetPageWalletRecord")
+    Observable<WalletRecordResponse> getPageWalletRecord(@Query("token") String token, @Query("type") int type, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
 }

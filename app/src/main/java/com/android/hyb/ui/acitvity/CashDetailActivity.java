@@ -3,6 +3,7 @@ package com.android.hyb.ui.acitvity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -10,7 +11,17 @@ import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.response.WalletRecordResponse;
+import com.android.hyb.net.exception.ErrorException;
+import com.android.hyb.net.factory.ServiceFactory;
+import com.android.hyb.net.observer.ToastObserver;
+import com.android.hyb.net.service.ContentService;
+import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.adapter.MainPageAdapter;
 import com.android.hyb.ui.fragment.OrderFragment;
+import com.android.hyb.ui.fragment.WalletFragment;
+import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.SPUtils;
 import com.android.hyb.widget.NoSlideViewPager;
 
 import java.util.ArrayList;
@@ -38,7 +49,7 @@ public class CashDetailActivity extends BaseActivity {
     @BindView(R.id.viewpager)
     NoSlideViewPager viewpager;
 
-    private OrderFragment allFragment, unpayFragment, unsendFragment, ungetFragment, finishFragment;
+    private WalletFragment vipFragment, shopFragment, cashFragment;
     private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
@@ -50,6 +61,38 @@ public class CashDetailActivity extends BaseActivity {
     public void initView() {
         tvTab1.setTextColor(Color.parseColor("#86e2d2"));
         imageTab1.setVisibility(View.VISIBLE);
+
+        vipFragment = new WalletFragment();
+        shopFragment = new WalletFragment();
+        cashFragment = new WalletFragment();
+
+        vipFragment.setType(10);
+        shopFragment.setType(20);
+        cashFragment.setType(30);
+
+        fragmentList.add(vipFragment);
+        fragmentList.add(shopFragment);
+        fragmentList.add(cashFragment);
+
+        MainPageAdapter adapter = new MainPageAdapter(fragmentList, getSupportFragmentManager());
+        viewpager.setAdapter(adapter);
+        viewpager.setOffscreenPageLimit(fragmentList.size());
+        viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int i, float v, int i1) {
+
+            }
+
+            @Override
+            public void onPageSelected(int i) {
+                selectTab(i);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int i) {
+
+            }
+        });
     }
 
     @Override

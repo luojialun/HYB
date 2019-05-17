@@ -197,7 +197,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share,R.id.ll_detail})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:

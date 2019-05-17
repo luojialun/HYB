@@ -22,6 +22,17 @@
         android:layout_marginLeft="15dp"/>
 
     <TextView
+        android:id="@+id/status_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="111"
+        android:textColor="@color/colorAccent"
+        android:textSize="15dp"
+        android:layout_alignTop="@id/goods_iv"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"/>
+
+    <TextView
         android:id="@+id/detail_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

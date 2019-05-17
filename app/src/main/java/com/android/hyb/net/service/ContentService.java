@@ -223,4 +223,21 @@ public interface ContentService {
     @GET("Yinliubao/User/GetGroup")
     Observable<GetGroupResponse> getGroup(@Query("token") String token);
 
+    /**
+     * Publish
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Goods/Publish")
+    Observable<ApplyForBusinessResponse> publish(@Field("token") String token,@Field("id") String id);
+
+    /**
+     * UnPublish
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Goods/UnPublish")
+    Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") String id);
 }

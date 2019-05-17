@@ -26,6 +26,7 @@ import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MerchantActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
+import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 
@@ -216,7 +217,7 @@ public class MineFragment extends BaseFragment {
                 readyGo(MineTeamActivity.class);
                 break;
             case R.id.ll_merchant:
-                readyGo(MerchantActivity.class);
+                readyGo(UpdateShopActivity.class);
                 break;
             case R.id.tv_logout:
                 logout();

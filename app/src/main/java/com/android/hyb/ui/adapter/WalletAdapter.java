@@ -20,7 +20,7 @@ public class WalletAdapter extends BaseQuickAdapter<WalletRecordResponse.WalletR
         if (item.getType() == 10){
             helper.setText(R.id.title_tv,"会员充值");
         } else if(item.getType() == 20) {
-            helper.setText(R.id.title_tv,"商场购物");
+            helper.setText(R.id.title_tv,"商城购物");
         } else if(item.getType() == 30) {
             helper.setText(R.id.title_tv,"提现记录");
         }

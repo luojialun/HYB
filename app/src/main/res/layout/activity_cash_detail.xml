@@ -51,7 +51,7 @@
                 android:id="@+id/tv_tab2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="商场购物"
+                android:text="商城购物"
                 android:textColor="@color/color_272727"
                 android:textSize="15dp"
                 android:gravity="center"/>

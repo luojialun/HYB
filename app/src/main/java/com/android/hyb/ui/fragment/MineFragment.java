@@ -15,6 +15,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
+import com.android.hyb.bean.response.GetGroupResponse;
 import com.android.hyb.bean.response.UserResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
@@ -23,7 +24,6 @@ import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.CashDetailActivity;
 import com.android.hyb.ui.acitvity.EmployActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
-import com.android.hyb.ui.acitvity.MerchantActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
 import com.android.hyb.ui.acitvity.UpdateShopActivity;
@@ -104,6 +104,9 @@ public class MineFragment extends BaseFragment {
     ImageView imageMerchant;
     @BindView(R.id.vip_tv)
     TextView vipTv;
+    @BindView(R.id.tv_recomand)
+    TextView tvRecomand;
+
 
     public MineFragment() {
         // Required empty public constructor
@@ -130,7 +133,8 @@ public class MineFragment extends BaseFragment {
     }
 
     public void getUserAgent() {
-        ServiceFactory.createHYBService(ContentService.class).getUserAgent(UserInfo.getToken())
+        ServiceFactory.createHYBService(ContentService.class)
+                .getUserAgent(UserInfo.getToken())
                 .compose(new RemoteTransformer<>())
                 .subscribe(new ToastObserver<UserResponse>(this.getContext()) {
                     @Override
@@ -155,8 +159,27 @@ public class MineFragment extends BaseFragment {
                         UserInfo.setWithdraw(response.getData().getWithdraw());
                         UserInfo.setEarnings(response.getData().getEarnings());
                         UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
+                        UserInfo.setParentOpenId(response.getData().getParentOpenId());
 
                         updateHeaderView();
+                    }
+                });
+
+        ServiceFactory.createHYBService(ContentService.class)
+                .getGroup(UserInfo.getToken())
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<GetGroupResponse>(this.getContext()) {
+                    @Override
+                    public void onNext(GetGroupResponse response) {
+                        if (response.getData().getGroupName() != null)
+                        {
+                            vipTv.setText(response.getData().getGroupName());
+                            vipTv.setVisibility(View.VISIBLE);
+                        }
+                        else
+                        {
+                            vipTv.setVisibility(View.GONE);
+                        }
                     }
                 });
     }
@@ -168,15 +191,8 @@ public class MineFragment extends BaseFragment {
                 .into(imageHeader);
 
 
-        if (UserInfo.getMobile().length() > 7) {
-            String replaceStr = UserInfo.getMobile().substring(3, 7);
-            String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
-            tvMobile.setText(showMobile);
-        } else {
-            String replaceStr = UserInfo.getMobile();
-            String showMobile = UserInfo.getMobile().replace(replaceStr, "****");
-            tvMobile.setText(showMobile);
-        }
+        tvMobile.setText(UserInfo.getOpenId());
+        tvRecomand.setText("推荐人："+UserInfo.getParentOpenId());
 
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
         tvCashNumber.setText(UserInfo.getWithdraw() + "");
@@ -189,16 +205,9 @@ public class MineFragment extends BaseFragment {
             invitationCodeTv.setVisibility(View.VISIBLE);
             invitationCodeTv.setText(UserInfo.getInvitationCode());
         }
-
-        if (TextUtils.isEmpty(UserInfo.getRole())) {
-            vipTv.setVisibility(View.GONE);
-        } else {
-            vipTv.setVisibility(View.VISIBLE);
-            vipTv.setText(UserInfo.getRole());
-        }
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share,R.id.ll_detail})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -239,5 +248,4 @@ public class MineFragment extends BaseFragment {
         startActivity(new Intent(getActivity(), LoginActivity.class));
         getActivity().finish();
     }
-
 }

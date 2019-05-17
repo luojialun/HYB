@@ -131,6 +131,7 @@ public class LoginActivity extends BaseActivity {
                         UserInfo.setWithdraw(response.getData().getWithdraw());
                         UserInfo.setEarnings(response.getData().getEarnings());
                         UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
+                        UserInfo.setParentOpenId(response.getData().getParentOpenId());
 
                         ToastUtils.show(LoginActivity.this, "登录成功");
                         readyGoThenKill(MainActivity.class);

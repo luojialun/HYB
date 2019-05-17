@@ -37,6 +37,15 @@ public class UserInfo {
     private static final String Withdraw = "Withdraw";
     private static final String Earnings = "Earnings";
     private static final String TodayEarnings = "TodayEarnings";
+    private static final String ParentOpenId = "ParentOpenId";
+
+    public static void setParentOpenId(String parentOpenId){
+        SPUtils.getInstance().put(ParentOpenId,parentOpenId);
+    }
+
+    public static String getParentOpenId(){
+        return SPUtils.getInstance().getString(ParentOpenId);
+    }
 
     public static void setId(int id) {
         SPUtils.getInstance().put(Id, id);

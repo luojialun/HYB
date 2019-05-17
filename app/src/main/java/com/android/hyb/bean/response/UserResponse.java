@@ -61,6 +61,15 @@ public class UserResponse extends BaseResponse {
         private float Earnings;
         private float TodayEarnings;
         private float FrozenFunds;
+        private String ParentOpenId;
+
+        public String getParentOpenId() {
+            return ParentOpenId;
+        }
+
+        public void setParentOpenId(String parentOpenId) {
+            ParentOpenId = parentOpenId;
+        }
 
         public int getId() {
             return Id;

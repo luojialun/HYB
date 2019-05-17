@@ -74,6 +74,15 @@
                     android:textColor="#272727"
                     android:textSize="14sp"
                     tools:text="13512341234" />
+                <TextView
+                    android:id="@+id/tv_recomand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="#272727"
+                    android:textSize="14sp"
+                    tools:text="推荐人"
+                    android:layout_below="@id/tv_mobile"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -219,7 +228,7 @@
                     android:layout_height="45dp"
                     android:layout_marginLeft="15dp"
                     android:gravity="center"
-                    android:text="商场订单"
+                    android:text="商城订单"
                     android:textColor="#272727"
                     android:textSize="15sp" />
 
@@ -338,7 +347,7 @@
                             android:layout_below="@id/image_finish"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="待收货"
+                            android:text="已完成"
                             android:textColor="#272727"
                             android:textSize="14sp" />
                     </RelativeLayout>

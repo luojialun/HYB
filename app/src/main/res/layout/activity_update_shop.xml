@@ -20,7 +20,19 @@
         android:gravity="center"
         android:text="上传商品"
         android:textColor="@color/black"
-        android:textSize="15sp"
-        android:layout_below="@id/statusBar"/>
+        android:textSize="15sp" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.android.hyb.widget.MyRecyclerView
+            android:id="@+id/shopRv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:nestedScrollingEnabled="false" />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

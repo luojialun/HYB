@@ -3,6 +3,7 @@ package com.android.hyb.net.service;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.BannerResponse;
+import com.android.hyb.bean.response.BusinessGoodsResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
@@ -17,6 +18,7 @@ import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.bean.response.RegisterResponse;
 import com.android.hyb.bean.response.UserResponse;
 import com.android.hyb.bean.response.WalletRecordResponse;
+import com.android.hyb.bean.response.GetGroupResponse;
 
 import io.reactivex.Observable;
 import retrofit2.http.Field;
@@ -198,4 +200,27 @@ public interface ContentService {
      */
     @GET("Yinliubao/User/GetPageWalletRecord")
     Observable<WalletRecordResponse> getPageWalletRecord(@Query("token") String token, @Query("type") int type, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize);
+
+    /**
+     * 商品
+     *
+     * @param token
+     * @param pageIndex
+     * @param pageSize
+     *
+     * @return
+     */
+    @GET("Yinliubao/Goods/GetBusinessGoodsList")
+    Observable<BusinessGoodsResponse> getBusinessGoodsList(@Query("token") String token, @Query("categoryId") int categoryId, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize, @Query("orderItem") String orderItem, @Query("isDesc") Boolean isDesc);
+
+
+    /**
+     * GetGroup
+     *
+     * @param token
+     * @return
+     */
+    @GET("Yinliubao/User/GetGroup")
+    Observable<GetGroupResponse> getGroup(@Query("token") String token);
+
 }

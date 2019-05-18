@@ -40,6 +40,8 @@ public class ConstUtils {
 
     public static final int REQUEST_PERMISSION = 1000;
 
+    public final static int REQUEST_CAPTURE = 1001;//请求相机
+
     public static final String WECHAT_PAY_APP_ID = "";
 
     public static final String TYPE = "type";

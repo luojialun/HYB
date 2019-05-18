@@ -4,6 +4,7 @@ import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
+import com.android.hyb.bean.response.EmptyResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
@@ -21,6 +22,8 @@ import com.android.hyb.bean.response.WalletRecordResponse;
 import com.android.hyb.bean.response.GetGroupResponse;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -241,6 +244,8 @@ public interface ContentService {
     @POST("Yinliubao/Goods/UnPublish")
     Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") int id);
 
+    @POST("Yinliubao/image/Upload")
+    Observable<EmptyResponse> uploadImage(@Body() RequestBody file);
 
     /**
      * Yinliubao/Goods/Upload

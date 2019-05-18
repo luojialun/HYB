@@ -3,6 +3,7 @@ package com.android.hyb.ui.acitvity;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
@@ -19,6 +20,7 @@ import com.android.hyb.widget.MyRecyclerView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 public class UpdateShopActivity extends BaseActivity {
 
@@ -49,7 +51,7 @@ public class UpdateShopActivity extends BaseActivity {
             public void onLoadMoreRequested() {
                 reloadMoreData();
             }
-        },shopRv);
+        }, shopRv);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -88,13 +90,10 @@ public class UpdateShopActivity extends BaseActivity {
                 .subscribe(new ToastObserver<BusinessGoodsResponse>(this) {
                     @Override
                     public void onNext(BusinessGoodsResponse response) {
-                        if (response.getData().size() > 0)
-                        {
+                        if (response.getData().size() > 0) {
                             adapter.addData(response.getData());
                             adapter.loadMoreComplete();
-                        }
-                        else
-                        {
+                        } else {
                             adapter.loadMoreEnd();
                         }
                     }
@@ -109,5 +108,18 @@ public class UpdateShopActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @OnClick(R.id.add_tv)
+    public void onClick() {
+    }
+
+    @OnClick({R.id.add_tv})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.add_tv:
+                readyGo(UploadActivity.class);
+                break;
+        }
     }
 }

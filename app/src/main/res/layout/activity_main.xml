@@ -69,7 +69,7 @@
                 android:id="@+id/sellers_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="热卖"
+                android:text="商城"
                 android:textColor="@color/color_9a9a9a"
                 android:textSize="@dimen/bottom_text_size" />
 

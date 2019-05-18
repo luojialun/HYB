@@ -255,7 +255,7 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/Goods/Upload")
-    Observable<ApplyForBusinessResponse> UploadGoods(@Field("token") String token,@Field("id") int id,@Field("categorId") int categorId,@Field("name") String name,@Field("detail") String detail,@Field("url") String url,@Field("price") double price);
+    Observable<ApplyForBusinessResponse> UploadGoods(@Field("token") String token,@Field("id") int id,@Field("categoryId") int categorId,@Field("name") String name,@Field("details") String detail,@Field("url") String url,@Field("price") double price);
 
 
     /**

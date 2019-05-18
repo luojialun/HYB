@@ -306,6 +306,7 @@ public class UploadActivity extends BaseActivity {
                     public void onNext(ApplyForBusinessResponse response) {
                         ToastUtils.show(UploadActivity.this, response.getData());
                         Log.e("TAG", response.getData());
+                        finish();
                     }
 
                     @Override

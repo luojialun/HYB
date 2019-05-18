@@ -175,7 +175,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_gravity="bottom"
-            android:background="@color/colorAccent"
+            android:background="@color/base"
             android:gravity="center"
             android:text="上传商品"
             android:textColor="@color/white" />

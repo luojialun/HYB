@@ -3,7 +3,7 @@
     android:shape="rectangle">
 
     <!-- 设置背景填充色 -->
-    <solid android:color="@color/color_e26e1a" />
+    <solid android:color="@color/base" />
 
     <!-- 设置按钮圆角半径为25dp -->
     <corners android:bottomLeftRadius="25dp"

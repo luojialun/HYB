@@ -215,12 +215,18 @@ public class MineFragment extends BaseFragment {
 
 
         tvMobile.setText(UserInfo.getOpenId());
-        tvRecomand.setText("推荐人：" + UserInfo.getParentOpenId());
+        if (UserInfo.getParentOpenId().length() == 0)
+        {
+            tvRecomand.setVisibility(View.GONE);
+        } else {
+            tvRecomand.setVisibility(View.VISIBLE);
+            tvRecomand.setText("推荐人：" + UserInfo.getParentOpenId());
+        }
 
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
         tvCashNumber.setText(UserInfo.getWithdraw() + "");
-        tvIncomeNumber.setText(UserInfo.getEarnings() + "");
-        tvTotalNumber.setText(UserInfo.getTodayEarnings() + "");
+        tvIncomeNumber.setText(UserInfo.getTodayEarnings() + "");
+        tvTotalNumber.setText(UserInfo.getEarnings() + "");
 
         if (TextUtils.isEmpty(UserInfo.getInvitationCode())) {
             invitationCodeTv.setVisibility(View.GONE);

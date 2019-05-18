@@ -42,13 +42,6 @@
         android:layout_alignBottom="@id/goods_iv"
         android:layout_toRightOf="@id/goods_iv"
         android:layout_marginLeft="15dp"/>
-    
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_eaeaea"
-        android:layout_below="@id/goods_iv"
-        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/up_tv"
@@ -81,5 +74,12 @@
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="20dp"/>
+    
+    <ImageView
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/up_tv"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="@color/color_eaeaea"/>
 
 </RelativeLayout>

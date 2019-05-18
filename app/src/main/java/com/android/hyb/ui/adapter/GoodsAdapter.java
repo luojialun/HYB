@@ -20,6 +20,8 @@ public class GoodsAdapter extends BaseQuickAdapter<GoodsResponse.GoodsBean, Base
     protected void convert(BaseViewHolder helper, GoodsResponse.GoodsBean item) {
         helper.setText(R.id.name_tv, item.getName());
         Glide.with(mContext).load(item.getUrl()).into((ImageView) helper.getView(R.id.icon_iv));
+        helper.setText(R.id.money_tv,"￥" + item.getPresentPrice());
+        helper.setText(R.id.sales_tv,item.getSales() + "人付款");
 
     }
 }

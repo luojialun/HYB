@@ -27,7 +27,7 @@ public class WalletAdapter extends BaseQuickAdapter<WalletRecordResponse.WalletR
 
         helper.setText(R.id.message_tv,item.getMsg());
         helper.setText(R.id.time_tv,item.getCreatedTimeString());
-        helper.setText(R.id.money_tv,item.getFunds() + "¥");
+        helper.setText(R.id.money_tv, "¥" + item.getFunds());
 
     }
 }

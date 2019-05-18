@@ -88,7 +88,7 @@ public class MainFragment extends BaseFragment {
                     @Override
                     public void onNext(NewHotSellingGoodsResponse response) {
                         if (null != response && 0 < response.getData().size()) {
-                            goodsRv.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+                            goodsRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
                             List<GoodsResponse.GoodsBean> goodsList = new ArrayList<>();
 
                             for (GoodsResponse.GoodsBean goodsCategoryBean : response.getData()) {

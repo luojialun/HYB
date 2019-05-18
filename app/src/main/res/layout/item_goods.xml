@@ -3,27 +3,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="@drawable/rectangle_gray_8radius"
+    android:background="@drawable/rectangle_white_8radius"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_marginLeft="10dp">
 
     <ImageView
         android:id="@+id/icon_iv"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
-        android:scaleType="fitCenter"
+        android:scaleType="fitXY"
         tools:src="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/name_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:textColor="@color/color_777777"
         android:textSize="12sp"
-        tools:text="安卓音效软件" />
+        tools:text="安卓音效软件"
+        android:layout_marginLeft="20dp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp">
+        <TextView
+            android:id="@+id/money_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="￥44"
+            android:textSize="16sp"
+            android:textColor="@color/color_e26e1a"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/sales_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sales"
+            android:textColor="#686868"
+            android:textSize="14sp"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="购买"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            android:background="@drawable/rectangle_orange_8radius"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:layout_below="@id/money_tv"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"/>
+    </RelativeLayout>
+
+
 
 </LinearLayout>

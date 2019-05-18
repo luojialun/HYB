@@ -18,9 +18,6 @@ import butterknife.ButterKnife;
 
 public class EmployActivity extends BaseActivity {
 
-    @BindView(R.id.share_image)
-    ImageView shareImage;
-
     @Override
     public int setViewId() {
         return R.layout.activity_employ;
@@ -33,18 +30,6 @@ public class EmployActivity extends BaseActivity {
 
     @Override
     public void initData() {
-        ServiceFactory.createHYBService(ContentService.class).GetPlatformInifo()
-                .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<GetPlatformInfoResponse>(this) {
-                    @Override
-                    public void onNext(GetPlatformInfoResponse response) {
-                        Glide.with(EmployActivity.this).load(response.getData().getExtensionUrl()).into(shareImage);
-                    }
 
-                    @Override
-                    public void onError(ErrorException e) {
-                        super.onError(e);
-                    }
-                });
     }
 }

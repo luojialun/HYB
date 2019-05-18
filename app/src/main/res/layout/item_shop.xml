@@ -44,23 +44,7 @@
         android:layout_marginLeft="15dp"/>
 
     <TextView
-        android:id="@+id/up_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="上架"
-        android:textColor="@color/white"
-        android:background="@drawable/rectangle_green_5radius"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:layout_below="@id/goods_iv"
-        android:layout_marginTop="20dp"
-        android:layout_toLeftOf="@id/down_tv"
-        android:layout_marginRight="10dp"/>
-
-    <TextView
-        android:id="@+id/down_tv"
+        android:id="@+id/up_or_down_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="下架"
@@ -73,13 +57,13 @@
         android:layout_below="@id/goods_iv"
         android:layout_marginTop="20dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"/>
+        android:layout_marginRight="20dp" />
     
     <ImageView
         android:layout_marginTop="10dp"
-        android:layout_below="@id/up_tv"
+        android:layout_below="@id/up_or_down_tv"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/color_eaeaea"/>
+        android:background="#80eaeaea"/>
 
 </RelativeLayout>

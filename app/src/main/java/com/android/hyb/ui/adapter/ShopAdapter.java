@@ -2,7 +2,9 @@ package com.android.hyb.ui.adapter;
 
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
@@ -46,51 +48,68 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
         helper.setText(R.id.name_tv,item.getName());
         helper.setText(R.id.detail_tv,item.getDetails());
         helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
-        helper.getView(R.id.up_tv).setOnClickListener(new View.OnClickListener() {
+        if (item.isIsPublish()){
+            TextView textView = helper.getView(R.id.up_or_down_tv);
+            textView.setText("下架");
+            textView.setBackgroundResource(R.drawable.rectangle_red_5radius);
+        }
+        else
+        {
+            TextView textView = helper.getView(R.id.up_or_down_tv);
+            textView.setText("上架");
+            textView.setBackgroundResource(R.drawable.rectangle_green_5radius);
+        }
+
+        helper.getView(R.id.up_or_down_tv).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
-                ServiceFactory.createHYBService(ContentService.class)
-                        .publish(token,item.getId())
-                        .compose(new RemoteTransformer<ApplyForBusinessResponse>())
-                        .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
-                            @Override
-                            public void onNext(ApplyForBusinessResponse response) {
-                                ToastUtils.show(that.mContext,"上架成功");
-                                item.setIsPublish(true);
-                                helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
-                            }
 
-                            @Override
-                            public void onError(Throwable t) {
-                                super.onError(t);
-                                ToastUtils.show(that.mContext,"上架失败");
-                            }
-                        });
-            }
-        });
+                if (item.isIsPublish()){
+                    ServiceFactory.createHYBService(ContentService.class)
+                            .UnPublish(token,item.getId())
+                            .compose(new RemoteTransformer<ApplyForBusinessResponse>())
+                            .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
+                                @Override
+                                public void onNext(ApplyForBusinessResponse response) {
+                                    ToastUtils.show(that.mContext,"下架成功");
+                                    item.setIsPublish(false);
+                                    helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
+                                    TextView textView = helper.getView(R.id.up_or_down_tv);
+                                    textView.setText("上架");
+                                    textView.setBackgroundResource(R.drawable.rectangle_green_5radius);
+                                }
 
-        helper.getView(R.id.down_tv).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
-                ServiceFactory.createHYBService(ContentService.class)
-                        .UnPublish(token,item.getId())
-                        .compose(new RemoteTransformer<ApplyForBusinessResponse>())
-                        .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
-                            @Override
-                            public void onNext(ApplyForBusinessResponse response) {
-                                ToastUtils.show(that.mContext,"下架成功");
-                                item.setIsPublish(false);
-                                helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
-                            }
+                                @Override
+                                public void onError(Throwable t) {
+                                    super.onError(t);
+                                    ToastUtils.show(that.mContext,"下架失败");
+                                }
+                            });
+                }
+                else
+                {
+                    ServiceFactory.createHYBService(ContentService.class)
+                            .publish(token,item.getId())
+                            .compose(new RemoteTransformer<ApplyForBusinessResponse>())
+                            .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
+                                @Override
+                                public void onNext(ApplyForBusinessResponse response) {
+                                    ToastUtils.show(that.mContext,"上架成功");
+                                    item.setIsPublish(true);
+                                    helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
+                                    TextView textView = helper.getView(R.id.up_or_down_tv);
+                                    textView.setText("下架");
+                                    textView.setBackgroundResource(R.drawable.rectangle_red_5radius);
+                                }
 
-                            @Override
-                            public void onError(Throwable t) {
-                                super.onError(t);
-                                ToastUtils.show(that.mContext,"下架失败");
-                            }
-                        });
+                                @Override
+                                public void onError(Throwable t) {
+                                    super.onError(t);
+                                    ToastUtils.show(that.mContext,"上架失败");
+                                }
+                            });
+                }
             }
         });
     }

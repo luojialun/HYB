@@ -1,5 +1,6 @@
 package com.android.hyb.bean.response;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.base.BaseResponse;
 
 public class PlaceNewOrderResponse extends BaseResponse {
@@ -45,7 +46,7 @@ public class PlaceNewOrderResponse extends BaseResponse {
         }
 
         public String getUrl() {
-            return Url;
+            return BuildConfig.serverUrl+"/Yinliubao/images"+Url;
         }
 
         public void setUrl(String url) {

@@ -24,6 +24,9 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.ImageUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.mylhyl.zxing.scanner.encode.QREncode;
 
 import java.io.File;
@@ -95,15 +98,10 @@ public class PaymentActivity extends BaseActivity {
                     public void onNext(ApplyForVipResponse response) {
                         if (null != response) {
                             if (response.getData().getStatus().equals("success")) {
-                                Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.wechat);
-                                bitmap = new QREncode.Builder(PaymentActivity.this)
-                                        .setColor(getResources().getColor(R.color.black))//二维码颜色
-                                        //.setParsedResultType(ParsedResultType.TEXT)//默认是TEXT类型
-                                        .setContents(response.getData().getUrl())//二维码内容
-                                        .setLogoBitmap(logoBitmap)//二维码中间logo
-                                        .setMargin(0)
-                                        .build().encodeAsBitmap();
-                                codeIv.setImageBitmap(bitmap);
+                                Glide.with(getActicity())
+                                        .load(response.getData().getUrl())
+                                        .into(codeIv);
+
                                 startTimer(response.getData().getMinutes());
                             } else {
                                 ToastUtils.show(getActicity(), response.getData().getMessage());
@@ -121,15 +119,9 @@ public class PaymentActivity extends BaseActivity {
                     @Override
                     public void onNext(PlaceNewOrderResponse response) {
                         if (response.status.equals("success")) {
-                            Bitmap logoBitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.wechat);
-                            bitmap = new QREncode.Builder(PaymentActivity.this)
-                                    .setColor(getResources().getColor(R.color.black))//二维码颜色
-                                    //.setParsedResultType(ParsedResultType.TEXT)//默认是TEXT类型
-                                    .setContents(response.getData().getUrl())//二维码内容
-                                    .setLogoBitmap(logoBitmap)//二维码中间logo
-                                    .setMargin(0)
-                                    .build().encodeAsBitmap();
-                            codeIv.setImageBitmap(bitmap);
+                            Glide.with(getActicity())
+                                    .load(response.getData().getUrl())
+                                    .into(codeIv);
                             startTimer(response.getData().getMinutes());
                         } else {
                             ToastUtils.show(PaymentActivity.this, response.message);

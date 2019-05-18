@@ -114,7 +114,7 @@ public class MainFragment extends BaseFragment {
 
     @Override
     public void initData() {
-        getPromotionUrl();
+//        getPromotionUrl();
     }
 
     private void getPromotionUrl() {
@@ -133,13 +133,13 @@ public class MainFragment extends BaseFragment {
                 });
     }
 
-    @OnClick({R.id.tip_ll, R.id.promotion_iv})
+    @OnClick({ R.id.promotion_iv})
     public void OnClick(View view) {
         switch (view.getId()) {
-            case R.id.tip_ll:
-                MainTipPop mainTipPop = new MainTipPop(getActivity());
-                mainTipPop.showPopupWindow();
-                break;
+//            case R.id.tip_ll:
+//                MainTipPop mainTipPop = new MainTipPop(getActivity());
+//                mainTipPop.showPopupWindow();
+//                break;
             case R.id.promotion_iv:
                 Intent intent=new Intent(getActivity(),PaymentActivity.class);
                 intent.putExtra(ConstUtils.TYPE,0);

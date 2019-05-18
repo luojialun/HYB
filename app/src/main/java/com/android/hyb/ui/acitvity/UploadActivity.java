@@ -18,6 +18,7 @@ import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.EmptyResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
+import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
@@ -66,6 +67,7 @@ public class UploadActivity extends BaseActivity {
     private int id = 0;
     private int categoryId = -1;  //类别id
     private String filePath;   //上传图片路径
+    private String imageURL;
 
     @Override
     public int setViewId() {
@@ -284,7 +286,9 @@ public class UploadActivity extends BaseActivity {
                 .subscribe(new ToastObserver<EmptyResponse>(this) {
                     @Override
                     public void onNext(EmptyResponse emptyResponse) {
-
+                        if (emptyResponse.getData() != null){
+                            imageURL = emptyResponse.getData();
+                        }
                     }
                 });
     }
@@ -293,8 +297,9 @@ public class UploadActivity extends BaseActivity {
      * 商品上传
      */
     private void uploadGoods() {
+        String token = UserInfo.getToken();
         ServiceFactory.createHYBService(ContentService.class)
-                .UploadGoods(UserInfo.getToken(), id, categoryId, goodsNameEt.getText().toString(), goodsDetailEt.getText().toString(), "https://111.png", Double.parseDouble(goodsPriceEt.getText().toString()))
+                .UploadGoods(token, id, categoryId, goodsNameEt.getText().toString(), goodsDetailEt.getText().toString(), imageURL, Double.parseDouble(goodsPriceEt.getText().toString()))
                 .compose(new RemoteTransformer<ApplyForBusinessResponse>())
                 .subscribe(new ToastObserver<ApplyForBusinessResponse>(this) {
                     @Override
@@ -304,8 +309,8 @@ public class UploadActivity extends BaseActivity {
                     }
 
                     @Override
-                    public void onError(Throwable t) {
-                        super.onError(t);
+                    public void onError(ErrorException e) {
+                        super.onError(e);
 
                     }
                 });

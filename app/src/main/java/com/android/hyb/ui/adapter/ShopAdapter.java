@@ -15,6 +15,7 @@ import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
+import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.GlideImageLoader;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
@@ -55,13 +56,15 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
                         .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
                             @Override
                             public void onNext(ApplyForBusinessResponse response) {
-                                Log.e("eeeee",response.getData());
+                                ToastUtils.show(that.mContext,"上架成功");
+                                item.setIsPublish(true);
+                                helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
                             }
 
                             @Override
                             public void onError(Throwable t) {
                                 super.onError(t);
-
+                                ToastUtils.show(that.mContext,"上架失败");
                             }
                         });
             }
@@ -77,13 +80,15 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
                         .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
                             @Override
                             public void onNext(ApplyForBusinessResponse response) {
-                                Log.e("eeeee",response.getData());
+                                ToastUtils.show(that.mContext,"下架成功");
+                                item.setIsPublish(false);
+                                helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
                             }
 
                             @Override
                             public void onError(Throwable t) {
                                 super.onError(t);
-
+                                ToastUtils.show(that.mContext,"下架失败");
                             }
                         });
             }

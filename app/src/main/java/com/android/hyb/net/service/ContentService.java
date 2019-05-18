@@ -230,7 +230,7 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/Goods/Publish")
-    Observable<ApplyForBusinessResponse> publish(@Field("token") String token,@Field("id") String id);
+    Observable<ApplyForBusinessResponse> publish(@Field("token") String token,@Field("id") int id);
 
     /**
      * UnPublish
@@ -239,5 +239,17 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/Goods/UnPublish")
-    Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") String id);
+    Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") int id);
+
+
+    /**
+     * Yinliubao/Goods/Upload
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/Goods/Upload")
+    Observable<ApplyForBusinessResponse> UploadGoods(@Field("token") String token,@Field("id") int id,@Field("categorId") int categorId,@Field("name") String name,@Field("detail") String detail,@Field("url") String url,@Field("price") double price);
+
+
 }

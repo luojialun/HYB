@@ -87,5 +87,7 @@ dependencies {
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     //二维码控件
     implementation 'com.mylhyl:zxingscanner:2.1.2'
+    //相机选择
+    implementation 'com.github.LuckSiege.PictureSelector:picture_library:v2.1.9'
 
 }

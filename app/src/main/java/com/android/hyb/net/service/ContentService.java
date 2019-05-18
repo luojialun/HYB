@@ -6,6 +6,7 @@ import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
 import com.android.hyb.bean.response.EmptyResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
+import com.android.hyb.bean.response.GetCountsResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
 import com.android.hyb.bean.response.GetPageGroupsResponse;
@@ -257,4 +258,12 @@ public interface ContentService {
     Observable<ApplyForBusinessResponse> UploadGoods(@Field("token") String token,@Field("id") int id,@Field("categorId") int categorId,@Field("name") String name,@Field("detail") String detail,@Field("url") String url,@Field("price") double price);
 
 
+    /**
+     * GetGroup
+     *
+     * @param token
+     * @return
+     */
+    @GET("Yinliubao/Order/GetCounts")
+    Observable<GetCountsResponse> getCounts(@Query("token") String token);
 }

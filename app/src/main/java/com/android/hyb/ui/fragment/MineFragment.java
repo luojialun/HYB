@@ -15,6 +15,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
+import com.android.hyb.bean.response.GetCountsResponse;
 import com.android.hyb.bean.response.GetGroupResponse;
 import com.android.hyb.bean.response.UserResponse;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -106,6 +107,14 @@ public class MineFragment extends BaseFragment {
     TextView vipTv;
     @BindView(R.id.tv_recomand)
     TextView tvRecomand;
+    @BindView(R.id.unpay_tv)
+    TextView unpayTv;
+    @BindView(R.id.unsend_tv)
+    TextView unsendTv;
+    @BindView(R.id.unget_tv)
+    TextView ungetTv;
+    @BindView(R.id.finish_tv)
+    TextView finishTv;
 
 
     public MineFragment() {
@@ -171,17 +180,31 @@ public class MineFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetGroupResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetGroupResponse response) {
-                        if (response.getData().getGroupName() != null)
-                        {
+                        if (response.getData().getGroupName() != null) {
                             vipTv.setText(response.getData().getGroupName());
                             vipTv.setVisibility(View.VISIBLE);
-                        }
-                        else
-                        {
+                        } else {
                             vipTv.setVisibility(View.GONE);
                         }
                     }
                 });
+
+        ServiceFactory.createHYBService(ContentService.class)
+                .getCounts(UserInfo.getToken())
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<GetCountsResponse>(this.getContext()) {
+                    @Override
+                    public void onNext(GetCountsResponse getCountsResponse) {
+                        if (getCountsResponse.getData().size() >= 4){
+                            unpayTv.setText(getCountsResponse.getData().get(0) + "");
+                            unsendTv.setText(getCountsResponse.getData().get(1) + "");
+                            ungetTv.setText(getCountsResponse.getData().get(2) + "");
+                            finishTv.setText(getCountsResponse.getData().get(3) + "");
+                        }
+                    }
+                });
+
+
     }
 
     private void updateHeaderView() {
@@ -192,7 +215,7 @@ public class MineFragment extends BaseFragment {
 
 
         tvMobile.setText(UserInfo.getOpenId());
-        tvRecomand.setText("推荐人："+UserInfo.getParentOpenId());
+        tvRecomand.setText("推荐人：" + UserInfo.getParentOpenId());
 
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
         tvCashNumber.setText(UserInfo.getWithdraw() + "");

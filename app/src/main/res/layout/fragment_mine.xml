@@ -269,6 +269,17 @@
                             android:src="@mipmap/mine_unpay" />
 
                         <TextView
+                            android:id="@+id/unpay_tv"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/image_unpay"
+                            android:background="@drawable/oval_red"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white" />
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/image_unpay"
@@ -291,6 +302,17 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             android:src="@mipmap/mine_unsend" />
+
+                        <TextView
+                            android:id="@+id/unsend_tv"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/image_unsend"
+                            android:background="@drawable/oval_red"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white" />
 
                         <TextView
                             android:layout_width="match_parent"
@@ -318,6 +340,17 @@
                             android:src="@mipmap/mine_unget" />
 
                         <TextView
+                            android:id="@+id/unget_tv"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/image_unget"
+                            android:background="@drawable/oval_red"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white" />
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_below="@id/image_unget"
@@ -340,6 +373,17 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="15dp"
                             android:src="@mipmap/mine_finish" />
+
+                        <TextView
+                            android:id="@+id/finish_tv"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toRightOf="@+id/image_finish"
+                            android:background="@drawable/oval_red"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textColor="@color/white" />
 
                         <TextView
                             android:layout_width="match_parent"

@@ -77,6 +77,7 @@ public class BestSellersFragment extends BaseFragment {
         tabContentAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
+                pageIndex++;
                 getGoodsList(categoryId);
             }
         }, contentRv);

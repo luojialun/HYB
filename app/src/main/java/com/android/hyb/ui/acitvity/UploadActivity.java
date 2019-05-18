@@ -283,9 +283,9 @@ public class UploadActivity extends BaseActivity {
         RequestBody requestBody = builder.build();
         ServiceFactory.createHYBService(ContentService.class).uploadImage(requestBody)
                 .compose(new RemoteTransformer<>())
-                .subscribe(new ToastObserver<EmptyResponse>(this) {
+                .subscribe(new ToastObserver<ApplyForBusinessResponse>(this) {
                     @Override
-                    public void onNext(EmptyResponse emptyResponse) {
+                    public void onNext(ApplyForBusinessResponse emptyResponse) {
                         if (emptyResponse.getData() != null){
                             imageURL = emptyResponse.getData();
                         }

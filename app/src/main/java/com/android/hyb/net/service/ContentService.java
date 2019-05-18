@@ -246,7 +246,7 @@ public interface ContentService {
     Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") int id);
 
     @POST("Yinliubao/image/Upload")
-    Observable<EmptyResponse> uploadImage(@Body() RequestBody file);
+    Observable<ApplyForBusinessResponse> uploadImage(@Body() RequestBody file);
 
     /**
      * Yinliubao/Goods/Upload

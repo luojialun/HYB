@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp">
+    <LinearLayout
+        android:padding="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:background="@drawable/popwindow_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/takePhotoPop_takePhoto"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="拍照"
+            android:textColor="@color/DeepSkyBlue"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <TextView
+            android:id="@+id/takePhotoPop_openPhotos"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="1dp"
+            android:text="打开相册"
+            android:textColor="@color/DeepSkyBlue"
+            android:gravity="center"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:padding="2dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/popwindow_bg">
+        <TextView
+            android:id="@+id/takePhotoPop_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="取消"
+            android:textColor="@color/colorAccent"
+            android:gravity="center"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

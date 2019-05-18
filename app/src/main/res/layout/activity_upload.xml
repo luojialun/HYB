@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".ui.acitvity.UploadActivity">
+    tools:context=".ui.acitvity.UploadActivity"
+    android:id="@+id/add_goods_ll">
 
     <View
         android:id="@+id/statusBar"
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
         <ImageView
+            android:id="@+id/select_iv"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@mipmap/photo_add"

@@ -50,7 +50,7 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
             public void onClick(View view) {
                 String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
                 ServiceFactory.createHYBService(ContentService.class)
-                        .publish(token,item.getId()+"")
+                        .publish(token,item.getId())
                         .compose(new RemoteTransformer<ApplyForBusinessResponse>())
                         .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
                             @Override
@@ -72,7 +72,7 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
             public void onClick(View view) {
                 String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
                 ServiceFactory.createHYBService(ContentService.class)
-                        .UnPublish(token,item.getId()+"")
+                        .UnPublish(token,item.getId())
                         .compose(new RemoteTransformer<ApplyForBusinessResponse>())
                         .subscribe(new ToastObserver<ApplyForBusinessResponse>(that.mContext) {
                             @Override

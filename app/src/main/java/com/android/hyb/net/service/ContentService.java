@@ -4,6 +4,7 @@ import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
+import com.android.hyb.bean.response.EmptyResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetListInSearchResponse;
 import com.android.hyb.bean.response.GetOrderListResponse;
@@ -240,4 +241,5 @@ public interface ContentService {
     @FormUrlEncoded
     @POST("Yinliubao/Goods/UnPublish")
     Observable<ApplyForBusinessResponse> UnPublish(@Field("token") String token,@Field("id") String id);
+
 }

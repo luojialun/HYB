@@ -2,11 +2,14 @@ package com.android.hyb.ui.acitvity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.view.View;
 import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.clazz.UserInfo;
+import com.android.hyb.bean.response.GetGroupResponse;
 import com.android.hyb.bean.response.GetPageGroupsResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -54,10 +57,27 @@ public class MineTeamActivity extends BaseActivity {
 
     @Override
     public void initData() {
+        getGroup();
         getPageGroups();
     }
 
-    public void getPageGroups() {
+    private void getGroup() {
+        ServiceFactory.createHYBService(ContentService.class)
+                .getGroup(UserInfo.getToken())
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<GetGroupResponse>(getActicity()) {
+                    @Override
+                    public void onNext(GetGroupResponse response) {
+                        if (null != response) {
+                            saleTv.setText(response.getData().getDirectGroups()+"");
+                            marketTv.setText(response.getData().getSmallMarkets()+"");
+                            memberTv.setText(response.getData().getGroups()+"");
+                        }
+                    }
+                });
+    }
+
+    private void getPageGroups() {
         showProgress();
         ServiceFactory.createHYBService(ContentService.class).getPageGroups(UserInfo.getToken(), pageIndex, ConstUtils.PAGE_SIZE)
                 .compose(new RemoteTransformer<>())

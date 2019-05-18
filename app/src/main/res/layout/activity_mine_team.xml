@@ -46,7 +46,8 @@
                 android:background="@drawable/oval_red"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
                 android:background="@drawable/oval_red"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +112,8 @@
                 android:background="@drawable/oval_red"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:textSize="12sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -127,10 +130,10 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/content_rv"
-        android:overScrollMode="never"
-        android:scrollbars="none"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
 
 </LinearLayout>

@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.acitvity.UploadActivity"></activity>
+        <activity android:name=".ui.acitvity.SettingActivity"></activity>
+        <activity android:name=".ui.acitvity.UploadActivity" />
         <activity android:name=".ui.acitvity.UpdateShopActivity" />
         <activity android:name=".ui.acitvity.CashDetailActivity" />
         <activity android:name=".ui.acitvity.SplashActivity">
@@ -93,7 +94,6 @@
             android:name=".ui.acitvity.PaymentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
-
 
         <provider
             android:name="android.support.v4.content.FileProvider"

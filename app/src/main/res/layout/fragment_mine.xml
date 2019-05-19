@@ -33,6 +33,15 @@
                 android:layout_marginRight="15dp"
                 android:background="@drawable/rectangle_white_8radius">
 
+                <ImageView
+                    android:id="@+id/setting_iv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/setting"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="10dp"/>
+
                 <TextView
                     android:id="@+id/invitationCode_tv"
                     android:layout_width="80dp"

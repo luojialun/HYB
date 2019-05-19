@@ -27,6 +27,7 @@ import com.android.hyb.ui.acitvity.EmployActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
+import com.android.hyb.ui.acitvity.SettingActivity;
 import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
@@ -236,7 +237,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -265,6 +266,9 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.ll_detail:
                 readyGo(CashDetailActivity.class);
+                break;
+            case R.id.setting_iv:
+                readyGo(SettingActivity.class);
                 break;
         }
     }

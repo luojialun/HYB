@@ -43,6 +43,9 @@ public class LoginActivity extends BaseActivity {
     public void initView() {
         phoneEt.setText(SPUtils.getInstance().getString(ConstUtils.PHONE));
         passwordEt.setText(SPUtils.getInstance().getString(ConstUtils.PASSWORD));
+        if (!TextUtils.isEmpty(SPUtils.getInstance().getString(ConstUtils.PHONE))) {
+            phoneEt.setSelection(SPUtils.getInstance().getString(ConstUtils.PHONE).length());
+        }
         if (SPUtils.getInstance().getBoolean(ConstUtils.AUTO_LOGIN)) {
             loginSwitch.setChecked(true);
             login();
@@ -56,7 +59,7 @@ public class LoginActivity extends BaseActivity {
     public void initData() {
     }
 
-    @OnClick({ R.id.register_tv, R.id.login_tv})
+    @OnClick({R.id.register_tv, R.id.login_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.login_tv:

@@ -71,9 +71,9 @@
 
             <com.android.hyb.widget.MyRecyclerView
                 android:id="@+id/goodsRv"
+                android:layout_margin="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="20dp"
                 android:nestedScrollingEnabled="false" />
 
         </LinearLayout>

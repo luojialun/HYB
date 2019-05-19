@@ -20,7 +20,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.acitvity.SettingActivity"></activity>
+        <activity android:name=".ui.acitvity.GetCashActivity"></activity>
+        <activity android:name=".ui.acitvity.SettingActivity" />
         <activity android:name=".ui.acitvity.UploadActivity" />
         <activity android:name=".ui.acitvity.UpdateShopActivity" />
         <activity android:name=".ui.acitvity.CashDetailActivity" />

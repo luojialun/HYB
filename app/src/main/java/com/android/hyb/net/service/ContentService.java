@@ -266,4 +266,26 @@ public interface ContentService {
      */
     @GET("Yinliubao/Order/GetCounts")
     Observable<GetCountsResponse> getCounts(@Query("token") String token);
+
+    /**
+     * UploadAlipayUrl
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/User/UploadAlipayUrl")
+    Observable<ApplyForBusinessResponse> UploadAlipayUrl(@Field("token") String token,@Field("url") String url);
+
+
+    /**
+     * Withdraw
+     *
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("Yinliubao/User/Withdraw")
+    Observable<ApplyForBusinessResponse> Withdraw(@Field("token") String token,@Field("funds") float funds);
+
+
+//
 }

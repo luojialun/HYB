@@ -4,6 +4,7 @@ package com.android.hyb.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.CashDetailActivity;
 import com.android.hyb.ui.acitvity.EmployActivity;
+import com.android.hyb.ui.acitvity.GetCashActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
@@ -31,6 +33,7 @@ import com.android.hyb.ui.acitvity.SettingActivity;
 import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
+import com.android.hyb.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -239,7 +242,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv})
+    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv ,R.id.ll_get_cash})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.image_unpay:
@@ -271,6 +274,15 @@ public class MineFragment extends BaseFragment {
                 break;
             case R.id.setting_iv:
                 readyGo(SettingActivity.class);
+                break;
+            case R.id.ll_get_cash:
+            {
+                if (UserInfo.getWeChatUrl().length() == 0 && UserInfo.getAlipayUrl().length() == 0){
+                    ToastUtils.show(getActivity(),"请先上传 提现二维码");
+                    break;
+                }
+                readyGo(GetCashActivity.class);
+            }
                 break;
         }
     }

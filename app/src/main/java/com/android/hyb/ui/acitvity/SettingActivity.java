@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
@@ -19,6 +20,7 @@ import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.pop.ListSingleSelectPop;
 import com.bumptech.glide.Glide;
@@ -62,11 +64,18 @@ public class SettingActivity extends BaseActivity {
     public void initData() {
         mobileTv.setText(UserInfo.getMobile());
         nikenameTv.setText(UserInfo.getOpenId());
-        if (UserInfo.getWeChatUrl() != null) {
+        if (UserInfo.getWeChatUrl().length() != 0) {
             Glide.with(this)
-                    .load(UserInfo.getWeChatUrl())
+                    .load(BuildConfig.serverUrl + "/Yinliubao/images" +  UserInfo.getWeChatUrl())
                     .into(payIv);
         }
+
+        if (UserInfo.getAlipayUrl().length() != 0) {
+            Glide.with(this)
+                    .load(BuildConfig.serverUrl + "/Yinliubao/images" +  UserInfo.getAlipayUrl())
+                    .into(payIv);
+        }
+
     }
 
     @Override
@@ -232,7 +241,19 @@ public class SettingActivity extends BaseActivity {
     }
 
     private void uploadGoods() {
-        
-    }
+        String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
+        ServiceFactory.createHYBService(ContentService.class)
+                .UploadAlipayUrl(token,imageURL)
+                .compose(new RemoteTransformer<>())
+                .subscribe(new ToastObserver<ApplyForBusinessResponse>(this) {
+                    @Override
+                    public void onNext(ApplyForBusinessResponse response) {
+                        if (response.getData().equals("success")){
+                            ToastUtils.show(getActicity(),"上传成功");
+                            UserInfo.setAlipayUrl(imageURL);
+                        }
+                    }
+                });
 
+    }
 }

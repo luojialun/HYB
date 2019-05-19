@@ -170,6 +170,8 @@ public class MineFragment extends BaseFragment {
                         UserInfo.setEarnings(response.getData().getEarnings());
                         UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
                         UserInfo.setParentOpenId(response.getData().getParentOpenId());
+                        UserInfo.setAlipayUrl(response.getData().getAlipayUrl());
+                        UserInfo.setWeChatUrl(response.getData().getWeChatUrl());
 
                         updateHeaderView();
                     }

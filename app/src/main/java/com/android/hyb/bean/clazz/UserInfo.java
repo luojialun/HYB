@@ -38,6 +38,25 @@ public class UserInfo {
     private static final String Earnings = "Earnings";
     private static final String TodayEarnings = "TodayEarnings";
     private static final String ParentOpenId = "ParentOpenId";
+    private static final String AlipayUrl = "AlipayUrl";
+    private static final String WeChatUrl = "WeChatUrl";
+
+
+    public static void setAlipayUrl(String alipayUrl){
+        SPUtils.getInstance().put(AlipayUrl,alipayUrl);
+    }
+
+    public static String getAlipayUrl(){
+        return SPUtils.getInstance().getString(AlipayUrl);
+    }
+
+    public static void setWeChatUrl(String weChatUrl){
+        SPUtils.getInstance().put(WeChatUrl,weChatUrl);
+    }
+
+    public static String getWeChatUrl(){
+        return SPUtils.getInstance().getString(WeChatUrl);
+    }
 
     public static void setParentOpenId(String parentOpenId){
         SPUtils.getInstance().put(ParentOpenId,parentOpenId);

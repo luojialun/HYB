@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.acitvity.SettingActivity">
+    tools:context=".ui.acitvity.SettingActivity"
+    android:id="@+id/setting_ll">
 
     <View
         android:id="@+id/statusBar"
@@ -56,7 +57,7 @@
             android:layout_toLeftOf="@id/avatar_more_iv"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"/>
-        
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
@@ -64,7 +65,7 @@
             android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
-    
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp">
@@ -97,6 +98,12 @@
             android:gravity="center"
             android:layout_toLeftOf="@id/nikename_more_iv"
             android:layout_marginRight="10dp"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_eaeaea"
+            android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
 
@@ -133,9 +140,16 @@
             android:layout_toLeftOf="@id/mobile_more_iv"
             android:layout_marginRight="10dp"/>
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_eaeaea"
+            android:layout_alignParentBottom="true"/>
+
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/code_ll"
         android:layout_width="match_parent"
         android:layout_height="100dp">
         <TextView
@@ -158,13 +172,14 @@
             android:layout_marginRight="10dp"/>
 
         <ImageView
+            android:id="@+id/pay_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_toLeftOf="@id/code_more_iv"
             android:layout_marginRight="10dp"
             android:layout_centerVertical="true"/>
 
-        <ImageViewdp
+        <ImageView
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/color_eaeaea"

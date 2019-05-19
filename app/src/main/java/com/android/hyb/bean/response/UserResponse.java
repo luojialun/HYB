@@ -62,6 +62,24 @@ public class UserResponse extends BaseResponse {
         private float TodayEarnings;
         private float FrozenFunds;
         private String ParentOpenId;
+        private String AlipayUrl;
+        private String WeChatUrl;
+
+        public String getAlipayUrl() {
+            return AlipayUrl;
+        }
+
+        public void setAlipayUrl(String alipayUrl) {
+            AlipayUrl = alipayUrl;
+        }
+
+        public String getWeChatUrl() {
+            return WeChatUrl;
+        }
+
+        public void setWeChatUrl(String weChatUrl) {
+            WeChatUrl = weChatUrl;
+        }
 
         public String getParentOpenId() {
             return ParentOpenId;

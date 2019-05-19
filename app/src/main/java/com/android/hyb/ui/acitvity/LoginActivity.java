@@ -135,6 +135,8 @@ public class LoginActivity extends BaseActivity {
                         UserInfo.setEarnings(response.getData().getEarnings());
                         UserInfo.setTodayEarnings(response.getData().getTodayEarnings());
                         UserInfo.setParentOpenId(response.getData().getParentOpenId());
+                        UserInfo.setAlipayUrl(response.getData().getAlipayUrl());
+                        UserInfo.setWeChatUrl(response.getData().getWeChatUrl());
 
                         ToastUtils.show(LoginActivity.this, "登录成功");
                         readyGoThenKill(MainActivity.class);

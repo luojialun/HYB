@@ -4,6 +4,7 @@ import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
+import com.android.hyb.bean.response.BusinessSingleGoodBean;
 import com.android.hyb.bean.response.EmptyResponse;
 import com.android.hyb.bean.response.GetApplyForBusinessResponse;
 import com.android.hyb.bean.response.GetCountsResponse;
@@ -216,6 +217,16 @@ public interface ContentService {
      */
     @GET("Yinliubao/Goods/GetBusinessGoodsList")
     Observable<BusinessGoodsResponse> getBusinessGoodsList(@Query("token") String token, @Query("categoryId") int categoryId, @Query("pageIndex") int pageIndex, @Query("pageSize") int pageSize, @Query("orderItem") String orderItem, @Query("isDesc") Boolean isDesc);
+
+    /**
+     * 商品
+     *
+     * @param token
+     *
+     * @return
+     */
+    @GET("Yinliubao/Goods/GetBusinessGoods")
+    Observable<BusinessSingleGoodBean> getBusinessGoodsById(@Query("token") String token,@Query("id") int id );
 
 
     /**

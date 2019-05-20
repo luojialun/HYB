@@ -1,22 +1,28 @@
 package com.android.hyb.ui.acitvity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
-import com.android.hyb.bean.response.EmptyResponse;
+import com.android.hyb.bean.response.BusinessSingleGoodBean;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -24,6 +30,7 @@ import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
+import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.pop.ListSingleSelectPop;
 import com.luck.picture.lib.PictureSelector;
@@ -39,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -63,6 +71,8 @@ public class UploadActivity extends BaseActivity {
     ImageView selectIv;
     @BindView(R.id.goods_category_tv)
     TextView categoryTv;
+    @BindView(R.id.add_goods_content_ll)
+    ScrollView addGoodsContentLl;
 
     private int id = 0;
     private int categoryId = -1;  //类别id
@@ -76,15 +86,66 @@ public class UploadActivity extends BaseActivity {
 
     @Override
     public void initView() {
+        addGoodsContentLl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                dismissKeyboard();
+                return false;
+            }
+        });
     }
 
     @Override
     public void initData() {
+
     }
 
     @Override
     public void initParams() {
         id = getIntent().getIntExtra(ConstUtils.ID, 0);
+        if (id != 0) {
+            uploadTv.setText("更新商品");
+            String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
+            ServiceFactory.createHYBService(ContentService.class)
+                    .getBusinessGoodsById(token, id)
+                    .compose(new RemoteTransformer<BusinessSingleGoodBean>())
+                    .subscribe(new ToastObserver<BusinessSingleGoodBean>(this) {
+                        @Override
+                        public void onNext(BusinessSingleGoodBean responseSingleGoodBean) {
+                            if (responseSingleGoodBean.getData() != null) {
+                                String url = BuildConfig.serverUrl + "/Yinliubao/images" + responseSingleGoodBean.getData().getUrl();
+                                GlideApp.with(getActicity()).load(url).into(selectIv);
+                                imageURL = responseSingleGoodBean.getData().getUrl();
+                                ServiceFactory.createHYBService(ContentService.class).getGoodsCategoryList()
+                                        .compose(new RemoteTransformer<GoodsCategoryResponse>())
+                                        .subscribe(new ToastObserver<GoodsCategoryResponse>(UploadActivity.this) {
+                                            @Override
+                                            public void onNext(GoodsCategoryResponse response) {
+                                                if (null != response && 0 < response.getData().size()) {
+                                                    for (GoodsCategoryResponse.GoodsCategoryBean bean : response.getData()) {
+                                                        if (bean.getId() == responseSingleGoodBean.getData().getCategoryId()) {
+                                                            categoryId = bean.getId();
+                                                            categoryTv.setText(bean.getName());
+                                                            break;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        });
+                                goodsNameEt.setText(responseSingleGoodBean.getData().getName());
+                                goodsDetailEt.setText(responseSingleGoodBean.getData().getDetails());
+                                goodsPriceEt.setText(responseSingleGoodBean.getData().getPresentPrice() + "");
+                            }
+                        }
+
+                        @Override
+                        public void onError(ErrorException e) {
+                            super.onError(e);
+
+                        }
+                    });
+            ;
+        }
     }
 
     @OnClick({R.id.select_ll, R.id.upload_tv, R.id.goods_category_tv})
@@ -94,7 +155,7 @@ public class UploadActivity extends BaseActivity {
                 showSelectPop();
                 break;
             case R.id.upload_tv:
-                if (TextUtils.isEmpty(filePath)) {
+                if (TextUtils.isEmpty(imageURL)) {
                     ToastUtils.show(UploadActivity.this, "请选择上传的图片");
                 } else if (TextUtils.isEmpty(categoryTv.getText())) {
                     ToastUtils.show(UploadActivity.this, "请选择商品类别");
@@ -286,7 +347,7 @@ public class UploadActivity extends BaseActivity {
                 .subscribe(new ToastObserver<ApplyForBusinessResponse>(this) {
                     @Override
                     public void onNext(ApplyForBusinessResponse emptyResponse) {
-                        if (emptyResponse.getData() != null){
+                        if (emptyResponse.getData() != null) {
                             imageURL = emptyResponse.getData();
                         }
                     }
@@ -317,5 +378,17 @@ public class UploadActivity extends BaseActivity {
                 });
     }
 
+    public void dismissKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (this.getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), 0);
+        }
+    }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        // TODO: add setContentView(...) invocation
+        ButterKnife.bind(this);
+    }
 }

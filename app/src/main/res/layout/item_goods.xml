@@ -57,6 +57,7 @@
                 android:textSize="11sp" />
 
             <TextView
+                android:id="@+id/buy_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/money_tv"
@@ -69,6 +70,14 @@
                 android:text="购买"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:text="返最高20%佣金"
+                android:textColor="@color/base"
+                android:layout_alignBottom="@id/buy_tv"/>
         </RelativeLayout>
 
     </LinearLayout>

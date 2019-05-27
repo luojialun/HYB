@@ -1,5 +1,6 @@
 package com.android.hyb.ui.adapter;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,15 @@ import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
 import com.android.hyb.bean.response.GoodsCategoryResponse;
+import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
+import com.android.hyb.ui.acitvity.GoodsListActivity;
+import com.android.hyb.ui.acitvity.PaymentActivity;
+import com.android.hyb.ui.acitvity.UploadActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
@@ -43,10 +49,10 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
     protected void convert(BaseViewHolder helper, BusinessGoodsResponse.BusinessGoodsBean item) {
         Glide.with(this.mContext)
                 .load(item.getUrl())
-                .apply(RequestOptions.bitmapTransform(new RoundedCorners(50)))
                 .into((ImageView) helper.getView(R.id.goods_iv));
         helper.setText(R.id.name_tv,item.getName());
-        helper.setText(R.id.detail_tv,item.getDetails());
+        helper.setText(R.id.price_tv,"价格：" + item.getPresentPrice() + "¥");
+        helper.setText(R.id.sale_tv,"销量：" + item.getSales() + "份");
         helper.setText(R.id.status_tv,item.isIsPublish()?"已上架":"已下架");
         if (item.isIsPublish()){
             TextView textView = helper.getView(R.id.up_or_down_tv);
@@ -110,6 +116,16 @@ public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.Business
                                 }
                             });
                 }
+            }
+        });
+
+
+        helper.getView(R.id.update_tv).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(that.mContext, UploadActivity.class);
+                intent.putExtra(ConstUtils.ID, item.getId());
+                that.mContext.startActivity(intent);
             }
         });
     }

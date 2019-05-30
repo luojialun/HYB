@@ -16,18 +16,22 @@ import java.util.List;
 
 public class TabContentAdapter extends BaseQuickAdapter<GoodsResponse.GoodsBean, BaseViewHolder> {
     public TabContentAdapter(@Nullable List<GoodsResponse.GoodsBean> data) {
-        super(R.layout.item_tab_content, data);
+        super(R.layout.item_best_sallers_tab, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, GoodsResponse.GoodsBean item) {
+
         Glide.with(mContext).load(item.getUrl()).into((ImageView) helper.getView(R.id.icon_iv));
-        helper.setText(R.id.title_tv, item.getName());
-        helper.setText(R.id.current_price_tv, "￥" + item.getPresentPrice());
-        helper.setText(R.id.sellers_tv, "销量：" + item.getSales());
-        SpannableString msp = new SpannableString("￥" + item.getOriginalPrice());
-        msp.setSpan(new StrikethroughSpan(), 0, msp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        helper.setText(R.id.old_price_tv, msp);
+        helper.setText(R.id.money_tv,"￥" + item.getPresentPrice());
+        helper.setText(R.id.sales_tv,item.getSales() + "人付款");
         helper.setText(R.id.back_money_tv,"返最高" +  String.format("%.2f", item.getPresentPrice()*0.2) + "元佣金");
+//        helper.setText(R.id.title_tv, item.getName());
+//        helper.setText(R.id.current_price_tv, "￥" + item.getPresentPrice());
+//        helper.setText(R.id.sellers_tv, "销量：" + item.getSales());
+//        SpannableString msp = new SpannableString("￥" + item.getOriginalPrice());
+//        msp.setSpan(new StrikethroughSpan(), 0, msp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        helper.setText(R.id.old_price_tv, msp);
+//        helper.setText(R.id.back_money_tv,"返最高" +  String.format("%.2f", item.getPresentPrice()*0.2) + "元佣金");
     }
 }

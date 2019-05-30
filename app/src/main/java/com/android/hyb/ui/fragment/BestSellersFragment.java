@@ -1,6 +1,7 @@
 package com.android.hyb.ui.fragment;
 
 import android.content.Intent;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -56,7 +57,7 @@ public class BestSellersFragment extends BaseFragment {
         tabAdapter = new TabAdapter(null);
         tabRv.setAdapter(tabAdapter);
 
-        contentRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        contentRv.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         tabContentAdapter = new TabContentAdapter(null);
         contentRv.setAdapter(tabContentAdapter);
 

@@ -28,5 +28,6 @@ public class TabContentAdapter extends BaseQuickAdapter<GoodsResponse.GoodsBean,
         SpannableString msp = new SpannableString("￥" + item.getOriginalPrice());
         msp.setSpan(new StrikethroughSpan(), 0, msp.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
         helper.setText(R.id.old_price_tv, msp);
+        helper.setText(R.id.back_money_tv,"返最高" +  String.format("%.2f", item.getPresentPrice()*0.2) + "元佣金");
     }
 }

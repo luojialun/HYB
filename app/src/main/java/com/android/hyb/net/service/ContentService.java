@@ -297,6 +297,15 @@ public interface ContentService {
     @POST("Yinliubao/User/Withdraw")
     Observable<ApplyForBusinessResponse> Withdraw(@Field("token") String token,@Field("funds") float funds);
 
+    /**
+     * AppVersion/Get
+     *
+     * @param token
+     * @return
+     */
+    @GET("Yinliubao/AppVersion/Get")
+    Observable<String> AppVersionGet();
+
 
 //
 }

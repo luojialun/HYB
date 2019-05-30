@@ -60,7 +60,7 @@ public class OrdersAdapter extends BaseQuickAdapter<GetOrderListResponse.OrderLi
 
         helper.setText(R.id.tv_order_status,"订单状态：" + status);
         helper.setText(R.id.tv_goods_name,item.getGoodsName());
-        helper.setText(R.id.tv_price,"金额："+ item.getActualPay());
+        helper.setText(R.id.tv_price,"金额：¥"+ item.getActualPay());
         Glide.with(mContext).load(item.getPictureUrl()).into((ImageView) helper.getView(R.id.image_goods));
 
         TextView tvNext = (TextView) helper.getView(R.id.tv_next);

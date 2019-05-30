@@ -131,19 +131,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="商品详情："
+                        android:text="价格："
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/goods_detail_et"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/goods_price_et"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
                         android:background="@null"
-                        android:hint="请输入商品详情"
-                        android:inputType="text|textMultiLine"
+                        android:hint="请输入价格"
+                        android:inputType="numberDecimal"
                         android:textColor="@color/black"
                         android:textColorHint="@color/color_eaeaea"
                         android:textSize="16sp" />
@@ -162,18 +161,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="价格："
+                        android:text="商品详情："
                         android:textSize="16sp" />
 
                     <EditText
-                        android:id="@+id/goods_price_et"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:id="@+id/goods_detail_et"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
                         android:background="@null"
-                        android:hint="请输入价格"
-                        android:inputType="numberDecimal"
+                        android:hint="请输入商品详情"
+                        android:inputType="text|textMultiLine"
                         android:textColor="@color/black"
                         android:textColorHint="@color/color_eaeaea"
                         android:textSize="16sp" />

@@ -108,6 +108,7 @@ public class OrderFragment extends BaseFragment {
                             }
 
                         } else {
+                            swipeRefreshLayout.setRefreshing(false);
                             adapter.setNewData(null);
                             adapter.setEmptyView(R.layout.layout_empty,orderRv);
                         }
@@ -116,6 +117,7 @@ public class OrderFragment extends BaseFragment {
                     @Override
                     public void onError(ErrorException e) {
                         super.onError(e);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 });
     }

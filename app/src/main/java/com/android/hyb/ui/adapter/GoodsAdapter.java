@@ -22,6 +22,7 @@ public class GoodsAdapter extends BaseQuickAdapter<GoodsResponse.GoodsBean, Base
         Glide.with(mContext).load(item.getUrl()).into((ImageView) helper.getView(R.id.icon_iv));
         helper.setText(R.id.money_tv,"￥" + item.getPresentPrice());
         helper.setText(R.id.sales_tv,item.getSales() + "人付款");
+        helper.setText(R.id.back_money_tv,"返最高" +  String.format("%.2f", item.getPresentPrice()*0.2) + "元佣金");
 
     }
 }

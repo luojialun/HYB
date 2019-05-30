@@ -1,14 +1,19 @@
 package com.android.hyb.ui.fragment;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
+import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.GetPlatformInfoResponse;
 import com.android.hyb.bean.response.GoodsResponse;
@@ -26,14 +31,21 @@ import com.android.hyb.widget.GlideImageLoader;
 import com.android.hyb.widget.pop.MainTipPop;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.tencent.mm.opensdk.utils.Log;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 /**
  * 首页fragment
@@ -112,8 +124,61 @@ public class MainFragment extends BaseFragment {
 
     }
 
+    private void checkUpdate(){
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(BuildConfig.serverUrl + "/Yinliubao/AppVersion/Get")
+                .build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                if(response.isSuccessful()){//回调的方法执行在子线程。
+                    final String version = response.body().string();
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!version.equals(BuildConfig.VERSION_NAME)){
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                                builder.setTitle("检测有新版本");
+                                builder.setMessage("您是否需要更新？");
+                                builder.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+                                        String url = BuildConfig.serverUrl+"app/zhongfa"+version+".apk";
+                                        Uri uri = Uri.parse(url);
+                                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                                        startActivity(intent);
+                                    }
+                                });
+                                //    设置一个NegativeButton
+                                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which)
+                                    {
+//                                    Toast.makeText(MainActivity.this, "negative: " + which, Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+
+                                builder.show();
+                            }
+                        }
+                    });
+
+
+
+
+                }
+            }
+        });
+    }
+
     @Override
     public void initData() {
+        checkUpdate();
 //        getPromotionUrl();
     }
 

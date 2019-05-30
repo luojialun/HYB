@@ -1,5 +1,6 @@
 package com.android.hyb.ui.acitvity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -11,6 +12,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.ui.adapter.MainPageAdapter;
 import com.android.hyb.ui.fragment.OrderFragment;
+import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.NoSlideViewPager;
 
 import java.util.ArrayList;
@@ -45,8 +47,8 @@ public class OrderActivity extends BaseActivity {
     ImageView imageTab5;
 
     private OrderFragment allFragment, unpayFragment, unsendFragment, ungetFragment, finishFragment;
-
     private List<Fragment> fragmentList = new ArrayList<>();
+    private int defaultSelectItem = 0;
 
     @Override
     public int setViewId() {
@@ -80,6 +82,7 @@ public class OrderActivity extends BaseActivity {
         MainPageAdapter adapter = new MainPageAdapter(fragmentList, getSupportFragmentManager());
         viewpager.setAdapter(adapter);
         viewpager.setOffscreenPageLimit(fragmentList.size());
+        selectTab(defaultSelectItem);
         viewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
@@ -101,6 +104,12 @@ public class OrderActivity extends BaseActivity {
     @Override
     public void initData() {
 
+    }
+
+    @Override
+    public void initParams() {
+        super.initParams();
+        defaultSelectItem = getIntent().getIntExtra(ConstUtils.ID, 0);
     }
 
     @OnClick({R.id.tv_tab1, R.id.tv_tab2, R.id.tv_tab3, R.id.tv_tab4, R.id.tv_tab5})

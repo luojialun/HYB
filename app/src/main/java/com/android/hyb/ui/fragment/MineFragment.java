@@ -29,6 +29,7 @@ import com.android.hyb.ui.acitvity.GetCashActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
+import com.android.hyb.ui.acitvity.PaymentActivity;
 import com.android.hyb.ui.acitvity.SettingActivity;
 import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
@@ -242,20 +243,43 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv ,R.id.ll_get_cash})
+    @OnClick({R.id.tv_all_order,R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv ,R.id.ll_get_cash})
     public void onClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_all_order:
+            {
+                Intent intent = new Intent(this.getContext(), OrderActivity.class);
+                intent.putExtra(ConstUtils.ID, 0);
+                startActivity(intent);
+            }
+                break;
             case R.id.image_unpay:
-                readyGo(OrderActivity.class);
+            {
+                Intent intent = new Intent(this.getContext(), OrderActivity.class);
+                intent.putExtra(ConstUtils.ID, 1);
+                startActivity(intent);
+            }
                 break;
             case R.id.image_unsend:
-                readyGo(OrderActivity.class);
+            {
+                Intent intent = new Intent(this.getContext(), OrderActivity.class);
+                intent.putExtra(ConstUtils.ID, 2);
+                startActivity(intent);
+            }
                 break;
             case R.id.image_unget:
-                readyGo(OrderActivity.class);
+            {
+                Intent intent = new Intent(this.getContext(), OrderActivity.class);
+                intent.putExtra(ConstUtils.ID, 3);
+                startActivity(intent);
+            }
                 break;
             case R.id.image_finish:
-                readyGo(OrderActivity.class);
+            {
+                Intent intent = new Intent(this.getContext(), OrderActivity.class);
+                intent.putExtra(ConstUtils.ID, 4);
+                startActivity(intent);
+            }
                 break;
             case R.id.ll_team:
                 readyGo(MineTeamActivity.class);

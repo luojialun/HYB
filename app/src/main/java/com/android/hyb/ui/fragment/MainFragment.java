@@ -148,7 +148,7 @@ public class MainFragment extends BaseFragment {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which)
                                     {
-                                        String url = BuildConfig.serverUrl+"app/zhongfa"+version+".apk";
+                                        String url = BuildConfig.serverUrl+"/Yinliubao/app/zhongfa"+version+".apk";
                                         Uri uri = Uri.parse(url);
                                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                                         startActivity(intent);

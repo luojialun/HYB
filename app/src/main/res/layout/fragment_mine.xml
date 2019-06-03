@@ -16,12 +16,17 @@
             android:layout_height="match_parent">
 
             <!--背景-->
-            <RelativeLayout
+            <!--<RelativeLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="200dp"-->
+                <!--android:background="@color/base">-->
+
+            <!--</RelativeLayout>-->
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/base">
-
-            </RelativeLayout>
+                android:src="@mipmap/mine_backgrouand"
+                android:scaleType="centerCrop"/>
 
             <!--头部收入-->
             <RelativeLayout
@@ -110,7 +115,7 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:text="0.0"
-                            android:textColor="#86e2d2"
+                            android:textColor="@color/color_d81e06"
                             android:textSize="15dp" />
 
                         <TextView
@@ -138,7 +143,7 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:text="0.0"
-                            android:textColor="@color/color_86e2d2"
+                            android:textColor="@color/color_d81e06"
                             android:textSize="15dp" />
 
                         <TextView
@@ -166,7 +171,7 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:text="0.0"
-                            android:textColor="@color/color_86e2d2"
+                            android:textColor="@color/color_d81e06"
                             android:textSize="15dp" />
 
                         <TextView
@@ -194,7 +199,7 @@
                             android:layout_marginTop="20dp"
                             android:gravity="center"
                             android:text="0.0"
-                            android:textColor="@color/color_86e2d2"
+                            android:textColor="@color/color_d81e06"
                             android:textSize="15dp" />
 
                         <TextView

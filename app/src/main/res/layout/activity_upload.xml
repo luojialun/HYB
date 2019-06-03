@@ -131,7 +131,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="价格："
+                        android:text="商品价格："
                         android:textSize="16sp" />
 
                     <EditText
@@ -154,9 +154,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="15dp"
                     android:background="@drawable/rectangle_white_17raduis"
-                    android:padding="10dp">
+                    android:padding="10dp"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -166,18 +167,19 @@
 
                     <EditText
                         android:id="@+id/goods_detail_et"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
+                        android:minHeight="150dp"
+                        android:gravity="start"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
                         android:background="@null"
                         android:hint="请输入商品详情"
+                        android:layout_marginTop="10dp"
                         android:inputType="text|textMultiLine"
                         android:textColor="@color/black"
                         android:textColorHint="@color/color_eaeaea"
                         android:textSize="16sp" />
-
                 </LinearLayout>
 
             </LinearLayout>

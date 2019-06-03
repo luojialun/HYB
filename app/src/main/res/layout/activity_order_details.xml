@@ -31,6 +31,7 @@
         android:padding="10dp">
 
         <TextView
+            android:id="@+id/tv_goods_name_tips"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="商品名称"
@@ -42,7 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_toRightOf="@id/tv_goods_name_tips"
             android:text=""
+            android:layout_marginLeft="20dp"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

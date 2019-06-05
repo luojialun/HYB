@@ -254,7 +254,7 @@
                     android:layout_marginRight="15dp"
                     android:gravity="center"
                     android:text="全部订单"
-                    android:textColor="@color/color_86e2d2"
+                    android:textColor="@color/color_d81e06"
                     android:textSize="15sp" />
 
                 <ImageView

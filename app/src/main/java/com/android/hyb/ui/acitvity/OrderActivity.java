@@ -58,7 +58,7 @@ public class OrderActivity extends BaseActivity {
     @Override
     public void initView() {
 
-        tvTab1.setTextColor(Color.parseColor("#86e2d2"));
+        tvTab1.setTextColor(Color.parseColor("#d81e06"));
         imageTab1.setVisibility(View.VISIBLE);
 
         allFragment = new OrderFragment();
@@ -151,27 +151,27 @@ public class OrderActivity extends BaseActivity {
 
         switch (num) {
             case 0:
-                tvTab1.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab1.setTextColor(Color.parseColor("#d81e06"));
                 imageTab1.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(0, true);
                 break;
             case 1:
-                tvTab2.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab2.setTextColor(Color.parseColor("#d81e06"));
                 imageTab2.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(1, true);
                 break;
             case 2:
-                tvTab3.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab3.setTextColor(Color.parseColor("#d81e06"));
                 imageTab3.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(2, true);
                 break;
             case 3:
-                tvTab4.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab4.setTextColor(Color.parseColor("#d81e06"));
                 imageTab4.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(3, true);
                 break;
             case 4:
-                tvTab5.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab5.setTextColor(Color.parseColor("#d81e06"));
                 imageTab5.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(4, true);
                 break;

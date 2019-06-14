@@ -28,7 +28,8 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:gravity="start"
-            android:maxLines="3"
+            android:maxLines="2"
+            android:ellipsize="end"
             android:textColor="@color/color_777777"
             android:textSize="12sp"
             tools:text="安卓音效软件" />

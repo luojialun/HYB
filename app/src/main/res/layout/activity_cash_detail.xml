@@ -61,7 +61,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_86e2d2"
+                android:background="#d81e06"
                 android:visibility="gone"/>
 
         </RelativeLayout>
@@ -85,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
                 android:layout_alignParentBottom="true"
-                android:background="@color/color_86e2d2"
+                android:background="#d81e06"
                 android:visibility="gone"/>
 
         </RelativeLayout>

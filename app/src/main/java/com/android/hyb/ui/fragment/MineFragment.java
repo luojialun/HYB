@@ -4,7 +4,6 @@ package com.android.hyb.ui.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import com.android.hyb.ui.acitvity.GetCashActivity;
 import com.android.hyb.ui.acitvity.LoginActivity;
 import com.android.hyb.ui.acitvity.MineTeamActivity;
 import com.android.hyb.ui.acitvity.OrderActivity;
-import com.android.hyb.ui.acitvity.PaymentActivity;
 import com.android.hyb.ui.acitvity.SettingActivity;
 import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
@@ -104,14 +102,8 @@ public class MineFragment extends BaseFragment {
     RelativeLayout llMerchant;
     @BindView(R.id.tv_logout)
     TextView tvLogout;
-    @BindView(R.id.invitationCode_tv)
-    TextView invitationCodeTv;
     @BindView(R.id.image_merchant)
     ImageView imageMerchant;
-    @BindView(R.id.vip_tv)
-    TextView vipTv;
-    @BindView(R.id.tv_recomand)
-    TextView tvRecomand;
     @BindView(R.id.unpay_tv)
     TextView unpayTv;
     @BindView(R.id.unsend_tv)
@@ -120,6 +112,10 @@ public class MineFragment extends BaseFragment {
     TextView ungetTv;
     @BindView(R.id.finish_tv)
     TextView finishTv;
+    @BindView(R.id.tv_invate)
+    TextView tvInvate;
+    @BindView(R.id.tv_vip)
+    TextView tvVip;
 
 
     public MineFragment() {
@@ -188,10 +184,10 @@ public class MineFragment extends BaseFragment {
                     @Override
                     public void onNext(GetGroupResponse response) {
                         if (response.getData().getGroupName() != null) {
-                            vipTv.setText(response.getData().getGroupName());
-                            vipTv.setVisibility(View.VISIBLE);
+                            tvVip.setText(response.getData().getGroupName());
+                            tvVip.setVisibility(View.VISIBLE);
                         } else {
-                            vipTv.setVisibility(View.GONE);
+                            tvVip.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -202,7 +198,7 @@ public class MineFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetCountsResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetCountsResponse getCountsResponse) {
-                        if (getCountsResponse.getData().size() >= 4){
+                        if (getCountsResponse.getData().size() >= 4) {
                             unpayTv.setText(getCountsResponse.getData().get(0) + "");
                             unsendTv.setText(getCountsResponse.getData().get(1) + "");
                             ungetTv.setText(getCountsResponse.getData().get(2) + "");
@@ -222,13 +218,6 @@ public class MineFragment extends BaseFragment {
 
 
         tvMobile.setText(UserInfo.getOpenId());
-        if (UserInfo.getParentOpenId().length() == 0)
-        {
-            tvRecomand.setVisibility(View.GONE);
-        } else {
-            tvRecomand.setVisibility(View.VISIBLE);
-            tvRecomand.setText("推荐人：" + UserInfo.getParentOpenId());
-        }
 
         tvMoneyNumber.setText(UserInfo.getAvailableFunds() + "");
         tvCashNumber.setText(UserInfo.getWithdraw() + "");
@@ -236,51 +225,46 @@ public class MineFragment extends BaseFragment {
         tvTotalNumber.setText(UserInfo.getEarnings() + "");
 
         if (TextUtils.isEmpty(UserInfo.getInvitationCode())) {
-            invitationCodeTv.setVisibility(View.GONE);
+            tvInvate.setVisibility(View.GONE);
         } else {
-            invitationCodeTv.setVisibility(View.VISIBLE);
-            invitationCodeTv.setText(UserInfo.getInvitationCode());
+            tvInvate.setVisibility(View.VISIBLE);
+            tvInvate.setText("邀请码：" + UserInfo.getInvitationCode());
         }
     }
 
-    @OnClick({R.id.tv_all_order,R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail,R.id.setting_iv ,R.id.ll_get_cash})
+    @OnClick({R.id.tv_all_order, R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail, R.id.setting_iv, R.id.ll_get_cash})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_all_order:
-            {
+            case R.id.tv_all_order: {
                 Intent intent = new Intent(this.getContext(), OrderActivity.class);
                 intent.putExtra(ConstUtils.ID, 0);
                 startActivity(intent);
             }
-                break;
-            case R.id.image_unpay:
-            {
+            break;
+            case R.id.image_unpay: {
                 Intent intent = new Intent(this.getContext(), OrderActivity.class);
                 intent.putExtra(ConstUtils.ID, 1);
                 startActivity(intent);
             }
-                break;
-            case R.id.image_unsend:
-            {
+            break;
+            case R.id.image_unsend: {
                 Intent intent = new Intent(this.getContext(), OrderActivity.class);
                 intent.putExtra(ConstUtils.ID, 2);
                 startActivity(intent);
             }
-                break;
-            case R.id.image_unget:
-            {
+            break;
+            case R.id.image_unget: {
                 Intent intent = new Intent(this.getContext(), OrderActivity.class);
                 intent.putExtra(ConstUtils.ID, 3);
                 startActivity(intent);
             }
-                break;
-            case R.id.image_finish:
-            {
+            break;
+            case R.id.image_finish: {
                 Intent intent = new Intent(this.getContext(), OrderActivity.class);
                 intent.putExtra(ConstUtils.ID, 4);
                 startActivity(intent);
             }
-                break;
+            break;
             case R.id.ll_team:
                 readyGo(MineTeamActivity.class);
                 break;
@@ -299,15 +283,14 @@ public class MineFragment extends BaseFragment {
             case R.id.setting_iv:
                 readyGo(SettingActivity.class);
                 break;
-            case R.id.ll_get_cash:
-            {
-                if (UserInfo.getWeChatUrl().length() == 0 && UserInfo.getAlipayUrl().length() == 0){
-                    ToastUtils.show(getActivity(),"请先上传 提现二维码");
+            case R.id.ll_get_cash: {
+                if (UserInfo.getWeChatUrl().length() == 0 && UserInfo.getAlipayUrl().length() == 0) {
+                    ToastUtils.show(getActivity(), "请先上传 提现二维码");
                     break;
                 }
                 readyGo(GetCashActivity.class);
             }
-                break;
+            break;
         }
     }
 

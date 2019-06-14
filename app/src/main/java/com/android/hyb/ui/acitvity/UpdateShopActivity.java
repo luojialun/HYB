@@ -72,6 +72,9 @@ public class UpdateShopActivity extends BaseActivity {
                     public void onNext(BusinessGoodsResponse response) {
                         swipeRefreshLayout.setRefreshing(false);
                         adapter.setNewData(response.getData());
+                        if (response.getData().size() == 0){
+                            readyGo(UploadActivity.class);
+                        }
                     }
 
                     @Override

@@ -33,7 +33,7 @@ public class ShareCodeFragment extends BaseFragment {
     @Override
     public void initView() {
         if (UserInfo.getInvitationCode() != null){
-            codeTv.setText(UserInfo.getInvitationCode());
+            codeTv.setText("邀请码："+UserInfo.getInvitationCode());
         }
     }
 

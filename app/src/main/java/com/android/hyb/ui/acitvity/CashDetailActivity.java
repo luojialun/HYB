@@ -59,7 +59,7 @@ public class CashDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        tvTab1.setTextColor(Color.parseColor("#86e2d2"));
+        tvTab1.setTextColor(Color.parseColor("#d81e06"));
         imageTab1.setVisibility(View.VISIBLE);
 
         vipFragment = new WalletFragment();
@@ -133,17 +133,17 @@ public class CashDetailActivity extends BaseActivity {
 
         switch (num) {
             case 0:
-                tvTab1.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab1.setTextColor(Color.parseColor("#d81e06"));
                 imageTab1.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(0, true);
                 break;
             case 1:
-                tvTab2.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab2.setTextColor(Color.parseColor("#d81e06"));
                 imageTab2.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(1, true);
                 break;
             case 2:
-                tvTab3.setTextColor(Color.parseColor("#86e2d2"));
+                tvTab3.setTextColor(Color.parseColor("#d81e06"));
                 imageTab3.setVisibility(View.VISIBLE);
                 viewpager.setCurrentItem(2, true);
                 break;

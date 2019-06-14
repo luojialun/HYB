@@ -51,8 +51,8 @@
             android:layout_marginRight="10dp"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@mipmap/header_default"
             android:layout_toLeftOf="@id/avatar_more_iv"
             android:layout_marginRight="10dp"

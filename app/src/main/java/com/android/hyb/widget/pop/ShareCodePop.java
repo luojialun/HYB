@@ -10,8 +10,8 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.hyb.R;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.util.ToastUtils;
+import com.bumptech.glide.Glide;
 
 public class ShareCodePop {
 
@@ -39,7 +39,7 @@ public class ShareCodePop {
         });
 
         ImageView goodsIv=mPopView.findViewById(R.id.goods_iv);
-        GlideApp.with(activity).load("http://b-ssl.duitang.com/uploads/item/201505/13/20150513184342_wHXaf.jpeg").into(goodsIv);
+        Glide.with(activity).load("http://b-ssl.duitang.com/uploads/item/201505/13/20150513184342_wHXaf.jpeg").into(goodsIv);
 
         TextView saveTv=mPopView.findViewById(R.id.save_tv);
         saveTv.setOnClickListener(new View.OnClickListener() {

@@ -19,7 +19,6 @@ import android.widget.TextView;
 import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.bean.response.BusinessSingleGoodBean;
@@ -33,6 +32,7 @@ import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
 import com.android.hyb.widget.pop.ListSingleSelectPop;
+import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -114,7 +114,7 @@ public class UploadActivity extends BaseActivity {
                         public void onNext(BusinessSingleGoodBean responseSingleGoodBean) {
                             if (responseSingleGoodBean.getData() != null) {
                                 String url = BuildConfig.serverUrl + "/Yinliubao/images" + responseSingleGoodBean.getData().getUrl();
-                                GlideApp.with(getActicity()).load(url).into(selectIv);
+                                Glide.with(getActicity()).load(url).into(selectIv);
                                 imageURL = responseSingleGoodBean.getData().getUrl();
                                 ServiceFactory.createHYBService(ContentService.class).getGoodsCategoryList()
                                         .compose(new RemoteTransformer<GoodsCategoryResponse>())
@@ -320,7 +320,7 @@ public class UploadActivity extends BaseActivity {
                     List<LocalMedia> localMediaList = PictureSelector.obtainMultipleResult(data);
                     if (0 < localMediaList.size()) {
                         filePath = localMediaList.get(0).getPath();
-                        GlideApp.with(UploadActivity.this).load(filePath).into(selectIv);
+                        Glide.with(UploadActivity.this).load(filePath).into(selectIv);
                         uploadImage(filePath);
                     }
 

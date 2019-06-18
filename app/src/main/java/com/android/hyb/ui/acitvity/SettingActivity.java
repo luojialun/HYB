@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.android.hyb.BuildConfig;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -205,7 +204,7 @@ public class SettingActivity extends BaseActivity {
                     List<LocalMedia> localMediaList = PictureSelector.obtainMultipleResult(data);
                     if (0 < localMediaList.size()) {
                         filePath = localMediaList.get(0).getPath();
-                        GlideApp.with(SettingActivity.this).load(filePath).into(payIv);
+                        Glide.with(SettingActivity.this).load(filePath).into(payIv);
                         uploadImage(filePath);
                     }
 

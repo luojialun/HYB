@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
-import com.android.hyb.base.GlideApp;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.GetCountsResponse;
 import com.android.hyb.bean.response.GetGroupResponse;
@@ -33,6 +32,7 @@ import com.android.hyb.ui.acitvity.UpdateShopActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
+import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -211,11 +211,7 @@ public class MineFragment extends BaseFragment {
     }
 
     private void updateHeaderView() {
-        GlideApp.with(this)
-                .load(UserInfo.getTotalAvatarUrl())
-                .placeholder(R.mipmap.header_default)
-                .into(imageHeader);
-
+        imageHeader.setImageResource(R.mipmap.header_default);
 
         tvMobile.setText(UserInfo.getOpenId());
 

@@ -22,8 +22,8 @@ public class OrderDetailsActivity extends BaseActivity {
     LinearLayout rootLl;
     @BindView(R.id.pay_method_tv)
     TextView payMethodTv;
-    @BindView(R.id.pay_password_view)
-    View payPasswordView;
+//    @BindView(R.id.pay_password_view)
+//    View payPasswordView;
     @BindView(R.id.tv_goods_name)
     TextView tvGoodsName;
     @BindView(R.id.tv_goods_price)

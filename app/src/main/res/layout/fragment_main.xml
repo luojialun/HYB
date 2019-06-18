@@ -21,11 +21,22 @@
             <!--banner 部分-->
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="250dp"
+                android:background="@color/white">
+
+                <ImageView
+                    android:id="@+id/banner_background_iv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="40dp"
+                    android:background="@color/color_7CCD7C"/>
 
                 <com.youth.banner.Banner
                     android:id="@+id/banner"
                     android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="30dp"
                     android:layout_height="200dp" />
 
                 <!--&lt;!&ndash;跑马灯部分&ndash;&gt;-->

@@ -83,7 +83,7 @@ public class MainFragment extends BaseFragment {
                         if (null != response && 0 < response.getData().size()) {
                             banner.isAutoPlay(true);
                             //设置轮播时间
-                            banner.setDelayTime(3000);
+                            banner.setDelayTime(5000);
                             banner.setImageLoader(new GlideImageLoader());
                             banner.setBannerStyle(BannerConfig.NOT_INDICATOR);
                             List<String> images = new ArrayList<>();
@@ -93,6 +93,10 @@ public class MainFragment extends BaseFragment {
                             banner.setImages(images);
                             banner.start();
 
+                            if (response.getData().size() > 0){
+                                Glide.with(MainFragment.this.getContext()).load(response.getData().get(0).getBannerUrl()).into(bannerBackgroundIv);
+                            }
+
                             banner.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
                                 @Override
                                 public void onPageScrolled(int i, float v, int i1) {
@@ -101,16 +105,8 @@ public class MainFragment extends BaseFragment {
 
                                 @Override
                                 public void onPageSelected(int i) {
-                                    switch (i){
-                                        case 0:
-                                            bannerBackgroundIv.setBackgroundColor(Color.RED);
-                                            break;
-                                        case 1:
-                                            bannerBackgroundIv.setBackgroundColor(Color.GREEN);
-                                            break;
-                                        case 2:
-                                            bannerBackgroundIv.setBackgroundColor(Color.GRAY);
-                                            break;
+                                    if (i < response.getData().size()){
+                                        Glide.with(MainFragment.this.getContext()).load(response.getData().get(i).getBannerUrl()).into(bannerBackgroundIv);
                                     }
                                 }
 

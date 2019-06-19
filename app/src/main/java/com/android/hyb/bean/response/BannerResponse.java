@@ -21,6 +21,15 @@ public class BannerResponse extends BaseResponse {
         private int Id;
         private String Url;
         private int SortNum;
+        private String BannerUrl;
+
+        public void setBannerUrl(String bannerUrl) {
+            BannerUrl = bannerUrl;
+        }
+
+        public String getBannerUrl() {
+            return BuildConfig.serverUrl+"/Yinliubao/images"+BannerUrl;
+        }
 
         public int getId() {
             return Id;

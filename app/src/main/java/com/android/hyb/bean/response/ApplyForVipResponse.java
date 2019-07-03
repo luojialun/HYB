@@ -28,7 +28,34 @@ public class ApplyForVipResponse extends BaseResponse {
         private String Message;
         private String Url;
         private String OrderTimeString;
+        private String JsApiParam;
+        private String PartnerId;
+        private String PrepayId;
         private int Minutes;
+
+        public String getJsApiParam() {
+            return JsApiParam;
+        }
+
+        public void setJsApiParam(String jsApiParam) {
+            JsApiParam = jsApiParam;
+        }
+
+        public String getPartnerId() {
+            return PartnerId;
+        }
+
+        public void setPartnerId(String partnerId) {
+            PartnerId = partnerId;
+        }
+
+        public String getPrepayId() {
+            return PrepayId;
+        }
+
+        public void setPrepayId(String prepayId) {
+            PrepayId = prepayId;
+        }
 
         public String getStatus() {
             return Status;

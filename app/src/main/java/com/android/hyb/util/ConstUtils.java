@@ -42,7 +42,8 @@ public class ConstUtils {
 
     public final static int REQUEST_CAPTURE = 1001;//请求相机
 
-    public static final String WECHAT_PAY_APP_ID = "";
+    public static final String WECHAT_PAY_APP_ID = "wx678f048066c038e4";
 
     public static final String TYPE = "type";
+
 }

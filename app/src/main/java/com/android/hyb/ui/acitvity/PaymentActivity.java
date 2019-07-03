@@ -14,6 +14,7 @@ import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.ApplyForVipResponse;
+import com.android.hyb.bean.response.PayBean;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
@@ -27,7 +28,12 @@ import com.android.hyb.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.request.RequestOptions;
+import com.google.gson.Gson;
 import com.mylhyl.zxing.scanner.encode.QREncode;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+import com.tencent.mm.opensdk.utils.Log;
 
 import java.io.File;
 
@@ -47,6 +53,7 @@ public class PaymentActivity extends BaseActivity {
     private CountDownTimer countDownTimer;
     private int type = -1;
     private int id;
+    private PayBean payBean;
 
     @Override
     public int setViewId() {
@@ -91,6 +98,8 @@ public class PaymentActivity extends BaseActivity {
     }
 
     public void getVipPay() {
+        String token = UserInfo.getToken();
+
         ServiceFactory.createHYBService(ContentService.class).ApplyForVip(UserInfo.getToken())
                 .compose(new RemoteTransformer<ApplyForVipResponse>())
                 .subscribe(new ToastObserver<ApplyForVipResponse>(this) {
@@ -101,6 +110,23 @@ public class PaymentActivity extends BaseActivity {
                                 Glide.with(getActicity())
                                         .load(response.getData().getUrl())
                                         .into(codeIv);
+
+                                Gson gson = new Gson();
+                                payBean = gson.fromJson(response.getData().getJsApiParam(), PayBean.class);
+
+                                final IWXAPI msgApi = WXAPIFactory.createWXAPI(PaymentActivity.this, null);
+                                msgApi.registerApp(ConstUtils.WECHAT_PAY_APP_ID);
+
+                                PayReq request = new PayReq();
+                                request.appId = ConstUtils.WECHAT_PAY_APP_ID;
+                                request.partnerId = response.getData().getPartnerId();
+                                request.prepayId= response.getData().getPrepayId();
+                                request.packageValue = payBean.getPackageX();
+                                request.nonceStr= payBean.getNonceStr();
+                                request.timeStamp= payBean.getTimeStamp();
+                                request.sign= payBean.getPaySign();
+                                Boolean success = msgApi.sendReq(request);
+                                Log.e("ssss",success+"");
 
                                 startTimer(response.getData().getMinutes());
                             } else {

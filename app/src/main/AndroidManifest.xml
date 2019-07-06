@@ -32,6 +32,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".wxapi.AppRegister">
+            <intent-filter>
+                <action android:name="com.tencent.mm.plugin.openapi.Intent.ACTION_REFRESH_WXAPP" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".ui.acitvity.OrderDetailsActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -77,12 +84,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:taskAffinity="net.sourceforge.simcpux"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/TransparentTheme"
+            android:taskAffinity="net.sourceforge.simcpux" />
         <activity
             android:name=".ui.acitvity.EmployActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"

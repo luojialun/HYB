@@ -36,7 +36,7 @@ public class SplashActivity extends BaseActivity {
 
     private void checkPermission() {
         AndPermission.with(this).runtime()
-                .permission(Permission.Group.STORAGE,Permission.Group.CAMERA)
+                .permission(Permission.WRITE_EXTERNAL_STORAGE,Permission.READ_EXTERNAL_STORAGE,Permission.CAMERA,Permission.READ_PHONE_STATE)
                 .onGranted(new Action<List<String>>() {
                     @Override
                     public void onAction(List<String> data) {

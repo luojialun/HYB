@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.clazz.UserInfo;
+import com.android.hyb.bean.event.WechatFeedBackEvent;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.PayBean;
 import com.android.hyb.bean.response.PlaceNewOrderResponse;
@@ -34,6 +35,9 @@ import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.tencent.mm.opensdk.utils.Log;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
 
@@ -98,7 +102,6 @@ public class PaymentActivity extends BaseActivity {
     }
 
     public void getVipPay() {
-        String token = UserInfo.getToken();
 
         ServiceFactory.createHYBService(ContentService.class).ApplyForVip(UserInfo.getToken())
                 .compose(new RemoteTransformer<ApplyForVipResponse>())
@@ -107,26 +110,25 @@ public class PaymentActivity extends BaseActivity {
                     public void onNext(ApplyForVipResponse response) {
                         if (null != response) {
                             if (response.getData().getStatus().equals("success")) {
-                                Glide.with(getActicity())
-                                        .load(response.getData().getUrl())
-                                        .into(codeIv);
+//                                Glide.with(getActicity())
+//                                        .load(response.getData().getUrl())
+//                                        .into(codeIv);
 
                                 Gson gson = new Gson();
                                 payBean = gson.fromJson(response.getData().getJsApiParam(), PayBean.class);
 
-                                final IWXAPI msgApi = WXAPIFactory.createWXAPI(PaymentActivity.this, null);
-                                msgApi.registerApp(ConstUtils.WECHAT_PAY_APP_ID);
+                                IWXAPI msgApi = WXAPIFactory.createWXAPI(PaymentActivity.this, ConstUtils.WECHAT_PAY_APP_ID);
 
                                 PayReq request = new PayReq();
                                 request.appId = ConstUtils.WECHAT_PAY_APP_ID;
                                 request.partnerId = response.getData().getPartnerId();
-                                request.prepayId= response.getData().getPrepayId();
+                                request.prepayId = response.getData().getPrepayId();
                                 request.packageValue = payBean.getPackageX();
-                                request.nonceStr= payBean.getNonceStr();
-                                request.timeStamp= payBean.getTimeStamp();
-                                request.sign= payBean.getPaySign();
+                                request.nonceStr = payBean.getNonceStr();
+                                request.timeStamp = payBean.getTimeStamp();
+                                request.sign = payBean.getPaySign();
                                 Boolean success = msgApi.sendReq(request);
-                                Log.e("ssss",success+"");
+                                Log.e("ssss", success + "");
 
                                 startTimer(response.getData().getMinutes());
                             } else {
@@ -179,6 +181,17 @@ public class PaymentActivity extends BaseActivity {
         };
         countDownTimer.start();
     }
+
+    @Override
+    public boolean bindEventbus() {
+        return true;
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void wechatFeedBack(WechatFeedBackEvent event) {
+        Log.e("TAG", "errorcode-->" + event.getCode());
+    }
+
 
     @Override
     protected void onDestroy() {

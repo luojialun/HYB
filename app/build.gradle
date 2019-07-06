@@ -29,7 +29,7 @@ android {
             shrinkResources false
             minifyEnabled false
             buildConfigField 'String', 'serverUrl', '"https://www.xtrszccp.cn"'
-//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            //proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     //指定jdk版本
@@ -88,7 +88,8 @@ dependencies {
     //ali支付
     implementation fileTree(include: ['*.aar'], dir: 'libs/ali')
     //wechat支付
-    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+
     //二维码控件
     implementation 'com.mylhyl:zxingscanner:2.1.2'
     //相机选择

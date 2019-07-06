@@ -1,5 +1,8 @@
 package com.android.hyb.wxapi;
 
+import android.content.Intent;
+
+import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
 import com.android.hyb.bean.event.WechatFeedBackEvent;
 import com.android.hyb.util.ConstUtils;
@@ -12,13 +15,13 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.greenrobot.eventbus.EventBus;
 
-public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler {
+public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandler {
 
     private IWXAPI api;
 
     @Override
     public int setViewId() {
-        return 0;
+        return R.layout.activity_wechat_pay_result;
     }
 
     @Override
@@ -28,8 +31,15 @@ public class WXEntryActivity extends BaseActivity implements IWXAPIEventHandler 
 
     @Override
     public void initData() {
-        api = WXAPIFactory.createWXAPI(this, ConstUtils.WECHAT_PAY_APP_ID, true);
+        api = WXAPIFactory.createWXAPI(this, ConstUtils.WECHAT_PAY_APP_ID);
         api.handleIntent(getIntent(), this);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        api.handleIntent(intent, this);
     }
 
     @Override

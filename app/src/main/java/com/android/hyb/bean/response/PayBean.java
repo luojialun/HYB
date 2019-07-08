@@ -4,37 +4,40 @@ import com.google.gson.annotations.SerializedName;
 
 public class PayBean {
 
+
     /**
-     * appId : wx678f048066c038e4
-     * nonceStr : fef8e2f88f7345c1beac27ba970f1d78
-     * package : prepay_id=wx03104103441355e6210e35fb1753718200
-     * paySign : 2FE534FFCE469857D50E414DAFB604D0
-     * signType : MD5
-     * timeStamp : 1562121664
+     * appid : wx678f048066c038e4
+     * noncestr : df4bc08247274d88ba5fbe776a785ed0
+     * package : Sign=WXPay
+     * partnerid : 1541871121
+     * prepayid : wx06200702546835e6210e35fb1446567000
+     * sign : 9299A7E9F3FED6B73B7D066074AC3CDA
+     * timestamp : 1562414823
      */
 
-    private String appId;
-    private String nonceStr;
+    private String appid;
+    private String noncestr;
     @SerializedName("package")
     private String packageX;
-    private String paySign;
-    private String signType;
-    private String timeStamp;
+    private String partnerid;
+    private String prepayid;
+    private String sign;
+    private String timestamp;
 
-    public String getAppId() {
-        return appId;
+    public String getAppid() {
+        return appid;
     }
 
-    public void setAppId(String appId) {
-        this.appId = appId;
+    public void setAppid(String appid) {
+        this.appid = appid;
     }
 
-    public String getNonceStr() {
-        return nonceStr;
+    public String getNoncestr() {
+        return noncestr;
     }
 
-    public void setNonceStr(String nonceStr) {
-        this.nonceStr = nonceStr;
+    public void setNoncestr(String noncestr) {
+        this.noncestr = noncestr;
     }
 
     public String getPackageX() {
@@ -45,27 +48,35 @@ public class PayBean {
         this.packageX = packageX;
     }
 
-    public String getPaySign() {
-        return paySign;
+    public String getPartnerid() {
+        return partnerid;
     }
 
-    public void setPaySign(String paySign) {
-        this.paySign = paySign;
+    public void setPartnerid(String partnerid) {
+        this.partnerid = partnerid;
     }
 
-    public String getSignType() {
-        return signType;
+    public String getPrepayid() {
+        return prepayid;
     }
 
-    public void setSignType(String signType) {
-        this.signType = signType;
+    public void setPrepayid(String prepayid) {
+        this.prepayid = prepayid;
     }
 
-    public String getTimeStamp() {
-        return timeStamp;
+    public String getSign() {
+        return sign;
     }
 
-    public void setTimeStamp(String timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setSign(String sign) {
+        this.sign = sign;
+    }
+
+    public String getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(String timestamp) {
+        this.timestamp = timestamp;
     }
 }

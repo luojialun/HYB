@@ -121,12 +121,12 @@ public class PaymentActivity extends BaseActivity {
 
                                 PayReq request = new PayReq();
                                 request.appId = ConstUtils.WECHAT_PAY_APP_ID;
-                                request.partnerId = response.getData().getPartnerId();
-                                request.prepayId = response.getData().getPrepayId();
+                                request.partnerId = payBean.getPartnerid();
+                                request.prepayId = payBean.getPrepayid();
                                 request.packageValue = payBean.getPackageX();
-                                request.nonceStr = payBean.getNonceStr();
-                                request.timeStamp = payBean.getTimeStamp();
-                                request.sign = payBean.getPaySign();
+                                request.nonceStr = payBean.getNoncestr();
+                                request.timeStamp = payBean.getTimestamp();
+                                request.sign = payBean.getSign();
                                 Boolean success = msgApi.sendReq(request);
                                 Log.e("ssss", success + "");
 

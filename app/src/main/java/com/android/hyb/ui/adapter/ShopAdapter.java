@@ -3,37 +3,24 @@ package com.android.hyb.ui.adapter;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.bean.response.ApplyForBusinessResponse;
-import com.android.hyb.bean.response.BannerResponse;
 import com.android.hyb.bean.response.BusinessGoodsResponse;
-import com.android.hyb.bean.response.GoodsCategoryResponse;
-import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
-import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
-import com.android.hyb.ui.acitvity.GoodsListActivity;
-import com.android.hyb.ui.acitvity.PaymentActivity;
 import com.android.hyb.ui.acitvity.UploadActivity;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
-import com.android.hyb.widget.GlideImageLoader;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.tencent.mm.opensdk.utils.Log;
-import com.youth.banner.BannerConfig;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ShopAdapter extends BaseQuickAdapter<BusinessGoodsResponse.BusinessGoodsBean, BaseViewHolder> {

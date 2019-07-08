@@ -128,7 +128,16 @@ public interface ContentService {
      */
     @FormUrlEncoded
     @POST("Yinliubao/Order/PlaceNewOrder")
-    Observable<PlaceNewOrderResponse> placeNewOrder(@Field("token") String token, @Field("goodsId") int goodsId);
+    Observable<ApplyForVipResponse> placeNewOrder(@Field("token") String token, @Field("goodsId") int goodsId);
+
+    /**
+     * 用户继续支付
+     */
+    /**
+     * 分页获取订单列表
+     */
+    @GET("Yinliubao/Order/PayOrder")
+    Observable<ApplyForVipResponse> PayOrder(@Query("token") String token, @Query("id") int orderId);
 
     /**
      * 分页获取订单列表

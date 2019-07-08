@@ -4,15 +4,11 @@ package com.android.hyb.ui.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.android.hyb.BuildConfig;
@@ -28,7 +24,7 @@ import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.ui.acitvity.GoodsDetailsActivity;
-import com.android.hyb.ui.acitvity.PaymentActivity;
+import com.android.hyb.ui.acitvity.PayConfirmActivity;
 import com.android.hyb.ui.adapter.GoodsAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.widget.GlideImageLoader;
@@ -230,7 +226,7 @@ public class MainFragment extends BaseFragment {
 //                mainTipPop.showPopupWindow();
 //                break;
             case R.id.promotion_iv:
-                Intent intent = new Intent(getActivity(), PaymentActivity.class);
+                Intent intent = new Intent(getActivity(), PayConfirmActivity.class);
                 intent.putExtra(ConstUtils.TYPE, 0);
                 startActivity(intent);
                 break;

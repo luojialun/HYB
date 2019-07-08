@@ -98,12 +98,12 @@ public class MineFragment extends BaseFragment {
     RelativeLayout llShare;
     @BindView(R.id.ll_other)
     RelativeLayout llOther;
-    @BindView(R.id.ll_merchant)
-    RelativeLayout llMerchant;
+//    @BindView(R.id.ll_merchant)
+//    RelativeLayout llMerchant;
     @BindView(R.id.tv_logout)
     TextView tvLogout;
-    @BindView(R.id.image_merchant)
-    ImageView imageMerchant;
+//    @BindView(R.id.image_merchant)
+//    ImageView imageMerchant;
     @BindView(R.id.unpay_tv)
     TextView unpayTv;
     @BindView(R.id.unsend_tv)
@@ -228,7 +228,7 @@ public class MineFragment extends BaseFragment {
         }
     }
 
-    @OnClick({R.id.tv_all_order, R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.ll_merchant, R.id.tv_logout, R.id.ll_share, R.id.ll_detail, R.id.setting_iv, R.id.ll_get_cash})
+    @OnClick({R.id.tv_all_order, R.id.image_unpay, R.id.image_unsend, R.id.image_unget, R.id.image_finish, R.id.ll_team, R.id.tv_logout, R.id.ll_share, R.id.ll_detail, R.id.setting_iv, R.id.ll_get_cash})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_all_order: {
@@ -264,9 +264,9 @@ public class MineFragment extends BaseFragment {
             case R.id.ll_team:
                 readyGo(MineTeamActivity.class);
                 break;
-            case R.id.ll_merchant:
-                readyGo(UpdateShopActivity.class);
-                break;
+//            case R.id.ll_merchant:
+//                readyGo(UpdateShopActivity.class);
+//                break;
             case R.id.tv_logout:
                 logout();
                 break;

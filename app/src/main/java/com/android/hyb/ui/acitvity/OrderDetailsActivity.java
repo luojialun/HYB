@@ -20,8 +20,8 @@ public class OrderDetailsActivity extends BaseActivity {
 
     @BindView(R.id.root_ll)
     LinearLayout rootLl;
-    @BindView(R.id.pay_method_tv)
-    TextView payMethodTv;
+//    @BindView(R.id.pay_method_tv)
+//    TextView payMethodTv;
 //    @BindView(R.id.pay_password_view)
 //    View payPasswordView;
     @BindView(R.id.tv_goods_name)
@@ -66,7 +66,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
     private void submit() {
         //支付成功之后去后台下单，此为下单接口。
-        Intent intent = new Intent(this, PaymentActivity.class);
+        Intent intent = new Intent(this, PayConfirmActivity.class);
         intent.putExtra(ConstUtils.TYPE, 1);
         intent.putExtra(ConstUtils.ID, goodsBean.getId());
         startActivity(intent);

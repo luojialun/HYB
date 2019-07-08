@@ -471,51 +471,51 @@
                         android:background="@color/color_eeefef" />
                 </RelativeLayout>
 
-                <RelativeLayout
-                    android:id="@+id/ll_merchant"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_below="@id/ll_team">
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/ll_merchant"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_below="@id/ll_team">-->
 
-                    <ImageView
-                        android:id="@+id/image_merchant"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="15dp"
-                        android:src="@mipmap/mine_merchant" />
+                    <!--<ImageView-->
+                        <!--android:id="@+id/image_merchant"-->
+                        <!--android:layout_width="28dp"-->
+                        <!--android:layout_height="28dp"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="15dp"-->
+                        <!--android:src="@mipmap/mine_merchant" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_toRightOf="@id/image_merchant"
-                        android:text="上传商品"
-                        android:textColor="#272727"
-                        android:textSize="13sp" />
+                    <!--<TextView-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginLeft="20dp"-->
+                        <!--android:layout_marginTop="10dp"-->
+                        <!--android:layout_toRightOf="@id/image_merchant"-->
+                        <!--android:text="上传商品"-->
+                        <!--android:textColor="#272727"-->
+                        <!--android:textSize="13sp" />-->
 
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:src="@mipmap/mine_more" />
+                    <!--<ImageView-->
+                        <!--android:layout_width="15dp"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_centerVertical="true"-->
+                        <!--android:layout_marginRight="20dp"-->
+                        <!--android:src="@mipmap/mine_more" />-->
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_alignParentBottom="true"
-                        android:background="@color/color_eeefef" />
-                </RelativeLayout>
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:background="@color/color_eeefef" />-->
+                <!--</RelativeLayout>-->
 
                 <RelativeLayout
                     android:id="@+id/ll_get_cash"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_below="@id/ll_merchant">
+                    android:layout_below="@id/ll_team">
 
                     <ImageView
                         android:id="@+id/image_get_cash"

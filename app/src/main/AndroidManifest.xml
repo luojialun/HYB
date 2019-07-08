@@ -20,7 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.acitvity.GetCashActivity"></activity>
+        <activity
+            android:name=".ui.acitvity.PayConfirmActivity"
+            android:label="@string/title_activity_pay_confirm"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".ui.acitvity.GetCashActivity" />
         <activity android:name=".ui.acitvity.SettingActivity" />
         <activity android:name=".ui.acitvity.UploadActivity" />
         <activity android:name=".ui.acitvity.UpdateShopActivity" />
@@ -88,18 +92,14 @@
             android:exported="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/TransparentTheme"
-            android:taskAffinity="net.sourceforge.simcpux" />
+            android:taskAffinity="net.sourceforge.simcpux"
+            android:theme="@style/TransparentTheme" />
         <activity
             android:name=".ui.acitvity.EmployActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.acitvity.SearchActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ui.acitvity.PaymentActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
 

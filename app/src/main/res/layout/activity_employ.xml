@@ -38,12 +38,12 @@
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/share_2" />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/share_3" />
+            <!--<ImageView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:adjustViewBounds="true"-->
+                <!--android:scaleType="centerCrop"-->
+                <!--android:src="@mipmap/share_3" />-->
         </LinearLayout>
     </ScrollView>
 

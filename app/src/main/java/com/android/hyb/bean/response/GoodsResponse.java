@@ -70,6 +70,15 @@ public class GoodsResponse extends BaseResponse {
         private String AgentPrice;
         private boolean NoCoupon;
         private String SizeString;
+        private float Commission;
+
+        public float getCommission() {
+            return Commission;
+        }
+
+        public void setCommission(float commission) {
+            Commission = commission;
+        }
 
         public int getId() {
             return Id;

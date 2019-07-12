@@ -148,43 +148,43 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/code_ll"
-        android:layout_width="match_parent"
-        android:layout_height="100dp">
-        <TextView
-            android:id="@+id/code_title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="微信二维码"
-            android:textSize="14sp"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_marginLeft="10dp"/>
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/code_ll"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="100dp">-->
+        <!--<TextView-->
+            <!--android:id="@+id/code_title_tv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:text="微信二维码"-->
+            <!--android:textSize="14sp"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:gravity="center"-->
+            <!--android:layout_marginLeft="10dp"/>-->
 
-        <ImageView
-            android:id="@+id/code_more_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/mine_more"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/code_more_iv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@mipmap/mine_more"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_marginRight="10dp"/>-->
 
-        <ImageView
-            android:id="@+id/pay_iv"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_toLeftOf="@id/code_more_iv"
-            android:layout_marginRight="10dp"
-            android:layout_centerVertical="true"/>
+        <!--<ImageView-->
+            <!--android:id="@+id/pay_iv"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_toLeftOf="@id/code_more_iv"-->
+            <!--android:layout_marginRight="10dp"-->
+            <!--android:layout_centerVertical="true"/>-->
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/color_eaeaea"
-            android:layout_alignParentBottom="true"/>
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="1dp"-->
+            <!--android:background="@color/color_eaeaea"-->
+            <!--android:layout_alignParentBottom="true"/>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 </LinearLayout>

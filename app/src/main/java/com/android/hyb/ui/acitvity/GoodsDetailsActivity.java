@@ -3,6 +3,8 @@ package com.android.hyb.ui.acitvity;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,6 +23,7 @@ import com.android.hyb.util.ToastUtils;
 import com.bumptech.glide.Glide;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -38,6 +41,8 @@ public class GoodsDetailsActivity extends BaseActivity {
     TextView descTv;
     @BindView(R.id.price_tv)
     TextView priceTv;
+    @BindView(R.id.hidden_tv)
+    TextView hiddenTv;
 
     private int id;
     private GoodsResponse.GoodsBean goodsBean;
@@ -76,13 +81,21 @@ public class GoodsDetailsActivity extends BaseActivity {
                     @Override
                     public void onNext(GoodsDetailsResponse response) {
                         dismissProgress();
-                        if (null != response) {
+                        if (null != response && response.getData() != null) {
                             goodsBean = response.getData();
                             Glide.with(GoodsDetailsActivity.this).load(response.getData().getUrl()).into(contentIv);
                             nameTv.setText(response.getData().getName());
                             salesTv.setText(response.getData().getSales() + "人已付款");
                             descTv.setText(response.getData().getDetails());
-                            priceTv.setText("¥"+String.valueOf(response.getData().getPresentPrice()));
+                            priceTv.setText("¥" + String.valueOf(response.getData().getPresentPrice()));
+                            if (response.getData().getHiddenInfo() != null && !TextUtils.isEmpty(response.getData().getHiddenInfo())){
+                                hiddenTv.setText(response.getData().getHiddenInfo());
+                                hiddenTv.setVisibility(View.VISIBLE);
+                            }
+                            else
+                            {
+                                hiddenTv.setVisibility(View.GONE);
+                            }
                         }
                     }
 

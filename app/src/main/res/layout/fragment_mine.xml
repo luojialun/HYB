@@ -104,8 +104,13 @@
                             android:gravity="center"
                             android:text="我的余额"
                             android:textColor="#707070"
-                            android:textSize="14sp" />
-
+                            android:textSize="14sp" /> 
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/color_eaeaea"/>
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -134,6 +139,13 @@
                             android:textColor="#707070"
                             android:textSize="14sp" />
 
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/color_eaeaea"/>
+
                     </RelativeLayout>
 
                     <RelativeLayout
@@ -161,6 +173,13 @@
                             android:text="今日收入"
                             android:textColor="#707070"
                             android:textSize="14sp" />
+
+                        <ImageView
+                            android:layout_width="1dp"
+                            android:layout_height="50dp"
+                            android:layout_centerVertical="true"
+                            android:layout_alignParentRight="true"
+                            android:background="@color/color_eaeaea"/>
 
                     </RelativeLayout>
 

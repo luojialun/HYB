@@ -100,10 +100,22 @@
             </RelativeLayout>
 
             <TextView
-                android:id="@+id/desc_tv"
+                android:id="@+id/hidden_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:background="@color/color_eaeaea"
+                android:lineSpacingExtra="3dp"
+                android:padding="20dp"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/desc_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:background="@color/color_eaeaea"
                 android:lineSpacingExtra="3dp"
                 android:padding="20dp"

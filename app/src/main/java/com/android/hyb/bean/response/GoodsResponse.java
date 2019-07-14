@@ -71,6 +71,15 @@ public class GoodsResponse extends BaseResponse {
         private boolean NoCoupon;
         private String SizeString;
         private float Commission;
+        private String HiddenInfo;
+
+        public String getHiddenInfo() {
+            return HiddenInfo;
+        }
+
+        public void setHiddenInfo(String hiddenInfo) {
+            HiddenInfo = hiddenInfo;
+        }
 
         public float getCommission() {
             return Commission;

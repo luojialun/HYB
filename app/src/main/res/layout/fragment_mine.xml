@@ -612,7 +612,7 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:layout_toRightOf="@id/image_share"
-                        android:text="推广佣金政策"
+                        android:text="推广政策"
                         android:textColor="#272727"
                         android:textSize="13sp" />
 

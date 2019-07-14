@@ -104,6 +104,18 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tips_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="充值会员请务必使用自己的微信/支付宝支付，提现成功的金额将全部转入该微信/支付宝账号中。"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:visibility="gone"/>
+
+    <TextView
         android:id="@+id/confirm_tv"
         android:layout_width="match_parent"
         android:layout_height="50dp"

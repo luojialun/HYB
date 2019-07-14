@@ -12,7 +12,6 @@ import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.event.WechatFeedBackEvent;
 import com.android.hyb.bean.response.ApplyForVipResponse;
 import com.android.hyb.bean.response.PayBean;
-import com.android.hyb.bean.response.PlaceNewOrderResponse;
 import com.android.hyb.net.exception.ErrorException;
 import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
@@ -21,7 +20,6 @@ import com.android.hyb.net.transformer.RemoteTransformer;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
 import com.android.hyb.util.ToastUtils;
-import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -52,6 +50,8 @@ public class PayConfirmActivity extends BaseActivity {
     ImageView wechatSelectIv;
     @BindView(R.id.alipay_select_iv)
     ImageView alipaySelectIv;
+    @BindView(R.id.tips_tv)
+    TextView tipsTv;
 
     private int type = -1;
     private int id;
@@ -63,7 +63,10 @@ public class PayConfirmActivity extends BaseActivity {
 
     @Override
     public void initView() {
-
+        if (type == 0)
+        {
+            tipsTv.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -84,28 +87,25 @@ public class PayConfirmActivity extends BaseActivity {
     @OnClick({R.id.wechat_rl, R.id.alipay_rl, R.id.confirm_tv})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.wechat_rl:
-            {
+            case R.id.wechat_rl: {
                 wechatSelectIv.setImageResource(R.mipmap.pay_select);
                 alipaySelectIv.setImageResource(R.mipmap.pay_unselect);
             }
-                break;
-            case R.id.alipay_rl:
-            {
-                ToastUtils.show(this,"暂不支持");
+            break;
+            case R.id.alipay_rl: {
+                ToastUtils.show(this, "暂不支持");
 //                wechatSelectIv.setImageResource(R.mipmap.pay_unselect);
 //                alipaySelectIv.setImageResource(R.mipmap.pay_select);
             }
-                break;
-            case R.id.confirm_tv:
-            {
+            break;
+            case R.id.confirm_tv: {
                 if (type == 0) {
                     getVipPay();
-                }else if(type == 1) {
+                } else if (type == 1) {
                     order();
                 }
             }
-                break;
+            break;
         }
     }
 
@@ -186,14 +186,11 @@ public class PayConfirmActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void wechatFeedBack(WechatFeedBackEvent event) {
-        if (event.getCode() == 1)
-        {
-            ToastUtils.show(this,"支付成功");
+        if (event.getCode() == 1) {
+            ToastUtils.show(this, "支付成功");
             finish();
-        }
-        else
-        {
-            ToastUtils.show(this,"支付失败");
+        } else {
+            ToastUtils.show(this, "支付失败");
 
         }
         Log.e("TAG", "errorcode-->" + event.getCode());

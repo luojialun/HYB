@@ -280,10 +280,6 @@ public class MineFragment extends BaseFragment {
                 readyGo(SettingActivity.class);
                 break;
             case R.id.ll_get_cash: {
-                if (UserInfo.getWeChatUrl().length() == 0 && UserInfo.getAlipayUrl().length() == 0) {
-                    ToastUtils.show(getActivity(), "请先上传 提现二维码");
-                    break;
-                }
                 readyGo(GetCashActivity.class);
             }
             break;

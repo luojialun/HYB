@@ -55,7 +55,7 @@ public class GetCashActivity extends BaseActivity {
             return;
         }
 
-
+        this.showProgress();
         String token = SPUtils.getInstance().getString(ConstUtils.TOKEN);
         ServiceFactory.createHYBService(ContentService.class)
                 .Withdraw(token, ConvertUtil.convertToFloat(passwordEt.getText().toString(),0))
@@ -63,14 +63,23 @@ public class GetCashActivity extends BaseActivity {
                 .subscribe(new ToastObserver<ApplyForBusinessResponse>(this) {
                     @Override
                     public void onNext(ApplyForBusinessResponse response) {
+                        GetCashActivity.this.dismissProgress();
                         if (response.getData().equals("success")){
-                            ToastUtils.show(getActicity(),"提现申请 发起成功");
+                            ToastUtils.show(GetCashActivity.this,"提现申请 发起成功");
                             finish();
+                        }
+                        else
+                        {
+                            if (response.getData() != null)
+                            {
+                                ToastUtils.show(GetCashActivity.this,response.getData());
+                            }
                         }
                     }
 
                     @Override
                     public void onError(Throwable t) {
+                        GetCashActivity.this.dismissProgress();
                         super.onError(t);
 
                     }

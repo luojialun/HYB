@@ -131,7 +131,7 @@ public class BestSellersFragment extends BaseFragment {
                     @Override
                     public void onNext(GoodsResponse response) {
                         dissmissProgress();
-                        if (null != response && 0 < response.getData().size()) {
+                        if (null != response) {
                             if (1 == pageIndex) {
                                 tabContentAdapter.setNewData(response.getData());
                             } else {
@@ -145,8 +145,11 @@ public class BestSellersFragment extends BaseFragment {
                             }
 
                         } else {
-                            tabContentAdapter.setNewData(null);
-                            tabContentAdapter.setEmptyView(R.layout.layout_empty, contentRv);
+                            if (1 == pageIndex)
+                            {
+                                tabContentAdapter.setNewData(null);
+                                tabContentAdapter.setEmptyView(R.layout.layout_empty, contentRv);
+                            }
                         }
                     }
 

@@ -93,7 +93,7 @@ public class OrderFragment extends BaseFragment {
                 .subscribe(new ToastObserver<GetOrderListResponse>(this.getContext()) {
                     @Override
                     public void onNext(GetOrderListResponse response) {
-                        if (null != response && 0 < response.getData().size()) {
+                        if (null != response) {
                             if (1 == page) {
                                 swipeRefreshLayout.setRefreshing(false);
                                 adapter.setNewData(response.getData());

@@ -36,8 +36,8 @@ public class GetOrderListResponse extends BaseResponse {
         private int Id;
         private String OrderNumber;
         private int Status;
-        private int TotalFee;
-        private int ActualPay;
+        private double TotalFee;
+        private double ActualPay;
         private int GoodsId;
         private String GoodsName;
         private String PictureUrl;
@@ -72,19 +72,19 @@ public class GetOrderListResponse extends BaseResponse {
             this.Status = Status;
         }
 
-        public int getTotalFee() {
+        public double getTotalFee() {
             return TotalFee;
         }
 
-        public void setTotalFee(int TotalFee) {
+        public void setTotalFee(double TotalFee) {
             this.TotalFee = TotalFee;
         }
 
-        public int getActualPay() {
+        public double getActualPay() {
             return ActualPay;
         }
 
-        public void setActualPay(int ActualPay) {
+        public void setActualPay(double ActualPay) {
             this.ActualPay = ActualPay;
         }
 

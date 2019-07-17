@@ -186,7 +186,7 @@ public class PayConfirmActivity extends BaseActivity {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void wechatFeedBack(WechatFeedBackEvent event) {
-        if (event.getCode() == 1) {
+        if (event.getCode() == 0) {
             ToastUtils.show(this, "支付成功");
             finish();
         } else {

@@ -98,12 +98,49 @@
                 </LinearLayout>
 
             </RelativeLayout>
+            
+            <RelativeLayout
+                android:id="@+id/hidden_pay_ll"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/color_eaeaea">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/goods_detail_lock"
+                    android:layout_toLeftOf="@id/hidden_pay_title_tv"
+                    android:layout_alignTop="@id/hidden_pay_title_tv"
+                    android:layout_marginRight="3dp"/>
+                <TextView
+                    android:id="@+id/hidden_pay_title_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="隐藏内容 支付可见"
+                    android:textSize="15sp"
+                    android:textColor="#333333"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"/>
+                
+                <TextView
+                    android:id="@+id/hidden_pay_pay_tv"
+                    android:layout_width="180dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/rectangle_red_5radius"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="15dp"
+                    android:text="立即支付"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:textSize="15sp"/>
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/hidden_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@color/color_eaeaea"
                 android:lineSpacingExtra="3dp"
                 android:padding="20dp"

@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseActivity;
+import com.android.hyb.bean.clazz.UserInfo;
 import com.android.hyb.bean.response.GoodsDetailsResponse;
 import com.android.hyb.bean.response.GoodsResponse;
 import com.android.hyb.net.exception.ErrorException;
@@ -43,6 +45,10 @@ public class GoodsDetailsActivity extends BaseActivity {
     TextView priceTv;
     @BindView(R.id.hidden_tv)
     TextView hiddenTv;
+    @BindView(R.id.hidden_pay_pay_tv)
+    TextView hiddenPayPayTv;
+    @BindView(R.id.hidden_pay_ll)
+    RelativeLayout hiddenPayLl;
 
     private int id;
     private GoodsResponse.GoodsBean goodsBean;
@@ -75,7 +81,7 @@ public class GoodsDetailsActivity extends BaseActivity {
 
     private void getGoodsDetails() {
         showProgress();
-        ServiceFactory.createHYBService(ContentService.class).getGoodsDetails(id)
+        ServiceFactory.createHYBService(ContentService.class).getGoodsDetails(id, UserInfo.getToken())
                 .compose(new RemoteTransformer<GoodsDetailsResponse>())
                 .subscribe(new ToastObserver<GoodsDetailsResponse>(this) {
                     @Override
@@ -88,13 +94,18 @@ public class GoodsDetailsActivity extends BaseActivity {
                             salesTv.setText(response.getData().getSales() + "人已付款");
                             descTv.setText(response.getData().getDetails());
                             priceTv.setText("¥" + String.valueOf(response.getData().getPresentPrice()));
-                            if (response.getData().getHiddenInfo() != null && !TextUtils.isEmpty(response.getData().getHiddenInfo())){
-                                hiddenTv.setText(response.getData().getHiddenInfo());
-                                hiddenTv.setVisibility(View.VISIBLE);
-                            }
-                            else
+
+                            if (response.getData().getHiddenInfoStatus() == 0)
                             {
                                 hiddenTv.setVisibility(View.GONE);
+                                hiddenPayLl.setVisibility(View.GONE);
+                            } else if(response.getData().getHiddenInfoStatus() == 1) {
+                                hiddenTv.setVisibility(View.GONE);
+                                hiddenPayLl.setVisibility(View.VISIBLE);
+                            } else if(response.getData().getHiddenInfoStatus() == 2) {
+                                hiddenTv.setVisibility(View.VISIBLE);
+                                hiddenPayLl.setVisibility(View.GONE);
+                                hiddenTv.setText("隐藏内容：\n\n" + response.getData().getHiddenInfo());
                             }
                         }
                     }
@@ -107,7 +118,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.buy_tv})
+    @OnClick({R.id.desc_tv, R.id.shop_ll, R.id.buy_tv,R.id.hidden_pay_pay_tv})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.desc_tv:
@@ -121,6 +132,7 @@ public class GoodsDetailsActivity extends BaseActivity {
                 ShareCodePop shareCodePop = new ShareCodePop(this);
                 shareCodePop.showPopupWindow();
                 break;*/
+            case R.id.hidden_pay_pay_tv:
             case R.id.buy_tv:
                 Intent detailsIntent = new Intent(this, OrderDetailsActivity.class);
                 detailsIntent.putExtra(ConstUtils.Bean, goodsBean);

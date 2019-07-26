@@ -102,7 +102,7 @@ public interface ContentService {
      * @return
      */
     @GET("Yinliubao/Goods/GetNew")
-    Observable<GoodsDetailsResponse> getGoodsDetails(@Query("id") int id);
+    Observable<GoodsDetailsResponse> getGoodsDetails(@Query("id") int id,@Query("token") String token);
 
     /**
      * 获取用户信息

@@ -140,6 +140,15 @@ public interface ContentService {
     Observable<ApplyForVipResponse> PayOrder(@Query("token") String token, @Query("id") int orderId);
 
     /**
+     * 用户继续支付
+     */
+    /**
+     * 分页获取订单列表
+     */
+    @GET("Yinliubao/Order/Get")
+    Observable<ApplyForVipResponse> OrderGetDetail(@Query("token") String token, @Query("id") int orderId);
+
+    /**
      * 分页获取订单列表
      */
     @GET("Yinliubao/Order/GetList")

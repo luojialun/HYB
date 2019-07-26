@@ -20,10 +20,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.acitvity.OrderMoreActivity"></activity>
         <activity
             android:name=".ui.acitvity.PayConfirmActivity"
             android:label="@string/title_activity_pay_confirm"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.acitvity.GetCashActivity" />
         <activity android:name=".ui.acitvity.SettingActivity" />
         <activity android:name=".ui.acitvity.UploadActivity" />

@@ -1,9 +1,12 @@
 package com.android.hyb.ui.fragment;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
+import android.view.View;
 
 import com.android.hyb.R;
 import com.android.hyb.base.BaseFragment;
@@ -13,6 +16,8 @@ import com.android.hyb.net.factory.ServiceFactory;
 import com.android.hyb.net.observer.ToastObserver;
 import com.android.hyb.net.service.ContentService;
 import com.android.hyb.net.transformer.RemoteTransformer;
+import com.android.hyb.ui.acitvity.OrderActivity;
+import com.android.hyb.ui.acitvity.OrderMoreActivity;
 import com.android.hyb.ui.adapter.OrdersAdapter;
 import com.android.hyb.util.ConstUtils;
 import com.android.hyb.util.SPUtils;
@@ -133,6 +138,20 @@ public class OrderFragment extends BaseFragment {
                 loadMore();
             }
         },orderRv);
+
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (position < adapter.getData().size()){
+                    GetOrderListResponse.OrderListBean bean = (GetOrderListResponse.OrderListBean)adapter.getData().get(position);
+                    if (bean != null){
+                        Intent intent = new Intent(OrderFragment.this.getContext(), OrderMoreActivity.class);
+                        intent.putExtra(ConstUtils.ID, bean.getId());
+                        startActivity(intent);
+                    }
+                }
+            }
+        });
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
